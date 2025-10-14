@@ -47,9 +47,9 @@
     "use_at_checkout": "Usar este cartão presente no checkout"
   },
   "password": {
-    "title": "This shop is private",
-    "password": "Password",
-    "enter": "Enter"
+    "title": "Esta loja é privada",
+    "password": "Senha",
+    "enter": "Entrar"
   },
   "search": {
     "title": "Search",
