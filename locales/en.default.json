@@ -57,5 +57,12 @@
     "submit": "Pesquisa",
     "no_results_html": "Nenhum resultado para {{ terms }}",
     "results_for_html": "{{ count }} resultados para {{ terms }}"
+  },
+  "customer_accounts": {
+    "date": {
+      "humanize": {
+        "lessThanOneMinuteAgo": "Agora"
+      }
+    }
   }
 }
