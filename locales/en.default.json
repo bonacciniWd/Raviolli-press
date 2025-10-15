@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "404": {
     "title": "404",
@@ -15,15 +24,15 @@
   },
   "cart": {
     "checkout": "Checkout",
-    "title": "Cart",
-    "update": "Update",
-    "remove": "Remove"
+    "title": "Carrinho",
+    "update": "Atualizar",
+    "remove": "Remover"
   },
   "customers": {
     "login": {
       "email": "Email",
-      "password": "Password",
-      "submit": "Sign in",
+      "password": "Senha",
+      "submit": "Entrar",
       "title": "Login"
     },
     "account": {
@@ -43,21 +52,22 @@
     }
   },
   "collections": {
-    "title": "Collections"
+    "title": "Coleções"
   },
   "gift_card": {
-    "add_to_apple_wallet": "Add to Apple Wallet",
-    "card": "Gift card",
-    "expired": "This gift card has expired",
-    "expires_on": "Expires on {{ expires_on }}",
-    "use_at_checkout": "Use this gift card at checkout"
+    "add_to_apple_wallet": "Adicionar Apple Wallet",
+    "card": "Cartão Presente",
+    "expired": "Este cartão presente expirou",
+    "expires_on": "Expira em {{ expires_on }}",
+    "use_at_checkout": "Usar este cartão presente no checkout"
   },
   "password": {
-    "title": "This shop is private",
-    "password": "Password",
-    "enter": "Enter"
+    "title": "Esta loja é privada",
+    "password": "Senha",
+    "enter": "Entrar"
   },
   "search": {
+<<<<<<< HEAD
     "title": "Search",
     "placeholder": "Search articles, pages, or products",
     "submit": "Search",
@@ -115,5 +125,19 @@
   },
   "info": {
     "collection": "Select a collection to display products from"
+=======
+    "title": "Pesquisa",
+    "placeholder": "Pesquisar Artigos, páginas e produtos",
+    "submit": "Pesquisa",
+    "no_results_html": "Nenhum resultado para {{ terms }}",
+    "results_for_html": "{{ count }} resultados para {{ terms }}"
+  },
+  "customer_accounts": {
+    "date": {
+      "humanize": {
+        "lessThanOneMinuteAgo": "Agora"
+      }
+    }
+>>>>>>> cd40b4f85963f36c8d3ab0b93f1484960cb10748
   }
 }
