@@ -1,0 +1,82 @@
+{
+  "general": {
+    "404": "Não encontrado",
+    "article": "Artigo",
+    "block": "Bloco",
+    "blog": "Blog",
+    "cart": "Carrinho",
+    "collection": "Coleção",
+    "collections": "Coleções",
+    "collection_card": "Cartão de coleção",
+    "collections_grid": "Grade de coleções",
+    "colors": "Cores",
+    "column": "Coluna",
+    "content": "Conteúdo",
+    "custom_section": "Seção personalizada",
+    "fonts": "Fontes",
+    "footer": "Rodapé",
+    "group": "Grupo",
+    "header": "Cabeçalho",
+    "layout": "Layout",
+    "main": "Principal",
+    "page": "Página",
+    "password": "Senha",
+    "primary": "Primário",
+    "product": "Produto",
+    "row": "Linha",
+    "search": "Busca",
+    "secondary": "Secundário",
+    "section": "Seção",
+    "settings": "Configurações",
+    "sidebar": "Lateral",
+    "text": "Texto",
+    "theme": "Tema",
+    "typography": "Tipografia",
+    "products_grid": "Grade de produtos",
+    "product_card": "Cartão de produto"
+  },
+  "labels": {
+    "alignment": "Alinhamento",
+    "background": "Fundo",
+    "foreground": "Primeiro plano",
+    "grid_gap": "Espaço da grade",
+    "grid_item_width": "Largura do item",
+    "input_corner_radius": "Raio dos cantos do input",
+    "layout_direction": "Direção do layout",
+    "menu": "Menu",
+    "collection": "Coleção",
+    "show_heading": "Mostrar título",
+    "heading": "Título",
+    "products_per_page": "Produtos por página",
+    "padding": "Espaçamento interno",
+    "page_margin": "Margem da página",
+    "page_width": "Largura da página",
+    "show_payment_icons": "Mostrar ícones de pagamento",
+    "text_style": "Estilo do texto",
+    "text": "Texto"
+  },
+  "options": {
+    "alignment": {
+      "left": "Esquerda",
+      "center": "Centro",
+      "right": "Direita"
+    },
+    "direction": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "page_width": {
+      "narrow": "Estreita",
+      "wide": "Larga"
+    },
+    "size": {
+      "large": "Grande",
+      "small": "Pequeno"
+    },
+    "text_style": {
+      "title": "Título",
+      "subtitle": "Subtítulo",
+      "normal": "Texto normal"
+    }
+  }
+}
