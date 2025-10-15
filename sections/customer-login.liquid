@@ -1,14 +1,7 @@
-<div class="customer-login" style="background-image: url({{ 'login-bg.webp' | asset_url }}); background-size: cover; background-position: center;">
+<div class="customer-login">
   <div class="customer-login__container">
     <div class="customer-login__form-wrapper">
       <h1>{{ 'customers.login.title' | t }}</h1>
-      <div class="customer-login__logo">
-        <img
-          src="{{ 'logo.png' | asset_url }}"
-          alt="{{ shop.name }}"
-          width="96"
-          height="96" />
-      </div>
 
       {% form 'customer_login' %}
         {% if form.errors %}
@@ -79,16 +72,6 @@
     border-radius: 8px;
     padding: 2.5rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-
-  .customer-login__logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  .customer-login__logo img {
-    width: 96px;
-    height: auto;
   }
 
   .customer-login h1 {
