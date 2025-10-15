@@ -31,7 +31,9 @@
     "sidebar": "Sidebar",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    "products_grid": "Products grid",
+    "product_card": "Product card"
   },
   "labels": {
     "alignment": "Alignment",

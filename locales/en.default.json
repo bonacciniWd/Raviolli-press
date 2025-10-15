@@ -25,6 +25,21 @@
       "password": "Password",
       "submit": "Sign in",
       "title": "Login"
+    },
+    "account": {
+      "title": "My account",
+      "details": "Account details",
+      "orders": "Order history",
+      "no_orders": "You haven't placed any orders yet.",
+      "view_addresses": "View addresses",
+      "log_out": "Log out"
+    },
+    "orders": {
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment status",
+      "fulfillment_status": "Fulfillment status",
+      "total": "Total"
     }
   },
   "collections": {
@@ -48,5 +63,57 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "products": {
+    "view_details": "View details"
+  },
+  "general": {
+    "header": "Header",
+    "text": "Text",
+    "group": "Group",
+    "column": "Column",
+    "row": "Row",
+    "layout": "Layout",
+    "product_card": "Product card",
+    "products_grid": "Products grid",
+    "products": "Products",
+    "custom_section": "Custom section",
+    "window_title": "Raviolli Press"
+  },
+  "labels": {
+    "logo": "Logo",
+    "menu": "Menu",
+    "text": "Text",
+    "text_style": "Text style",
+    "alignment": "Alignment",
+    "layout_direction": "Layout direction",
+    "padding": "Padding",
+    "product": "Product",
+    "collection": "Collection",
+    "show_heading": "Show heading",
+    "heading": "Heading",
+    "products_per_page": "Products per page",
+    "background": "Background"
+  },
+  "options": {
+    "text_style": {
+      "title": "Title",
+      "subtitle": "Subtitle",
+      "normal": "Normal"
+    },
+    "direction": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "alignment": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "full": "Full width",
+    "narrow": "Narrow"
+  },
+  "info": {
+    "collection": "Select a collection to display products from"
   }
 }

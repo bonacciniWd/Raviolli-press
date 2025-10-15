@@ -1,0 +1,9 @@
+{
+  "name": "Customer account",
+  "sections": {
+    "main": {
+      "type": "customer-account"
+    }
+  },
+  "order": ["main"]
+}

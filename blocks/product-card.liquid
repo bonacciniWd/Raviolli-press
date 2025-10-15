@@ -1,0 +1,299 @@
+{% doc %}
+  Renders a product card with Windows 95-style glassy design.
+
+  @param {product} product - The product to render
+
+  @example
+  {% content_for 'block', type: 'product-card', id: 'product-1' %}
+{% enddoc %}
+
+{% liquid
+  assign product = block.settings.product
+
+  if product == blank
+    assign product = all_products.first
+  endif
+%}
+
+<div class="product-card" {{ block.shopify_attributes }}>
+  <div class="product-card__window">
+    <div class="product-card__title-bar">
+      <div class="product-card__title-bar-title">
+        <span class="product-card__title-bar-icon" aria-hidden="true"></span>
+        <span class="product-card__title-bar-text">{{ 'general.window_title' | t | default: 'Raviolli Press' }}</span>
+      </div>
+      <div class="product-card__title-bar-controls">
+        <button class="product-card__control">_</button>
+        <button class="product-card__control">□</button>
+        <button class="product-card__control">×</button>
+      </div>
+    </div>
+
+    <div class="product-card__content">
+      <div class="product-card__image-wrapper">
+        {% if product.featured_image %}
+          <a href="{{ product.url }}">
+            {{ product.featured_image | image_url: width: 400 | image_tag: class: 'product-card__image' }}
+          </a>
+        {% else %}
+          <div class="product-card__placeholder">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-card__info">
+        <h3 class="product-card__name">
+          <a href="{{ product.url }}">{{ product.title }}</a>
+        </h3>
+
+        <div class="product-card__price">
+          {% if product.compare_at_price > product.price %}
+            <span class="product-card__price--sale">{{ product.price | money }}</span>
+            <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+          {% else %}
+            <span>{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+
+        <a href="{{ product.url }}" class="product-card__button">
+          {{ 'products.view_details' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .product-card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-card__window {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .product-card__window:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .product-card__title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    padding: 0 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -1px; /* overlap the inner highlight line */
+  }
+
+  .product-card__title-bar-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .product-card__title-bar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 1 auto;
+    height: 100%;
+    color: #ffffff;
+  }
+
+  .product-card__title-bar-icon {
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .product-card__title-bar-controls .product-card__control:last-child {
+    background: #e74c3c;
+    border-color: rgba(231, 76, 60, 0.8);
+    color: #ffffff;
+  }
+
+  .product-card__title-bar-controls .product-card__control:last-child:hover {
+    background: #ff6b57;
+    border-color: rgba(231, 76, 60, 0.9);
+  }
+
+  .product-card__title-bar-controls {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .product-card__control {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .product-card__control:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .product-card__content {
+    padding: 1rem;
+  }
+
+  .product-card__image-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card__window:hover .product-card__image {
+    transform: scale(1.05);
+  }
+
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .product-card__placeholder svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  .product-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .product-card__name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .product-card__name a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .product-card__name a:hover {
+    opacity: 0.7;
+  }
+
+  .product-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+
+  .product-card__price--sale {
+    color: #e74c3c;
+  }
+
+  .product-card__price--compare {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.875rem;
+  }
+
+  .product-card__button {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .product-card__button:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .product-card__title-bar-text {
+      font-size: 0.75rem;
+    }
+
+    .product-card__content {
+      padding: 0.75rem;
+    }
+
+    .product-card__name {
+      font-size: 0.875rem;
+    }
+
+    .product-card__button {
+      font-size: 0.8125rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.product_card",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:labels.product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.product_card"
+    }
+  ]
+}
+{% endschema %}

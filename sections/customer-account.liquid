@@ -1,0 +1,170 @@
+<div class="customer-account">
+  <div class="customer-account__container">
+    <h1>{{ 'customers.account.title' | t | default: 'My account' }}</h1>
+
+    <div class="customer-account__content">
+      <div class="customer-account__info">
+        <h2>{{ 'customers.account.details' | t | default: 'Account details' }}</h2>
+        <p>{{ customer.name }}</p>
+        <p>{{ customer.email }}</p>
+      </div>
+
+      <div class="customer-account__orders">
+        <h2>{{ 'customers.account.orders' | t | default: 'Order history' }}</h2>
+
+        {% if customer.orders.size > 0 %}
+          <table class="customer-account__orders-table">
+            <thead>
+              <tr>
+                <th>{{ 'customers.orders.order_number' | t | default: 'Order' }}</th>
+                <th>{{ 'customers.orders.date' | t | default: 'Date' }}</th>
+                <th>{{ 'customers.orders.payment_status' | t | default: 'Payment status' }}</th>
+                <th>{{ 'customers.orders.fulfillment_status' | t | default: 'Fulfillment status' }}</th>
+                <th>{{ 'customers.orders.total' | t | default: 'Total' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr>
+                  <td>
+                    <a href="{{ order.customer_url }}">{{ order.name }}</a>
+                  </td>
+                  <td>{{ order.created_at | date: format: 'date' }}</td>
+                  <td>{{ order.financial_status_label }}</td>
+                  <td>{{ order.fulfillment_status_label }}</td>
+                  <td>{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>{{ 'customers.account.no_orders' | t | default: "You haven't placed any orders yet." }}</p>
+        {% endif %}
+      </div>
+
+      <div class="customer-account__actions">
+        <a href="{{ routes.account_addresses_url }}" class="button">
+          {{ 'customers.account.view_addresses' | t | default: 'View addresses' }}
+        </a>
+        <a href="{{ routes.account_logout_url }}" class="button button--secondary">
+          {{ 'customers.account.log_out' | t | default: 'Log out' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .customer-account {
+    padding: 3rem 0;
+    min-height: 60vh;
+  }
+
+  .customer-account__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  .customer-account h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .customer-account__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .customer-account__info,
+  .customer-account__orders {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .customer-account h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .customer-account__orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  .customer-account__orders-table th,
+  .customer-account__orders-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .customer-account__orders-table th {
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .customer-account__orders-table a {
+    color: var(--color-foreground);
+    text-decoration: underline;
+  }
+
+  .customer-account__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .button--secondary {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .customer-account h1 {
+      font-size: 2rem;
+    }
+
+    .customer-account__orders-table {
+      font-size: 0.875rem;
+    }
+
+    .customer-account__orders-table th,
+    .customer-account__orders-table td {
+      padding: 0.5rem;
+    }
+
+    .customer-account__actions {
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Customer account",
+  "settings": []
+}
+{% endschema %}

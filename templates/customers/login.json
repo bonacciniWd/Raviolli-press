@@ -1,0 +1,9 @@
+{
+  "name": "Customer login",
+  "sections": {
+    "main": {
+      "type": "customer-login"
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,200 @@
+<div class="customer-register">
+  <div class="customer-register__container">
+    <div class="customer-register__form-wrapper">
+      <h1>{{ 'customers.register.title' | t | default: 'Create account' }}</h1>
+
+      {% form 'create_customer' %}
+        {% if form.errors %}
+          <div class="form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="register-first-name">{{ 'customers.register.first_name' | t | default: 'First name' }}</label>
+          <input
+            type="text"
+            id="register-first-name"
+            name="customer[first_name]"
+            autocomplete="given-name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="register-last-name">{{ 'customers.register.last_name' | t | default: 'Last name' }}</label>
+          <input
+            type="text"
+            id="register-last-name"
+            name="customer[last_name]"
+            autocomplete="family-name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="register-email">{{ 'customers.register.email' | t | default: 'Email' }}</label>
+          <input
+            type="email"
+            id="register-email"
+            name="customer[email]"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="register-password">{{ 'customers.register.password' | t | default: 'Password' }}</label>
+          <input
+            type="password"
+            id="register-password"
+            name="customer[password]"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="button button--primary">
+            {{ 'customers.register.submit' | t | default: 'Create' }}
+          </button>
+        </div>
+      {% endform %}
+
+      <div class="customer-register__login">
+        <p>{{ 'customers.register.already_have_account' | t | default: 'Already have an account?' }}</p>
+        <a href="{{ routes.account_login_url }}">
+          {{ 'customers.register.sign_in' | t | default: 'Sign in' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .customer-register {
+    padding: 3rem 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .customer-register__container {
+    max-width: 500px;
+    width: 100%;
+    padding: 0 var(--page-margin);
+  }
+
+  .customer-register__form-wrapper {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .customer-register h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .form-errors {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #e74c3c;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    font-size: 1rem;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .button--primary {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .customer-register__login {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+
+  .customer-register__login p {
+    margin-bottom: 0.5rem;
+  }
+
+  .customer-register__login a {
+    color: var(--color-foreground);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .customer-register__form-wrapper {
+      padding: 2rem 1.5rem;
+    }
+
+    .customer-register h1 {
+      font-size: 1.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Customer register",
+  "settings": []
+}
+{% endschema %}

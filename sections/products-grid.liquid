@@ -1,25 +1,24 @@
 {% liquid
   assign products_per_page = section.settings.products_per_page | default: 12
-  assign collection = collections[section.settings.collection]
-
-  if collection == blank
-    assign collection = collections.all
-  endif
+  assign collection = collections[section.settings.collection] | default: collections.all
 %}
 
-<div class="main-products full-width" id="main-products-{{ section.id }}">
-  <div class="main-products__container">
+<div class="products-grid full-width" id="products-grid-{{ section.id }}">
+  <div class="products-grid__container">
     {% if section.settings.show_heading %}
-      <h1 class="main-products__heading">{{ section.settings.heading | default: collection.title }}</h1>
+      <h2 class="products-grid__heading">{{ section.settings.heading | default: collection.title }}</h2>
     {% endif %}
 
     {% paginate collection.products by products_per_page %}
-      <div class="main-products__items" id="products-list-{{ section.id }}">
+      <div class="products-grid__items" id="products-list-{{ section.id }}">
         {% for product in collection.products %}
-          <div class="main-products__item">
+          <div class="products-grid__item">
             <div class="product-card__window">
               <div class="product-card__title-bar">
-                <div class="product-card__title-bar-text"></div>
+                <div class="product-card__title-bar-title">
+                  <span class="product-card__title-bar-icon" aria-hidden="true"></span>
+                  <span class="product-card__title-bar-text">{{ 'general.window_title' | t | default: 'Raviolli Press' }}</span>
+                </div>
                 <div class="product-card__title-bar-controls">
                   <button class="product-card__control">_</button>
                   <button class="product-card__control">□</button>
@@ -65,11 +64,11 @@
       </div>
 
       {% if paginate.next %}
-        <div class="main-products__loader" id="loader-{{ section.id }}">
-          <div class="main-products__loader-spinner"></div>
+        <div class="products-grid__loader" id="loader-{{ section.id }}">
+          <div class="products-grid__loader-spinner"></div>
         </div>
         <div
-          class="main-products__next-url"
+          class="products-grid__next-url"
           data-next-url="{{ paginate.next.url }}"
           style="display: none;"></div>
       {% endif %}
@@ -78,35 +77,31 @@
 </div>
 
 {% stylesheet %}
-  .main-products {
+  .products-grid {
     padding: 2rem 0;
     min-height: 100vh;
   }
 
-  .main-products__container {
+  .products-grid__container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--page-margin);
   }
 
-  .main-products__heading {
-    font-size: 3rem;
+  .products-grid__heading {
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     text-align: center;
-    background: linear-gradient(135deg, var(--color-foreground) 0%, rgba(0,0,0,0.6) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
-  .main-products__items {
+  .products-grid__items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
   }
 
-  .main-products__item {
+  .products-grid__item {
     animation: fadeInUp 0.5s ease-out forwards;
     opacity: 0;
   }
@@ -122,13 +117,13 @@
     }
   }
 
-  .main-products__loader {
+  .products-grid__loader {
     display: flex;
     justify-content: center;
     padding: 3rem 0;
   }
 
-  .main-products__loader-spinner {
+  .products-grid__loader-spinner {
     width: 50px;
     height: 50px;
     border: 4px solid rgba(255, 255, 255, 0.2);
@@ -169,15 +164,48 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 0.75rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    height: 30px;
+    padding: 0 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -1px;
+    /* overlap the inner highlight line */
   }
 
   .product-card__title-bar-text {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--color-foreground);
+  }
+
+  .product-card__title-bar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 1 auto;
+    height: 100%;
+    color: #ffffff;
+  }
+
+  .product-card__title-bar-icon {
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6)
+    , inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .product-card__title-bar-controls .product-card__control:last-child {
+    background: #e74c3c;
+    border-color: rgba(231, 76, 60, 0.8);
+    color: #ffffff;
+  }
+
+  .product-card__title-bar-controls .product-card__control:last-child:hover {
+    background: #ff6b57;
+    border-color: rgba(231, 76, 60, 0.9);
   }
 
   .product-card__title-bar-controls {
@@ -303,23 +331,23 @@
   }
 
   @media (max-width: 1024px) {
-    .main-products__items {
+    .products-grid__items {
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.5rem;
     }
   }
 
   @media (max-width: 768px) {
-    .main-products {
+    .products-grid {
       padding: 1.5rem 0;
     }
 
-    .main-products__heading {
+    .products-grid__heading {
       font-size: 2rem;
       margin-bottom: 1.5rem;
     }
 
-    .main-products__items {
+    .products-grid__items {
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 1rem;
     }
@@ -345,85 +373,96 @@
 
 {% javascript %}
   (function() {
-    const sectionId = '{{ section.id }}';
-    const productsList = document.getElementById(`products-list-${sectionId}`);
-    const loader = document.getElementById(`loader-${sectionId}`);
-    const nextUrlElement = document.querySelector(`#main-products-${sectionId} .main-products__next-url`);
-
-    if (! nextUrlElement) return;
-    
-
-
-    let loading = false;
-    let nextUrl = nextUrlElement.getAttribute('data-next-url');
-
-    function loadMoreProducts() {
-      if (loading || ! nextUrl) return;
+    const grids = document.querySelectorAll('.products-grid');
+    grids.forEach((grid) => {
+      const idMatch = grid.id && grid.id.match(/^products-grid-(.+)$/);
+      const sectionId = idMatch
+        ? idMatch[1]
+        : null;
+      if (! sectionId) return;
       
 
 
-      loading = true;
-      if (loader) 
-        loader.style.display = 'flex';
+      const productsList = grid.querySelector(`#products-list-${sectionId}`);
+      const loader = grid.querySelector(`#loader-${sectionId}`);
+      const nextUrlElement = grid.querySelector('.products-grid__next-url');
+
+      if (! nextUrlElement) return;
       
 
 
-      fetch(nextUrl).then(response => response.text()).then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+      let loading = false;
+      let nextUrl = nextUrlElement.getAttribute('data-next-url');
 
-        const newProducts = doc.querySelectorAll(`#products-list-${sectionId} .main-products__item`);
-        newProducts.forEach((product, index) => {
-          product.style.animationDelay = `${
-            index * 0.05
-          }s`;
-          productsList.appendChild(product);
-        });
+      function loadMoreProducts() {
+        if (loading || ! nextUrl) return;
+        
 
-        const newNextUrlElement = doc.querySelector(`#main-products-${sectionId} .main-products__next-url`);
-        if (newNextUrlElement) {
-          nextUrl = newNextUrlElement.getAttribute('data-next-url');
-        } else {
-          nextUrl = null;
+
+        loading = true;
+        if (loader) 
+          loader.style.display = 'flex';
+        
+
+
+        fetch(nextUrl).then(response => response.text()).then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const newProducts = doc.querySelectorAll(`#products-list-${sectionId} .products-grid__item`);
+          newProducts.forEach((product, index) => {
+            product.style.animationDelay = `${
+              index * 0.05
+            }s`;
+            productsList.appendChild(product);
+          });
+
+          const newNextUrlElement = doc.querySelector(`#products-grid-${sectionId} .products-grid__next-url`);
+          if (newNextUrlElement) {
+            nextUrl = newNextUrlElement.getAttribute('data-next-url');
+          } else {
+            nextUrl = null;
+            if (loader) 
+              loader.style.display = 'none';
+            
+
+
+          } loading = false;
+        }).catch(error => {
+          console.error('Error loading more products:', error);
+          loading = false;
           if (loader) 
             loader.style.display = 'none';
           
 
 
-        } loading = false;
-      }).catch(error => {
-        console.error('Error loading more products:', error);
-        loading = false;
-        if (loader) 
-          loader.style.display = 'none';
-        
+        });
+      }
 
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadMoreProducts();
+          }
+        });
+      }, {rootMargin: '200px'});
 
-      });
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          loadMoreProducts();
-        }
-      });
-    }, {rootMargin: '200px'});
-
-    if (loader) {
-      observer.observe(loader);
-    }
+      if (loader) {
+        observer.observe(loader);
+      }
+    });
   })();
 {% endjavascript %}
 
 {% schema %}
   {
-    "name": "Main page",
+    "name": "t:general.products_grid",
     "settings": [
       {
         "type": "collection",
         "id": "collection",
-        "label": "t:labels.collection"
+        "label": "t:labels.collection",
+        "info": "t:info.collection"
       }, {
         "type": "checkbox",
         "id": "show_heading",
@@ -433,7 +472,7 @@
         "type": "text",
         "id": "heading",
         "label": "t:labels.heading",
-        "default": "Nossos Produtos"
+        "default": "Our products"
       }, {
         "type": "range",
         "id": "products_per_page",
@@ -446,7 +485,8 @@
     ],
     "presets": [
       {
-        "name": "Main page"
+        "name": "t:general.products_grid",
+        "category": "t:general.products"
       }
     ]
   }

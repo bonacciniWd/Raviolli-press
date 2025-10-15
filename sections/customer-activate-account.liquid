@@ -1,0 +1,159 @@
+<div class="customer-activate">
+  <div class="customer-activate__container">
+    <div class="customer-activate__form-wrapper">
+      <h1>{{ 'customers.activate_account.title' | t | default: 'Activate account' }}</h1>
+      <p>{{ 'customers.activate_account.subtext' | t | default: 'Create your password to activate your account.' }}</p>
+
+      {% form 'activate_customer_password' %}
+        {% if form.errors %}
+          <div class="form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="password">{{ 'customers.activate_account.password' | t | default: 'Password' }}</label>
+          <input
+            type="password"
+            id="password"
+            name="customer[password]"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password-confirmation">{{ 'customers.activate_account.password_confirm' | t | default: 'Confirm password' }}</label>
+          <input
+            type="password"
+            id="password-confirmation"
+            name="customer[password_confirmation]"
+            required
+          >
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="button button--primary">
+            {{ 'customers.activate_account.submit' | t | default: 'Activate account' }}
+          </button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .customer-activate {
+    padding: 3rem 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .customer-activate__container {
+    max-width: 500px;
+    width: 100%;
+    padding: 0 var(--page-margin);
+  }
+
+  .customer-activate__form-wrapper {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .customer-activate h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .customer-activate p {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-errors {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #e74c3c;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    font-size: 1rem;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .button--primary {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .customer-activate__form-wrapper {
+      padding: 2rem 1.5rem;
+    }
+
+    .customer-activate h1 {
+      font-size: 1.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Customer activate account",
+  "settings": []
+}
+{% endschema %}

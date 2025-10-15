@@ -1,0 +1,95 @@
+<div class="customer-addresses">
+  <div class="customer-addresses__container">
+    <h1>{{ 'customers.addresses.title' | t | default: 'Addresses' }}</h1>
+
+    <a href="{{ routes.account_url }}" class="button button--secondary">
+      {{ 'customers.addresses.back_to_account' | t | default: 'Back to account' }}
+    </a>
+
+    <div class="customer-addresses__list">
+      {% for address in customer.addresses %}
+        <div class="address-card">
+          <p><strong>{{ address.name }}</strong></p>
+          <p>{{ address.address1 }}</p>
+          {% if address.address2 != blank %}
+            <p>{{ address.address2 }}</p>
+          {% endif %}
+          <p>{{ address.city }}, {{ address.province }} {{ address.zip }}</p>
+          <p>{{ address.country }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .customer-addresses {
+    padding: 3rem 0;
+    min-height: 60vh;
+  }
+
+  .customer-addresses__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  .customer-addresses h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .customer-addresses__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .address-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .address-card p {
+    margin-bottom: 0.5rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .button--secondary {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .customer-addresses h1 {
+      font-size: 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Customer addresses",
+  "settings": []
+}
+{% endschema %}

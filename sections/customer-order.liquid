@@ -1,0 +1,149 @@
+<div class="customer-order">
+  <div class="customer-order__container">
+    <h1>{{ 'customers.order.title' | t | default: 'Order' }} {{ order.name }}</h1>
+
+    <a href="{{ routes.account_url }}" class="button button--secondary">
+      {{ 'customers.order.back_to_account' | t | default: 'Back to account' }}
+    </a>
+
+    <div class="customer-order__details">
+      <div class="customer-order__info">
+        <p><strong>{{ 'customers.order.date' | t | default: 'Date' }}:</strong> {{ order.created_at | date: format: 'date' }}</p>
+        <p><strong>{{ 'customers.order.payment_status' | t | default: 'Payment status' }}:</strong> {{ order.financial_status_label }}</p>
+        <p><strong>{{ 'customers.order.fulfillment_status' | t | default: 'Fulfillment status' }}:</strong> {{ order.fulfillment_status_label }}</p>
+      </div>
+
+      <div class="customer-order__items">
+        <h2>{{ 'customers.order.items' | t | default: 'Items' }}</h2>
+        {% for line_item in order.line_items %}
+          <div class="order-item">
+            {% if line_item.image %}
+              {{ line_item.image | image_url: width: 100 | image_tag }}
+            {% endif %}
+            <div class="order-item__details">
+              <p><strong>{{ line_item.title }}</strong></p>
+              <p>{{ 'customers.order.quantity' | t | default: 'Quantity' }}: {{ line_item.quantity }}</p>
+              <p>{{ line_item.final_price | money }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="customer-order__total">
+        <p><strong>{{ 'customers.order.total' | t | default: 'Total' }}:</strong> {{ order.total_price | money }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .customer-order {
+    padding: 3rem 0;
+    min-height: 60vh;
+  }
+
+  .customer-order__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  .customer-order h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .customer-order__details {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .customer-order__info {
+    margin-bottom: 2rem;
+  }
+
+  .customer-order__info p {
+    margin-bottom: 0.5rem;
+  }
+
+  .customer-order__items {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .customer-order__items h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .order-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .order-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .order-item__details p {
+    margin-bottom: 0.5rem;
+  }
+
+  .customer-order__total {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: right;
+    font-size: 1.25rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .button--secondary {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .customer-order h1 {
+      font-size: 2rem;
+    }
+
+    .order-item {
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Customer order",
+  "settings": []
+}
+{% endschema %}
