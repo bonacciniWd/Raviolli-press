@@ -161,7 +161,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 .raviolli-footer .footer-logo img {
   width: 90px;
   margin-bottom: 0.5rem;
-  z-index: 9999;
+  z-index:
 }
 
 .raviolli-footer .slogan {
