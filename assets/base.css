@@ -141,6 +141,57 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   }
 }
 
+.raviolli-footer {
+  position: relative;
+  background: linear-gradient(135deg, #b31217 0%, #000000 100%);
+  color: #fff;
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.raviolli-footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.raviolli-footer .footer-logo img {
+  width: 120px;
+  margin-bottom: 0.5rem;
+}
+
+.raviolli-footer .slogan {
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.raviolli-footer .footer-social {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.raviolli-footer .footer-social a {
+  color: #fff;
+  transition: opacity 0.3s ease;
+}
+
+.raviolli-footer .footer-social a:hover {
+  opacity: 0.7;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+
 .isolate {
   position: relative;
   z-index: 0;
