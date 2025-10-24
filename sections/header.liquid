@@ -70,6 +70,22 @@
       padding-top: 0.5rem;
     }
   }
+   /* Animação de rotação suave e infinita */
+  @keyframes slow-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Aplica o efeito à logo do header */
+  .header__heading-logo {
+    animation: slow-rotate 4s linear infinite;
+    transform-origin: center;
+    display: inline-block;
+  }
 </style>
 
 {%- style -%}
