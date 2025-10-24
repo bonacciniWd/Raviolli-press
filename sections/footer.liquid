@@ -1,17 +1,21 @@
 <footer class="raviolli-footer">
-  <div class="footer-logo-centered">
-    <img src="{{ 'logo.png' | asset_url }}" alt="Raviolli Press" loading="lazy" />
-  </div>
-
   <div class="footer-content">
-    <p class="slogan">Feito por quem cria. Vestido por quem vive.</p>
+    <div class="footer-logo">
+      <img src="{{ 'logo.png' | asset_url }}" alt="Raviolli Press" loading="lazy">
+      <p class="slogan">Feito por quem cria. Vestido por quem vive.</p>
+    </div>
+
     <div class="footer-social">
       <a href="https://instagram.com/raviollipress" target="_blank" aria-label="Instagram">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 0C5.8 0 5.5 0 4.7 0.03c-.8.02-1.3.14-1.7.3-.4.17-.7.4-1 .7s-.53.6-.7 1c-.16.4-.28.9-.3 1.7C1 5.5 1 5.8 1 8s0 2.5.03 3.3c.02.8.14 1.3.3 1.7.17.4.4.7.7 1 .3.3.6.53 1 .7.4.16.9.28 1.7.3.8.03 1.1.03 3.3.03s2.5 0 3.3-.03c.8-.02 1.3-.14 1.7-.3.4-.17.7-.4 1-.7.3-.3.53-.6.7-1 .16-.4.28-.9.3-1.7.03-.8.03-1.1.03-3.3s0-2.5-.03-3.3c-.02-.8-.14-1.3-.3-1.7-.17-.4-.4-.7-.7-1-.3-.3-.6-.53-1-.7-.4-.16-.9-.28-1.7-.3C10.5 0 10.2 0 8 0zm0 1.44c2.1 0 2.4 0 3.2.03.7.02 1.1.13 1.3.22.3.12.5.26.7.46.2.2.34.4.46.7.09.2.2.6.22 1.3.03.8.03 1.1.03 3.2s0 2.4-.03 3.2c-.02.7-.13 1.1-.22 1.3-.12.3-.26.5-.46.7-.2.2-.4.34-.7.46-.2.09-.6.2-1.3.22-.8.03-1.1.03-3.2.03s-2.4 0-3.2-.03c-.7-.02-1.1-.13-1.3-.22-.3-.12-.5-.26-.7-.46-.2-.2-.34-.4-.46-.7-.09-.2-.2-.6-.22-1.3C1.44 10.4 1.44 10.1 1.44 8s0-2.4.03-3.2c.02-.7.13-1.1.22-1.3.12-.3.26-.5.46-.7.2-.2.4-.34.7-.46.2-.09.6-.2 1.3-.22.8-.03 1.1-.03 3.2-.03zM8 3.9a4.1 4.1 0 1 0 0 8.2 4.1 4.1 0 0 0 0-8.2zm0 6.77A2.67 2.67 0 1 1 8 5.33a2.67 2.67 0 0 1 0 5.34zm4.32-6.9a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/>
         </svg>
       </a>
+      <!-- você pode adicionar mais ícones: Facebook, TikTok, etc -->
     </div>
-    <p class="footer-copy">© {{ 'now' | date: "%Y" }} Raviolli Press — Todos os direitos reservados.</p>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: "%Y" }} Raviolli Press — Todos os direitos reservados.</p>
   </div>
 </footer>
