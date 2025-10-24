@@ -69,7 +69,7 @@
       "settings": {
         "title": "Navege por Categoria",
         "heading_size": "h2",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
