@@ -67,7 +67,7 @@
       ],
       "name": "Categorias",
       "settings": {
-        "title": "Navege por Categoria",
+        "title": "",
         "heading_size": "h2",
         "image_ratio": "portrait",
         "columns_desktop": 3,
