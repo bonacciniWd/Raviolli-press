@@ -148,7 +148,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   clip-path: polygon(0 40%, 100% 0, 100% 100%, 0% 100%);
   padding: 3rem 3rem 3rem;
   text-align: center;
-  overflow: flex;
+  overflow: visible;
 }
 
 .raviolli-footer .footer-content {
