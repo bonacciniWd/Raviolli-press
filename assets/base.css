@@ -151,15 +151,14 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   overflow: hidden;
 }
 
-/* LOGO SOBRE A BORDA */
 .footer-logo-centered {
   position: absolute;
   top: 0;
   left: 50%;
-  z-index: 200;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 300; /* Mantém o logo sempre acima do degradê e do footer */
 }
+
 
 .footer-logo-centered img {
   width: 110px;
