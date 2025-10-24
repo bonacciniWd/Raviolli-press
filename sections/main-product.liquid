@@ -716,6 +716,40 @@
       <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    {% assign nome_do_produto = product.title %}
+{% assign tipo_de_peca = product.type %}
+{% assign cor = product.metafields.custom.cor.value %}
+{% assign material = product.metafields.custom.material.value %}
+{% assign modelagem = product.metafields.custom.modelagem.value %}
+
+<div class="raviolli-description">
+  <h2>{{ nome_do_produto }} — Raviolli Press</h2>
+
+  <p>
+    A <strong>{{ tipo_de_peca }} {{ nome_do_produto }}</strong> é uma criação exclusiva da
+    <strong>Raviolli Press</strong>, desenvolvida e impressa manualmente em nosso estúdio de serigrafia.
+    Cada detalhe foi pensado para transmitir o espírito independente da marca —
+    onde o design autoral encontra a técnica artesanal.
+  </p>
+
+  <p>
+    Produzimos todas as nossas peças em <strong>pequenas tiragens</strong>, garantindo qualidade e autenticidade.
+    A combinação entre <em>criação própria</em>, <em>toque humano</em> e <em>impressão manual</em> faz com que
+    cada produto seja levemente único, com sutis variações que contam sua própria história.
+  </p>
+
+  <p>🌿 <strong>Produção consciente:</strong> utilizamos materiais duráveis e processos sustentáveis, valorizando o fazer local e reduzindo o desperdício.</p>
+  <p>🖤 <strong>Feito por quem cria. Vestido por quem vive o original.</strong></p>
+
+  <ul>
+    {% if material %}<li><strong>Tecido:</strong> {{ material }}</li>{% endif %}
+    {% if modelagem %}<li><strong>Modelagem:</strong> {{ modelagem }}</li>{% endif %}
+    {% if cor %}<li><strong>Cor:</strong> {{ cor }}</li>{% endif %}
+    <li><strong>Estampa:</strong> serigrafia artesanal</li>
+    <li><strong>Cuidados:</strong> lavar à mão, secar à sombra</li>
+  </ul>
+</div>
+
 
     {%- if first_3d_model -%}
       <script type="application/json" id="ProductJSON-{{ product.id }}">
