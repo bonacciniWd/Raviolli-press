@@ -15,7 +15,7 @@
       "type": "header",
       "settings": {
         "logo_position": "middle-center",
-        "mobile_logo_position": "left",
+        "mobile_logo_position": "center",
         "menu": "",
         "menu_type_desktop": "drawer",
         "sticky_header_type": "always",
