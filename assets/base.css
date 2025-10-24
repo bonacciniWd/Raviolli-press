@@ -143,7 +143,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 .raviolli-footer {
   position: relative;
-  margin-top:10px;
   background: linear-gradient(135deg, #b31217 0%, #000000 100%);
   color: #fff;
   clip-path: polygon(0 40%, 100% 0, 100% 100%, 0% 100%);
@@ -155,6 +154,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 .raviolli-footer .footer-content {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
   align-items: center;
   gap: 1rem;
 }
