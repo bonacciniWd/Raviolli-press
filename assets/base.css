@@ -146,7 +146,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   background: linear-gradient(135deg, #b31217 0%, #000000 100%);
   color: #fff;
   clip-path: polygon(0 40%, 100% 0, 100% 100%, 0% 100%);
-  padding: 3rem 3rem 3rem;
+  padding: 4rem 3rem 3rem;
   text-align: center;
   
 }
