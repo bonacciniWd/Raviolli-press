@@ -256,22 +256,22 @@
       "pages": "Pages"
     },
     "cart": {
-      "cart": "Cart"
+      "cart": "Carrinho"
     },
     "contact": {
       "form": {
-        "title": "Contact form",
-        "name": "Name",
+        "title": "Formulário de contato",
+        "name": "Nome",
         "email": "Email",
-        "phone": "Phone number",
-        "comment": "Comment",
-        "send": "Send",
-        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
-        "error_heading": "Please adjust the following:"
+        "phone": "Número de telefone",
+        "comment": "Comentário",
+        "send": "Enviar",
+        "post_success": "Obrigado por contatar a Raviolli Press, responderemos o quanto antes!",
+        "error_heading": "Por favor ajuste em:"
       }
     },
     "404": {
-      "title": "Page not found",
+      "title": "Página não encontrada",
       "subtext": "404"
     }
   },
