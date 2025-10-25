@@ -1,9 +1,13 @@
-<section id="section-{{ section.id }}" class="footer-section color-{{ section.settings.color_scheme }}">
-  <div class="section-{{ section.id }}-padding">
+{%- liquid
+  assign section_id = section.id
+-%}
+
+<section id="section-{{ section_id }}" class="footer-section color-{{ section.settings.color_scheme }}">
+  <div class="section-{{ section_id }}-padding">
     <div class="footer">
       <div class="bubbles"></div>
       <div class="content">
-        <a class="image" href="#" style="background-image: url('{{ "logo.png" | asset_url }}')"></a>
+        <a class="image" href="#" style="background-image: url('{{ 'logo.png' | asset_url }}')"></a>
       </div>
     </div>
   </div>
