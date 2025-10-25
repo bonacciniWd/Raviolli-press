@@ -11,24 +11,12 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "custom_liquid_3rEBat": {
-      "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
-      "settings": {
-        "custom_liquid": "<section class=\"footer\">\n  <div class=\"bubbles\"></div>\n\n  <div class=\"content\">\n    <div>\n      <div>\n        <b>Eldew</b>\n        <a href=\"#\">Secuce</a>\n        <a href=\"#\">Drupand</a>\n        <a href=\"#\">Oceash</a>\n        <a href=\"#\">Ugefe</a>\n        <a href=\"#\">Babend</a>\n      </div>\n      <div>\n        <b>Spotha</b>\n        <a href=\"#\">Miskasa</a>\n        <a href=\"#\">Agithe</a>\n        <a href=\"#\">Scesha</a>\n        <a href=\"#\">Lulle</a>\n      </div>\n      <div>\n        <b>Chashakib</b>\n        <a href=\"#\">Chogauw</a>\n        <a href=\"#\">Phachuled</a>\n        <a href=\"#\">Tiebeft</a>\n        <a href=\"#\">Ocid</a>\n        <a href=\"#\">Izom</a>\n        <a href=\"#\">Ort</a>\n      </div>\n      <div>\n        <b>Athod</b>\n        <a href=\"#\">Pamuz</a>\n        <a href=\"#\">Vapert</a>\n        <a href=\"#\">Neesk</a>\n        <a href=\"#\">Omemanen</a>\n      </div>\n    </div>\n    <div>\n      <a class=\"image\" href=\"https://codepen.io/z-\" target=\"_blank\"\n         style=\"background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/happy.svg')\"></a>\n      <p>©2019 Not Really</p>\n    </div>\n  </div>\n</section>\n\n<svg style=\"position:fixed; top:100vh\">\n  <defs>\n    <filter id=\"blob\">\n      <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"10\" result=\"blur\"/>\n      <feColorMatrix in=\"blur\" mode=\"matrix\"\n        values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9\"\n        result=\"blob\"/>\n    </filter>\n  </defs>\n</svg>\n\n<style>\n  .footer {\n    z-index: 1;\n    --footer-background: #ED5565;\n    display: grid;\n    position: relative;\n    min-height: 12rem;\n  }\n\n  .footer .bubbles {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    height: 1rem;\n    background: var(--footer-background);\n    filter: url(\"#blob\");\n  }\n\n  .footer .bubble {\n    position: absolute;\n    left: var(--position, 50%);\n    background: var(--footer-background);\n    border-radius: 100%;\n    transform: translate(-50%, 100%);\n    animation:\n      bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),\n      bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);\n  }\n\n  @keyframes bubble-size {\n    0%, 75% { width: var(--size, 4rem); height: var(--size, 4rem); }\n    100% { width: 0rem; height: 0rem; }\n  }\n\n  @keyframes bubble-move {\n    0% { bottom: -4rem; }\n    100% { bottom: var(--distance, 10rem); }\n  }\n\n  .footer .content {\n    z-index: 2;\n    display: grid;\n    grid-template-columns: 1fr auto;\n    grid-gap: 4rem;\n    padding: 2rem;\n    background: var(--footer-background);\n  }\n\n  .footer .content a,\n  .footer .content p { color: #F5F7FA; text-decoration: none; }\n\n  .footer .content b { color: white; }\n\n  .footer .content p { margin: 0; font-size: 0.75rem; }\n\n  .footer .content > div { display: flex; flex-direction: column; justify-content: center; }\n\n  .footer .content > div > div { margin: 0.25rem 0; }\n\n  .footer .content > div > div > * { margin-right: 0.5rem; }\n\n  .footer .content .image {\n    align-self: center;\n    width: 4rem;\n    height: 4rem;\n    margin: 0.25rem 0;\n    background-size: cover;\n    background-position: center;\n  }\n</style>\n\n<script>\n  // JS para gerar as 128 bolhas dinamicamente\n  const bubblesContainer = document.querySelector('.footer .bubbles');\n  const bubbleCount = 128;\n\n  for (let i = 0; i < bubbleCount; i++) {\n    const bubble = document.createElement('div');\n    bubble.className = 'bubble';\n\n    const size = 2 + Math.random() * 4;       // rem\n    const distance = 6 + Math.random() * 4;   // rem\n    const position = -5 + Math.random() * 110; // %\n    const time = 2 + Math.random() * 2;       // s\n    const delay = -1 * (2 + Math.random() * 2); // s\n\n    bubble.style.setProperty('--size', `${size}rem`);\n    bubble.style.setProperty('--distance', `${distance}rem`);\n    bubble.style.setProperty('--position', `${position}%`);\n    bubble.style.setProperty('--time', `${time}s`);\n    bubble.style.setProperty('--delay', `${delay}s`);\n\n    bubblesContainer.appendChild(bubble);\n  }\n</script>",
-        "color_scheme": "",
-        "padding_top": 100,
-        "padding_bottom": 0
-      }
-    },
     "footer": {
       "type": "footer",
-      "disabled": true,
       "settings": {}
     }
   },
   "order": [
-    "custom_liquid_3rEBat",
     "footer"
   ]
 }
