@@ -1,14 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
-      "login_form_heading": "Enter store using password:",
-      "login_password_button": "Enter using password",
-      "login_form_password_label": "Password",
-      "login_form_password_placeholder": "Your password",
-      "login_form_error": "Wrong password!",
-      "login_form_submit": "Enter",
-      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link underlined-link\">Log in here</a>",
-      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+      "login_form_heading": "Entre na loja usando a sua senha:",
+      "login_password_button": "Entrar usando senha",
+      "login_form_password_label": "Senha",
+      "login_form_password_placeholder": "Sua senha",
+      "login_form_error": "Senha Incorreta",
+      "login_form_submit": "Entrar",
+      "admin_link_html": "Você é o dono desta loja? <a href=\"/admin\" class=\"link underlined-link\">Faça login aqui</a>",
+      "powered_by_shopify_html": "Esta loja foi desenvolvida com técnologia hydrogen {{ shopify }} & Visione Rifatta."
     },
     "social": {
       "alt_text": {
@@ -28,21 +37,21 @@
         "tiktok": "TikTok"
       }
     },
-    "continue_shopping": "Continue shopping",
+    "continue_shopping": "Continue comprando",
     "pagination": {
-      "label": "Pagination",
-      "page": "Page {{ number }}",
-      "next": "Next page",
-      "previous": "Previous page"
+      "label": "Paginação",
+      "page": "Página {{ number }}",
+      "next": "Próxima página",
+      "previous": "Página Anterior"
     },
     "search": {
-      "search": "Search",
-      "reset": "Clear search term"
+      "search": "Buscar",
+      "reset": "Limpar pesquisas"
     },
     "cart": {
-      "view": "View cart ({{ count }})",
-      "view_empty_cart": "View cart",
-      "item_added": "Item added to your cart"
+      "view": "Seu carrinho ({{ count }})",
+      "view_empty_cart": "Ver carrinho",
+      "item_added": "Item adicionado ao seu carrinho! "
     },
     "share": {
       "close": "Close share",
@@ -52,8 +61,8 @@
     },
     "slider": {
       "of": "of",
-      "next_slide": "Slide right",
-      "previous_slide": "Slide left",
+      "next_slide": "Deslizar pra direita",
+      "previous_slide": "Deslizar pra esquerda",
       "name": "Slider"
     }
   },
@@ -274,7 +283,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
