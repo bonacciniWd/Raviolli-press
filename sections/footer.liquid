@@ -1,18 +1,72 @@
-{%- liquid
-  assign section_id = section.id
--%}
-
 {%- liquid assign section_id = section.id -%}
 
 <section id="section-{{ section_id }}" data-section-id="{{ section_id }}" class="footer-section">
-  <div class="section-{{ section_id }}-padding">
-    <div class="footer">
-      <div class="bubbles" data-bubbles="128"></div>
-      <div class="content">
-        <a class="image" href="#" style="background-image: url('{{ 'logo.png' | asset_url }}')"></a>
+  <div class="footer">
+    <div class="bubbles" data-bubbles="128"></div>
+
+    <div class="content">
+      <div>
+        <div>
+          <b>Eldew</b>
+          <a href="#">Secuce</a>
+          <a href="#">Drupand</a>
+          <a href="#">Oceash</a>
+          <a href="#">Ugefe</a>
+          <a href="#">Babend</a>
+        </div>
+        <div>
+          <b>Spotha</b>
+          <a href="#">Miskasa</a>
+          <a href="#">Agithe</a>
+          <a href="#">Scesha</a>
+          <a href="#">Lulle</a>
+        </div>
+        <div>
+          <b>Chashakib</b>
+          <a href="#">Chogauw</a>
+          <a href="#">Phachuled</a>
+          <a href="#">Tiebeft</a>
+          <a href="#">Ocid</a>
+          <a href="#">Izom</a>
+          <a href="#">Ort</a>
+        </div>
+        <div>
+          <b>Athod</b>
+          <a href="#">Pamuz</a>
+          <a href="#">Vapert</a>
+          <a href="#">Neesk</a>
+          <a href="#">Omemanen</a>
+        </div>
+      </div>
+      <div>
+        <a class="image" href="https://codepen.io/z-" target="_blank"
+           style="background-image: url('{{ 'happy.svg' | asset_url }}')"></a>
+        <p>©2019 Not Really</p>
       </div>
     </div>
-    <svg style="position:fixed; top:100vh">
+  </div>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      var section = document.querySelector('[data-section-id="{{ section_id }}"]');
+      var container = section.querySelector('.bubbles');
+      var bubblesCount = parseInt(container.dataset.bubbles) || 128;
+
+      for (var i = 0; i < bubblesCount; i++) {
+        var bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.setProperty('--size', (2 + Math.random()*4) + 'rem');
+        bubble.style.setProperty('--distance', (6 + Math.random()*4) + 'rem');
+        bubble.style.setProperty('--position', (-5 + Math.random()*110) + '%');
+        bubble.style.setProperty('--time', (2 + Math.random()*2) + 's');
+        bubble.style.setProperty('--delay', (-1 * (2 + Math.random()*2)) + 's');
+        container.appendChild(bubble);
+      }
+    });
+  </script>
+</section>
+
+<svg style="position:fixed; top:100vh">
   <defs>
     <filter id="blob">
       <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
@@ -22,45 +76,8 @@
     </filter>
   </defs>
 </svg>
-  </div>
-
-  <script defer>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Seleciona o container da seção usando data-attribute
-      var section = document.querySelector('[data-section-id="{{ section_id }}"]');
-      var container = section.querySelector('.bubbles');
-      var bubblesCount = parseInt(container.dataset.bubbles) || 128;
-
-      for (var i = 0; i < bubblesCount; i++) {
-        var bubble = document.createElement('div');
-        bubble.className = 'bubble';
-        bubble.style.setProperty('--size', (2 + Math.random() * 4) + 'rem');
-        bubble.style.setProperty('--distance', (6 + Math.random() * 4) + 'rem');
-        bubble.style.setProperty('--position', (-5 + Math.random() * 110) + '%');
-        bubble.style.setProperty('--time', (2 + Math.random() * 2) + 's');
-        bubble.style.setProperty('--delay', (-1 * (2 + Math.random() * 2)) + 's');
-        container.appendChild(bubble);
-      }
-    });
-  </script>
-</section>
-
-
-
 
 {%- style -%}
-.section-{{ section_id }}-padding {
-  padding-top: calc({{ section.settings.padding_top }}px * 0.75);
-  padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.75);
-}
-
-@media screen and (min-width: 750px) {
-  .section-{{ section_id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-  }
-}
-
 #section-{{ section_id }} .footer {
   z-index: 1;
   --footer-background: #ED5565;
@@ -115,4 +132,3 @@
   background-position: center;
 }
 {%- endstyle -%}
-
