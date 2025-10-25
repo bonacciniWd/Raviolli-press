@@ -1929,7 +1929,7 @@ input[type='checkbox'] {
 
 .quantity:after {
   pointer-events: none;
-  content: '';
+
   position: absolute;
   
   
