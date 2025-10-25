@@ -1,8 +1,9 @@
-<script>
-  // JS para gerar as 128 bolhas dinamicamente
+// bubble.js
+document.addEventListener('DOMContentLoaded', function() {
   const bubblesContainer = document.querySelector('.footer .bubbles');
-  const bubbleCount = 128;
+  if (!bubblesContainer) return;
 
+  const bubbleCount = 128;
   for (let i = 0; i < bubbleCount; i++) {
     const bubble = document.createElement('div');
     bubble.className = 'bubble';
@@ -21,4 +22,4 @@
 
     bubblesContainer.appendChild(bubble);
   }
-</script>
+});
