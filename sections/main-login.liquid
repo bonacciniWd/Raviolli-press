@@ -145,7 +145,7 @@
 
   /* Campos */
   .customer.login .field {
-    margin-bottom: 26px !important;
+    margin-bottom: 16px !important;
   }
 
   .customer.login .field label {
@@ -173,15 +173,18 @@
     box-sizing: border-box;
   }
 
- /* Logo no formulário de login - animação Lottie */
-  .login-lottie {
-    width: 200px !important;
-    height: 150px !important;
-    margin: 0 auto 20px auto !important;
+    /* Logo no formulário de login */
+  .login-logo {
+    max-width: 150px !important;
+    max-height: 80px !important;
+    width: auto !important;
+    height: auto !important;
     display: block !important;
+    margin: 0 auto 20px auto !important;
+    object-fit: contain !important;
   }
 
-  /* Ajuste do h1 para centralizar a animação */
+  /* Ajuste do h1 para centralizar o logo */
   .customer.login h1 {
     color: #1f2937 !important;
     font-size: 28px !important;
@@ -191,17 +194,15 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    flex-direction: column !important;
   }
 
-  /* Responsividade da animação */
+  /* Responsividade do logo */
   @media screen and (max-width: 750px) {
-    .login-lottie {
-      width: 200px !important;
-      height: 140px !important;
+    .login-logo {
+      max-width: 120px !important;
+      max-height: 60px !important;
     }
   }
-
 {%- endstyle -%}
 
 {%- if section.settings.enable_shop_login_button == false -%}
@@ -259,14 +260,7 @@
   </div>
 
   <h1 id="login" tabindex="-1">
-    <lottie-player 
-      class="login-lottie"
-      src="{{ 'login-animation.json' | asset_url }}"
-      background="transparent"
-      speed="1"
-      loop
-      autoplay>
-    </lottie-player>
+    
   </h1>
   <div>
     {%- if recover_success == true -%}
@@ -278,6 +272,16 @@
       </h3>
     {%- endif -%}
     {%- form 'customer_login', novalidate: 'novalidate' -%}
+      {%- if form.errors -%}
+        <h2 class="form__message" tabindex="-1" autofocus>
+          <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+          <span class="svg-wrapper">
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          {{ 'templates.contact.form.error_heading' | t }}
+        </h2>
+        {{ form.errors | default_errors }}
+      {%- endif -%}
 
       {%- if shop.features.login_with_shop_classic_customer_accounts? -%}
         <section name="sign-in-with-shop-provider">
