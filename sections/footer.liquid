@@ -1,24 +1,23 @@
 <style>
   /* === SCHEMA DE CORES === */
   :root {
-    --raviolli-bg: #ffffff;
-    --raviolli-red: #c10303;
-    --raviolli-text: #000000;
+    --raviolli-red:rgb(252, 252, 252);
+    --raviolli-black:rgb(255, 255, 255);
+    --raviolli-white:rgb(193, 3, 3);
   }
 
   /* === FOOTER BASE === */
   .raviolli-footer {
     position: relative;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    background: var(--raviolli-bg);
-    color: var(--raviolli-text);
+    border-top: 1px solid rgba(125, 121, 121, 0.49);
+    background: var(--raviolli-red);
+    color: var(--raviolli-white);
     padding: 8rem 2rem 2rem;
     text-align: center;
     overflow: hidden;
-    font-family: "Poppins", sans-serif;
   }
 
-  /* --- DIVISÓRIA VERMELHA SUPERIOR --- */
+  /* --- DIVISÓRIA BRANCA SUPERIOR --- */
   .raviolli-footer::before {
     content: "";
     position: absolute;
@@ -26,73 +25,66 @@
     left: 0;
     width: 100%;
     height: 140px;
-    background: var(--raviolli-red);
-    clip-path: polygon(0 70%, 100% 0, 100% 40%, 0% 100%);
+    background: var(--raviolli-white);
+    clip-path: polygon(0 60%, 100% 0, 100% 30%, 0% 100%);
     z-index: 1;
   }
 
-  /* --- LOGO CENTRALIZADO --- */
+  /* --- LOGO CENTRALIZADO SOBRE A BORDA --- */
   .footer-logo-centered {
     position: absolute;
-    top: 30px;
+    top: 30;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
   }
 
   .footer-logo-centered img {
-    width: 120px;
-    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.35));
+    width: 110px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
   }
 
   /* --- CONTEÚDO PRINCIPAL --- */
   .footer-content {
     position: relative;
+    margin: 40px;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    margin: 40px auto 0;
-    max-width: 600px;
   }
 
   .footer-content .slogan {
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    color: #000;
     letter-spacing: 0.3px;
     margin-top: 3rem;
-    color: var(--raviolli-text);
     opacity: 0.9;
   }
 
-  .footer-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 0.85;
-    margin-top: 0.5rem;
-  }
-
   .footer-social {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    color: #000;
   }
 
   .footer-social a {
-    color: var(--raviolli-text);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    color: black;
+    transition: opacity 0.3s ease;
   }
 
   .footer-social a:hover {
-    transform: scale(1.1);
     opacity: 0.7;
   }
 
   .footer-copy {
-    margin-top: 2rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+    color: black;
   }
 
   /* --- RESPONSIVO --- */
@@ -104,10 +96,6 @@
     .raviolli-footer {
       padding-top: 7rem;
     }
-
-    .footer-content .slogan {
-      font-size: 1rem;
-    }
   }
 </style>
 
@@ -118,10 +106,6 @@
 
   <div class="footer-content">
     <p class="slogan">Feito por quem cria. Vestido por quem vive.</p>
-    <p class="footer-description">
-      A Raviolli Press nasceu no período crítico da humanidade, como um manifesto de expressão e autenticidade.  
-      Cada peça é criada e impressa por nós — um diálogo entre arte, rua e atitude.
-    </p>
 
     <div class="footer-social">
       <a href="https://instagram.com/raviollipress" target="_blank" aria-label="Instagram">
@@ -131,8 +115,6 @@
       </a>
     </div>
 
-    <p class="footer-copy">
-      © {{ 'now' | date: "%Y" }} Raviolli Press — todos os direitos reservados.
-    </p>
+    <p class="footer-copy">© {{ 'now' | date: "%Y" }} Raviolli Press — Todos os direitos reservados.</p>
   </div>
 </footer>
