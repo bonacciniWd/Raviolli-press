@@ -1,6 +1,8 @@
 window.initBubbles = function (selector) {
   const section = document.querySelector(selector);
-  const container = section?.querySelector('.bubbles');
+  if (!section) return;
+
+  const container = section.querySelector('.bubbles');
   if (!container) return;
 
   for (let i = 0; i < 128; i++) {
