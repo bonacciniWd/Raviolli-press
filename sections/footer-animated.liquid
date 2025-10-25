@@ -1,47 +1,8 @@
-
-
 <section class="footer">
   <div class="bubbles"></div>
 
   <div class="content">
-    <div>
-      <div>
-        <b>Eldew</b>
-        <a href="#">Secuce</a>
-        <a href="#">Drupand</a>
-        <a href="#">Oceash</a>
-        <a href="#">Ugefe</a>
-        <a href="#">Babend</a>
-      </div>
-      <div>
-        <b>Spotha</b>
-        <a href="#">Miskasa</a>
-        <a href="#">Agithe</a>
-        <a href="#">Scesha</a>
-        <a href="#">Lulle</a>
-      </div>
-      <div>
-        <b>Chashakib</b>
-        <a href="#">Chogauw</a>
-        <a href="#">Phachuled</a>
-        <a href="#">Tiebeft</a>
-        <a href="#">Ocid</a>
-        <a href="#">Izom</a>
-        <a href="#">Ort</a>
-      </div>
-      <div>
-        <b>Athod</b>
-        <a href="#">Pamuz</a>
-        <a href="#">Vapert</a>
-        <a href="#">Neesk</a>
-        <a href="#">Omemanen</a>
-      </div>
-    </div>
-    <div>
-      <a class="image" href="https://codepen.io/z-" target="_blank"
-         style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/happy.svg')"></a>
-      <p>©2019 Not Really</p>
-    </div>
+    <a class="image" href="#" style="background-image: url('{{ "logo.png" | asset_url }}')"></a>
   </div>
 </section>
 
@@ -55,76 +16,3 @@
     </filter>
   </defs>
 </svg>
-
-<style>
-  .footer {
-    z-index: 1;
-    --footer-background: #ED5565;
-    display: grid;
-    position: relative;
-    min-height: 12rem;
-  }
-
-  .footer .bubbles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1rem;
-    background: var(--footer-background);
-    filter: url("#blob");
-  }
-
-  .footer .bubble {
-    position: absolute;
-    left: var(--position, 50%);
-    background: var(--footer-background);
-    border-radius: 100%;
-    transform: translate(-50%, 100%);
-    animation:
-      bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
-      bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
-  }
-
-  @keyframes bubble-size {
-    0%, 75% { width: var(--size, 4rem); height: var(--size, 4rem); }
-    100% { width: 0rem; height: 0rem; }
-  }
-
-  @keyframes bubble-move {
-    0% { bottom: -4rem; }
-    100% { bottom: var(--distance, 10rem); }
-  }
-
-  .footer .content {
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 4rem;
-    padding: 2rem;
-    background: var(--footer-background);
-  }
-
-  .footer .content a,
-  .footer .content p { color: #F5F7FA; text-decoration: none; }
-
-  .footer .content b { color: white; }
-
-  .footer .content p { margin: 0; font-size: 0.75rem; }
-
-  .footer .content > div { display: flex; flex-direction: column; justify-content: center; }
-
-  .footer .content > div > div { margin: 0.25rem 0; }
-
-  .footer .content > div > div > * { margin-right: 0.5rem; }
-
-  .footer .content .image {
-    align-self: center;
-    width: 4rem;
-    height: 4rem;
-    margin: 0.25rem 0;
-    background-size: cover;
-    background-position: center;
-  }
-</style>
-
