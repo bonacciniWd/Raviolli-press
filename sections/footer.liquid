@@ -37,16 +37,7 @@
 
 
 
-<svg style="position:fixed; top:100vh">
-  <defs>
-    <filter id="blob">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-      <feColorMatrix in="blur" mode="matrix"
-        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-        result="blob"/>
-    </filter>
-  </defs>
-</svg>
+
 {%- style -%}
 .section-{{ section_id }}-padding {
   padding-top: calc({{ section.settings.padding_top }}px * 0.75);
