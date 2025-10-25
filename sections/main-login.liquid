@@ -4,12 +4,39 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    /* Imagem de fundo */
+    background-image: url('{{ 'logo.png' | asset_url }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Overlay para melhorar legibilidade */
+  .section-{{ section.id }}-padding::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }}-padding {
+      background-attachment: scroll;
+      padding: 20px 10px;
     }
   }
 
@@ -65,15 +92,19 @@
   input[type="password"],
   input[type="text"] {
     border: 2px solid #e5e7eb !important;
+    border-radius: 15px !important;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
     padding: 12px 16px !important;
     width: 100% !important;
     font-size: 16px !important;
-    transition: border-color 0.3s ease !important;
+    transition: all 0.3s ease !important;
     min-height: 48px !important;
     box-sizing: border-box !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
   }
 
   .customer.login .field input:focus,
@@ -87,6 +118,7 @@
     border-color: #dc2626 !important;
     outline: none !important;
     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+    background-color: white !important;
   }
 
   /* Estilos para links */
@@ -102,11 +134,20 @@
     text-decoration: underline !important;
   }
 
-  /* Container principal */
+  /* Container principal com glass effect */
   .customer.login {
     max-width: 400px !important;
     margin: 0 auto !important;
-    padding: 20px !important;
+    padding: 30px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
 
   /* Títulos */
@@ -132,7 +173,7 @@
     height: 2px !important;
     background-color: #e5e7eb !important;
     margin: 30px 0 20px 0 !important;
-    
+    border-radius: 2px !important;
   }
 
   /* Mensagens */
@@ -141,6 +182,7 @@
     border-radius: 15px !important;
     margin-bottom: 16px !important;
     text-align: center !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
   }
 
   /* Campos */
