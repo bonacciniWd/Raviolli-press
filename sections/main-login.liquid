@@ -135,6 +135,17 @@
     color: #374151 !important;
     font-weight: 500 !important;
   }
+
+  /* Forçar exibição apenas do formulário de login */
+  #recover,
+  #recover + div {
+    display: none !important;
+  }
+
+  #login,
+  #login + div {
+    display: block !important;
+  }
 {%- endstyle -%}
 
 {%- if section.settings.enable_shop_login_button == false -%}
