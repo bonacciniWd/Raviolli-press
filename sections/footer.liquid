@@ -12,9 +12,13 @@
       </div>
 
       <div>
-        <a class="image" href="#" style="background-image: url('{{ 'happy.svg' | asset_url }}')"></a>
+        <a class="image" href="#" style="background-image: url('{{ 'logo.png' | asset_url }}')"></a>
         <p>©2019 Not Really</p>
       </div>
     </div>
   </div>
 </section>
+{%- style -%}
+#section-{{ section_id }} .bubbles { ... }
+#section-{{ section_id }} .bubble { ... }
+{%- endstyle -%}
