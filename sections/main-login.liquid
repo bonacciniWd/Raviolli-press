@@ -12,6 +12,106 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Estilos personalizados para botões vermelhos e arredondados */
+  .customer.login button {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .customer.login button:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+  }
+
+  .customer.login button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+  }
+
+  /* Estilização dos campos de input */
+  .customer.login .field input {
+    border: 2px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 12px 16px;
+    width: 100%;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  .customer.login .field input:focus {
+    border-color: #dc2626;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  /* Estilização dos links */
+  .customer.login a {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .customer.login a:hover {
+    color: #b91c1c;
+    text-decoration: underline;
+  }
+
+  /* Estilização dos títulos */
+  .customer.login h1 {
+    color: #1f2937;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .customer.login h2 {
+    color: #374151;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  /* Container principal */
+  .customer.login {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Divisor para seção de convidado */
+  .customer.login hr {
+    border: none;
+    height: 2px;
+    background-color: #e5e7eb;
+    margin: 30px 0 20px 0;
+    border-radius: 1px;
+  }
+
+  /* Mensagens de erro e sucesso */
+  .customer.login .form__message {
+    padding: 12px 16px;
+    border-radius: 15px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .customer.login .form__message span.svg-wrapper {
+    margin-right: 8px;
+  }
 {%- endstyle -%}
 
 {%- if section.settings.enable_shop_login_button == false -%}
