@@ -260,7 +260,14 @@
   </div>
 
   <h1 id="login" tabindex="-1">
-    
+    <lottie-player 
+      class="login-lottie"
+      src="{{ 'login-animation.json' | asset_url }}"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay>
+    </lottie-player>
   </h1>
   <div>
     {%- if recover_success == true -%}
@@ -272,16 +279,6 @@
       </h3>
     {%- endif -%}
     {%- form 'customer_login', novalidate: 'novalidate' -%}
-      {%- if form.errors -%}
-        <h2 class="form__message" tabindex="-1" autofocus>
-          <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
-          <span class="svg-wrapper">
-            {{- 'icon-error.svg' | inline_asset_content -}}
-          </span>
-          {{ 'templates.contact.form.error_heading' | t }}
-        </h2>
-        {{ form.errors | default_errors }}
-      {%- endif -%}
 
       {%- if shop.features.login_with_shop_classic_customer_accounts? -%}
         <section name="sign-in-with-shop-provider">
