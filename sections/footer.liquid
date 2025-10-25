@@ -2,10 +2,12 @@
   assign section_id = section.id
 -%}
 
-<section id="section-{{ section.id }}" data-section-id="{{ section.id }}" class="footer-section">
-  <div class="section-{{ section.id }}-padding">
+{%- liquid assign section_id = section.id -%}
+
+<section id="section-{{ section_id }}" data-section-id="{{ section_id }}" class="footer-section">
+  <div class="section-{{ section_id }}-padding">
     <div class="footer">
-      <div class="bubbles"></div>
+      <div class="bubbles" data-bubbles="128"></div>
       <div class="content">
         <a class="image" href="#" style="background-image: url('{{ 'logo.png' | asset_url }}')"></a>
       </div>
@@ -14,9 +16,12 @@
 
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
-      var section = document.querySelector('[data-section-id="{{ section.id }}"]');
+      // Seleciona o container da seção usando data-attribute
+      var section = document.querySelector('[data-section-id="{{ section_id }}"]');
       var container = section.querySelector('.bubbles');
-      for (var i = 0; i < 128; i++) {
+      var bubblesCount = parseInt(container.dataset.bubbles) || 128;
+
+      for (var i = 0; i < bubblesCount; i++) {
         var bubble = document.createElement('div');
         bubble.className = 'bubble';
         bubble.style.setProperty('--size', (2 + Math.random() * 4) + 'rem');
@@ -29,6 +34,7 @@
     });
   </script>
 </section>
+
 
 
 <svg style="position:fixed; top:100vh">
