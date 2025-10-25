@@ -3162,7 +3162,7 @@ details-disclosure > details {
   .customer .field input:focus,
   .customer select:focus,
   .localization-form__select:focus.localization-form__select:after {
-    outline: transparent solid 1px;
+    
   }
 
   .localization-form__select:focus {
