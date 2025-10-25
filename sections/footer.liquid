@@ -1,6 +1,6 @@
 {%- liquid assign section_id = section.id -%}
 
-<section id="section-{{ section_id }}" data-section-id="{{ section_id }}" class="footer-section">
+<section id="section-{{ section_id }}" class="footer-section" data-section-id="{{ section_id }}">
   <div class="footer">
     <div class="bubbles" data-bubbles="128"></div>
 
@@ -39,8 +39,7 @@
         </div>
       </div>
       <div>
-        <a class="image" href="https://codepen.io/z-" target="_blank"
-           style="background-image: url('{{ 'happy.svg' | asset_url }}')"></a>
+        <a class="image" href="#" style="background-image: url('{{ 'happy.svg' | asset_url }}')"></a>
         <p>©2019 Not Really</p>
       </div>
     </div>
@@ -48,18 +47,23 @@
 
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
+      // pegar a seção pelo data-section-id
       var section = document.querySelector('[data-section-id="{{ section_id }}"]');
+      if (!section) return;
+      
       var container = section.querySelector('.bubbles');
-      var bubblesCount = parseInt(container.dataset.bubbles) || 128;
+      if (!container) return;
 
-      for (var i = 0; i < bubblesCount; i++) {
+      var count = parseInt(container.dataset.bubbles) || 128;
+
+      for (var i = 0; i < count; i++) {
         var bubble = document.createElement('div');
         bubble.className = 'bubble';
-        bubble.style.setProperty('--size', (2 + Math.random()*4) + 'rem');
-        bubble.style.setProperty('--distance', (6 + Math.random()*4) + 'rem');
-        bubble.style.setProperty('--position', (-5 + Math.random()*110) + '%');
-        bubble.style.setProperty('--time', (2 + Math.random()*2) + 's');
-        bubble.style.setProperty('--delay', (-1 * (2 + Math.random()*2)) + 's');
+        bubble.style.setProperty('--size', (2 + Math.random() * 4) + 'rem');
+        bubble.style.setProperty('--distance', (6 + Math.random() * 4) + 'rem');
+        bubble.style.setProperty('--position', (-5 + Math.random() * 110) + '%');
+        bubble.style.setProperty('--time', (2 + Math.random() * 2) + 's');
+        bubble.style.setProperty('--delay', (-1 * (2 + Math.random() * 2)) + 's');
         container.appendChild(bubble);
       }
     });
