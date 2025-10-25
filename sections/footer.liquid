@@ -1,71 +1,121 @@
-<footer class="raviolli-footer" style="
-  position: relative;
-  z-index: 50;
-  background: linear-gradient(135deg, #b31217 0%, #000000 100%);
-  color: #fff;
-  clip-path: polygon(0 12%, 100% 0, 100% 100%, 0% 100%);
-  padding: 6rem 2rem 2rem;
-  text-align: center;
-  overflow: hidden;
-">
+<section class="footer">
+  <div class="bubbles"></div>
 
-  <!-- LOGO SOBRE A BORDA -->
-  <div class="footer-logo-centered" style="
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 300;
-  ">
-    <img 
-      src="{{ 'logo.png' | asset_url }}" 
-      alt="Raviolli Press" 
-      loading="lazy"
-      style="
-        width: 110px;
-        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-      "
-    />
-  </div>
-
-  <!-- CONTEÚDO PRINCIPAL -->
-  <div class="footer-content" style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  ">
-    <p class="slogan" style="
-      font-style: italic;
-      font-size: 1rem;
-      letter-spacing: 0.3px;
-      margin-top: 3rem;
-      opacity: 0.9;
-    ">
-      Feito por quem cria. Vestido por quem vive.
-    </p>
-
-    <div class="footer-social" style="
-      margin-top: 1rem;
-      display: flex;
-      gap: 1.2rem;
-    ">
-      <a href="https://instagram.com/raviollipress" target="_blank" aria-label="Instagram" style="
-        color: #fff;
-        transition: opacity 0.3s ease;
-      " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 0C5.8 0 5.5 0 4.7 0.03c-.8.02-1.3.14-1.7.3-.4.17-.7.4-1 .7s-.53.6-.7 1c-.16.4-.28.9-.3 1.7C1 5.5 1 5.8 1 8s0 2.5.03 3.3c.02.8.14 1.3.3 1.7.17.4.4.7.7 1 .3.3.6.53 1 .7.4.16.9.28 1.7.3.8.03 1.1.03 3.3.03s2.5 0 3.3-.03c.8-.02 1.3-.14 1.7-.3.4-.17.7-.4 1-.7.3-.3.53-.6.7-1 .16-.4.28-.9.3-1.7.03-.8.03-1.1.03-3.3s0-2.5-.03-3.3c-.02-.8-.14-1.3-.3-1.7-.17-.4-.4-.7-.7-1-.3-.3-.6-.53-1-.7-.4-.16-.9-.28-1.7-.3C10.5 0 10.2 0 8 0zm0 1.44c2.1 0 2.4 0 3.2.03.7.02 1.1.13 1.3.22.3.12.5.26.7.46.2.2.34.4.46.7.09.2.2.6.22 1.3.03.8.03 1.1.03 3.2s0 2.4-.03 3.2c-.02.7-.13 1.1-.22 1.3-.12.3-.26.5-.46.7-.2.2-.4.34-.7.46-.2.09-.6.2-1.3.22-.8.03-1.1.03-3.2.03s-2.4 0-3.2-.03c-.7-.02-1.1-.13-1.3-.22-.3-.12-.5-.26-.7-.46-.2-.2-.34-.4-.46-.7-.09-.2-.2-.6-.22-1.3C1.44 10.4 1.44 10.1 1.44 8s0-2.4.03-3.2c.02-.7.13-1.1.22-1.3.12-.3.26-.5.46-.7.2-.2.4-.34.7-.46.2-.09.6-.2 1.3-.22.8-.03 1.1-.03 3.2-.03zM8 3.9a4.1 4.1 0 1 0 0 8.2 4.1 4.1 0 0 0 0-8.2zm0 6.77A2.67 2.67 0 1 1 8 5.33a2.67 2.67 0 0 1 0 5.34zm4.32-6.9a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/>
-        </svg>
-      </a>
+  <div class="content">
+    <div>
+      <div>
+        <b>Eldew</b>
+        <a href="#">Secuce</a>
+        <a href="#">Drupand</a>
+        <a href="#">Oceash</a>
+        <a href="#">Ugefe</a>
+        <a href="#">Babend</a>
+      </div>
+      <!-- outros grupos iguais -->
     </div>
-
-    <p class="footer-copy" style="
-      margin-top: 1.5rem;
-      font-size: 0.875rem;
-      opacity: 0.8;
-    ">
-      © {{ 'now' | date: "%Y" }} Raviolli Press — Todos os direitos reservados.
-    </p>
+    <div>
+      <a class="image" href="https://codepen.io/z-" target="_blank"
+         style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/happy.svg')"></a>
+      <p>©2019 Not Really</p>
+    </div>
   </div>
-</footer>
+</section>
+
+<svg style="position:fixed; top:100vh">
+  <defs>
+    <filter id="blob">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+        result="blob"/>
+    </filter>
+  </defs>
+</svg>
+<style>
+.footer {
+  z-index: 1;
+  --footer-background: #ED5565;
+  display: grid;
+  position: relative;
+  min-height: 12rem;
+}
+
+.footer .bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--footer-background);
+  filter: url("#blob");
+}
+
+.footer .bubble {
+  position: absolute;
+  left: var(--position, 50%);
+  background: var(--footer-background);
+  border-radius: 100%;
+  animation:
+    bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+    bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+  transform: translate(-50%, 100%);
+}
+
+@keyframes bubble-size {
+  0%, 75% { width: var(--size, 4rem); height: var(--size, 4rem); }
+  100% { width: 0rem; height: 0rem; }
+}
+
+@keyframes bubble-move {
+  0% { bottom: -4rem; }
+  100% { bottom: var(--distance, 10rem); }
+}
+
+.footer .content {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 4rem;
+  padding: 2rem;
+  background: var(--footer-background);
+}
+
+.footer .content a,
+.footer .content p {
+  color: #F5F7FA;
+  text-decoration: none;
+}
+
+.footer .content b {
+  color: white;
+}
+
+.footer .content p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.footer .content > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .content > div > div {
+  margin: 0.25rem 0;
+}
+
+.footer .content > div > div > * {
+  margin-right: 0.5rem;
+}
+
+.footer .content .image {
+  align-self: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.25rem 0;
+  background-size: cover;
+  background-position: center;
+}
+
+</style>
