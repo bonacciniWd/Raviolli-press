@@ -13,11 +13,7 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
+      "settings": {}
     }
   },
   "order": [
