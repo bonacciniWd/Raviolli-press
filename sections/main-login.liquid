@@ -136,7 +136,7 @@
   }
 
   /* Mensagens */
-  .customer.login {
+  .customer.login .form__message {
     padding: 12px 16px !important;
     border-radius: 15px !important;
     margin-bottom: 16px !important;
@@ -231,9 +231,9 @@
   <h1 id="login" tabindex="-1">
     {{ 'customer.login_page.title' | t }}
   </h1>
-  <h2 class="form__message">
+  <h3 class="form__message">
     Faça login com suas credenciais Raviolli, ou cria uma conta!
-  </h2>
+  </h3>
   <div>
     {%- if recover_success == true -%}
       <h3 class="form__message" tabindex="-1" autofocus>
