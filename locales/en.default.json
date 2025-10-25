@@ -521,19 +521,19 @@
   },
   "recipient": {
     "form": {
-      "checkbox": "I want to send this as a gift",
+      "checkbox": "Eu gostaria de enviar como presente",
       "expanded": "Gift card recipient form expanded",
       "collapsed": "Gift card recipient form collapsed",
-      "email_label": "Recipient email",
-      "email_label_optional_for_no_js_behavior": "Recipient email (optional)",
+      "email_label": "email",
+      "email_label_optional_for_no_js_behavior": "email (optional)",
       "email": "Email",
-      "name_label": "Recipient name (optional)",
-      "name": "Name",
-      "message_label": "Message (optional)",
-      "message": "Message",
-      "max_characters": "{{ max_chars }} characters max",
-      "send_on": "YYYY-MM-DD",
-      "send_on_label": "Send on (optional)"
+      "name_label": "Nome de quem vai receber (optional)",
+      "name": "Nome",
+      "message_label": "Mensagem (optional)",
+      "message": "Mensagem",
+      "max_characters": "{{ max_chars }} Máximo de caracteres ",
+      "send_on": "DD-MM-YYYY",
+      "send_on_label": "Enviar em (optional)"
     }
   }
 }
