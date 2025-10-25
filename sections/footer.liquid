@@ -1,115 +1,75 @@
+<section class="footer">
+  <div class="bubbles"></div>
+
+  <div class="content">
+    <a class="image" href="#" style="background-image: url('{{ "logo.png" | asset_url }}')"></a>
+  </div>
+</section>
+
+<svg style="position:fixed; top:100vh">
+  <defs>
+    <filter id="blob">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+        result="blob"/>
+    </filter>
+  </defs>
+</svg>
+
 <style>
-  /* === SCHEMA DE CORES === */
-  :root {
-    --raviolli-bg: rgb(252, 252, 252); /* fundo do footer */
-    --raviolli-text: rgb(30, 30, 30);  /* cor principal do texto */
-    --raviolli-accent: rgb(193, 3, 3); /* cor de destaque, ex: logo, hover */
-  }
+    .footer {
+  z-index: 1;
+  --footer-background: #ED5565;
+  display: grid;
+  position: relative;
+  min-height: 12rem;
+}
 
-  /* === FOOTER BASE === */
-  .raviolli-footer {
-    position: relative;
-    border-top: 1px solid rgba(125, 121, 121, 0.25);
-    background: var(--raviolli-bg);
-    color: var(--raviolli-text);
-    padding: 6rem 2rem 3rem;
-    text-align: center;
-    overflow: hidden;
-  }
+.footer .bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--footer-background);
+  filter: url("#blob");
+}
 
-  /* --- DIVISÓRIA BRANCA SUPERIOR --- */
-  .raviolli-footer::before {
-    content: "";
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 140px;
-    background: #fff;
-    clip-path: polygon(0 60%, 100% 0, 100% 30%, 0% 100%);
-    z-index: 1;
-  }
+.footer .bubble {
+  position: absolute;
+  left: var(--position, 50%);
+  background: var(--footer-background);
+  border-radius: 100%;
+  transform: translate(-50%, 100%);
+  animation:
+    bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+    bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+}
 
-  /* --- LOGO CENTRALIZADO SOBRE A BORDA --- */
-  .footer-logo-centered {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-  }
+@keyframes bubble-size {
+  0%, 75% { width: var(--size, 4rem); height: var(--size, 4rem); }
+  100% { width: 0rem; height: 0rem; }
+}
 
-  .footer-logo-centered img {
-    width: 110px;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-  }
+@keyframes bubble-move {
+  0% { bottom: -4rem; }
+  100% { bottom: var(--distance, 10rem); }
+}
 
-  /* --- CONTEÚDO PRINCIPAL --- */
-  .footer-content {
-    position: relative;
-    margin-top: 4rem;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
+.footer .content {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
 
-  .footer-content .slogan {
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--raviolli-text);
-    letter-spacing: 0.3px;
-    opacity: 0.9;
-  }
+.footer .content .image {
+  width: 4rem;
+  height: 4rem;
+  background-size: cover;
+  background-position: center;
+}
 
-  .footer-social {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .footer-social a {
-    color: var(--raviolli-text);
-    transition: color 0.3s ease, opacity 0.3s ease;
-  }
-
-  .footer-social a:hover {
-    color: var(--raviolli-accent);
-    opacity: 0.8;
-  }
-
-  .footer-copy {
-    font-size: 0.875rem;
-    opacity: 0.8;
-    color: var(--raviolli-text);
-  }
-
-  /* --- RESPONSIVO --- */
-  @media (max-width: 768px) {
-    .footer-logo-centered img {
-      width: 90px;
-    }
-
-    .raviolli-footer {
-      padding-top: 5rem;
-    }
-  }
 </style>
-
-<footer class="raviolli-footer">
-  <div class="footer-logo-centered">
-    <img src="{{ 'logo.png' | asset_url }}" alt="Raviolli Press" loading="lazy" />
-  </div>
-
-  <div class="footer-content">
-    <p class="slogan">Feito por quem cria. Vestido por quem vive.</p>
-
-    <div class="footer-social">
-      <a href="https://instagram.com/raviollipress" target="_blank" aria-label="Instagram">
-        <!-- SVG Instagram -->
-      </a>
-    </div>
-
-    <p class="footer-copy">© {{ 'now' | date: "%Y" }} Raviolli Press — Todos os direitos reservados.</p>
-  </div>
-</footer>
