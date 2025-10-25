@@ -1999,6 +1999,7 @@ input[type='checkbox'] {
 
 .quantity__button .svg-wrapper {
   width: 2rem;
+  border-radius: 50px;
   pointer-events: none;
   background-color: #ff0000;
 }
