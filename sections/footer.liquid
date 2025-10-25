@@ -1,0 +1,21 @@
+<section id="section-{{ section.id }}" class="footer-section color-{{ section.settings.color_scheme }}">
+  <div class="section-{{ section.id }}-padding">
+    <div class="footer">
+      <div class="bubbles"></div>
+      <div class="content">
+        <a class="image" href="#" style="background-image: url('{{ "logo.png" | asset_url }}')"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg style="position:fixed; top:100vh">
+  <defs>
+    <filter id="blob">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+        result="blob"/>
+    </filter>
+  </defs>
+</svg>
