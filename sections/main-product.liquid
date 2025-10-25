@@ -37,6 +37,213 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    /* Estilos para botões vermelhos e arredondados */
+    .product-form__buttons button,
+    .product-form__cart-submit,
+    .btn,
+    button[type="submit"],
+    .shopify-payment-button button,
+    .dynamic-checkout__content button,
+    .product-form__input button,
+    .quantity__button,
+    .slider-button,
+    .product-popup-modal__button,
+    button {
+      background-color: #dc2626 !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 25px !important;
+      -webkit-border-radius: 25px !important;
+      -moz-border-radius: 25px !important;
+      padding: 12px 24px !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      min-height: 48px !important;
+      box-sizing: border-box !important;
+    }
+
+    .product-form__buttons button:hover,
+    .product-form__cart-submit:hover,
+    .btn:hover,
+    button[type="submit"]:hover,
+    .shopify-payment-button button:hover,
+    .dynamic-checkout__content button:hover,
+    .product-form__input button:hover,
+    .quantity__button:hover,
+    .slider-button:hover,
+    .product-popup-modal__button:hover,
+    button:hover {
+      background-color: #b91c1c !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3) !important;
+    }
+
+    /* Botões de quantidade especiais */
+    .quantity__button {
+      background-color: #f3f4f6 !important;
+      color: #374151 !important;
+      border: 2px solid #e5e7eb !important;
+      border-radius: 50% !important;
+      width: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .quantity__button:hover {
+      background-color: #dc2626 !important;
+      color: white !important;
+      border-color: #dc2626 !important;
+    }
+
+    /* Inputs arredondados */
+    .quantity__input,
+    .product-form__input input,
+    select,
+    .select,
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    .field input {
+      border: 2px solid #e5e7eb !important;
+      border-radius: 15px !important;
+      -webkit-border-radius: 15px !important;
+      -moz-border-radius: 15px !important;
+      padding: 12px 16px !important;
+      font-size: 16px !important;
+      transition: border-color 0.3s ease !important;
+      min-height: 48px !important;
+      box-sizing: border-box !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .quantity__input:focus,
+    .product-form__input input:focus,
+    select:focus,
+    .select:focus,
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    .field input:focus {
+      border-color: #dc2626 !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+    }
+
+    /* Seletores de variante arredondados */
+    .product-form__input--dropdown select,
+    .product-form__input--pill .product-form__input,
+    .variant-input-wrapper label,
+    .product-form__input--pill {
+      border-radius: 15px !important;
+      -webkit-border-radius: 15px !important;
+      -moz-border-radius: 15px !important;
+    }
+
+    /* Botões de variante tipo pill */
+    .product-form__input--pill input[type="radio"] + label {
+      background-color: #f9fafb !important;
+      border: 2px solid #e5e7eb !important;
+      border-radius: 20px !important;
+      padding: 8px 16px !important;
+      color: #374151 !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .product-form__input--pill input[type="radio"]:checked + label {
+      background-color: #dc2626 !important;
+      border-color: #dc2626 !important;
+      color: white !important;
+    }
+
+    .product-form__input--pill input[type="radio"] + label:hover {
+      border-color: #dc2626 !important;
+      background-color: rgba(220, 38, 38, 0.1) !important;
+    }
+
+    /* Swatch de cores arredondado */
+    .color-swatch,
+    .swatch {
+      border-radius: 50% !important;
+      -webkit-border-radius: 50% !important;
+      -moz-border-radius: 50% !important;
+      border: 2px solid #e5e7eb !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .color-swatch:hover,
+    .swatch:hover,
+    .color-swatch.selected,
+    .swatch.selected {
+      border-color: #dc2626 !important;
+      box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.3) !important;
+    }
+
+    /* Botão principal "Adicionar ao carrinho" */
+    .product-form__cart-submit[name="add"] {
+      background-color: #dc2626 !important;
+      border-radius: 25px !important;
+      width: 100% !important;
+      margin: 16px 0 !important;
+      padding: 16px 24px !important;
+      font-size: 18px !important;
+      font-weight: 600 !important;
+    }
+
+    /* Acordeões arredondados */
+    .accordion details {
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      margin-bottom: 12px !important;
+    }
+
+    .accordion summary {
+      border-radius: 12px !important;
+      padding: 16px !important;
+    }
+
+    /* Navegação de mídia arredondada */
+    .slider-button {
+      border-radius: 50% !important;
+      width: 44px !important;
+      height: 44px !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      color: #374151 !important;
+      border: 1px solid #e5e7eb !important;
+    }
+
+    .slider-button:hover {
+      background-color: #dc2626 !important;
+      color: white !important;
+      border-color: #dc2626 !important;
+    }
+
+    /* Preços com fundo arredondado */
+    .price {
+      background-color: rgba(220, 38, 38, 0.1) !important;
+      border-radius: 12px !important;
+      padding: 8px 12px !important;
+      display: inline-block !important;
+    }
+
+    /* Links de produto arredondados */
+    .link {
+      border-radius: 8px !important;
+      padding: 4px 8px !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .link:hover {
+      background-color: rgba(220, 38, 38, 0.1) !important;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -716,40 +923,6 @@
       <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    {% assign nome_do_produto = product.title %}
-{% assign tipo_de_peca = product.type %}
-{% assign cor = product.metafields.custom.cor.value %}
-{% assign material = product.metafields.custom.material.value %}
-{% assign modelagem = product.metafields.custom.modelagem.value %}
-
-<div class="raviolli-description">
-  <h2>{{ nome_do_produto }} — Raviolli Press</h2>
-
-  <p>
-    A <strong>{{ tipo_de_peca }} {{ nome_do_produto }}</strong> é uma criação exclusiva da
-    <strong>Raviolli Press</strong>, desenvolvida e impressa manualmente em nosso estúdio de serigrafia.
-    Cada detalhe foi pensado para transmitir o espírito independente da marca —
-    onde o design autoral encontra a técnica artesanal.
-  </p>
-
-  <p>
-    Produzimos todas as nossas peças em <strong>pequenas tiragens</strong>, garantindo qualidade e autenticidade.
-    A combinação entre <em>criação própria</em>, <em>toque humano</em> e <em>impressão manual</em> faz com que
-    cada produto seja levemente único, com sutis variações que contam sua própria história.
-  </p>
-
-  <p>🌿 <strong>Produção consciente:</strong> utilizamos materiais duráveis e processos sustentáveis, valorizando o fazer local e reduzindo o desperdício.</p>
-  <p>🖤 <strong>Feito por quem cria. Vestido por quem vive o original.</strong></p>
-
-  <ul>
-    {% if material %}<li><strong>Tecido:</strong> {{ material }}</li>{% endif %}
-    {% if modelagem %}<li><strong>Modelagem:</strong> {{ modelagem }}</li>{% endif %}
-    {% if cor %}<li><strong>Cor:</strong> {{ cor }}</li>{% endif %}
-    <li><strong>Estampa:</strong> serigrafia artesanal</li>
-    <li><strong>Cuidados:</strong> lavar à mão, secar à sombra</li>
-  </ul>
-</div>
-
 
     {%- if first_3d_model -%}
       <script type="application/json" id="ProductJSON-{{ product.id }}">
@@ -1904,7 +2077,7 @@
               "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__44.label"
             }
           ],
-          "default": "return",
+          "default": "truck",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.icon_2.label"
         },
         {
