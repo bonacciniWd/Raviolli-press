@@ -1923,8 +1923,7 @@ input[type='checkbox'] {
   position: relative;
   width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   display: flex;
-  border-radius: 50px;
-  background-color: #000;
+
   min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
 }
 
