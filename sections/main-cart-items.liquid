@@ -19,9 +19,9 @@
   }
 
   .svg {
-    
-    color: red;
-    
+    padding: 2px;
+    color: white;
+    background-color: red;
     border-radius: 50px;
   }
 {%- endstyle -%}
@@ -308,7 +308,7 @@
                           >
                             <a
                               href="{{ item.url_to_remove }}"
-                              class="svg"
+                              class="button button--tertiary"
                               aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                             >
                               <span class="svg">
