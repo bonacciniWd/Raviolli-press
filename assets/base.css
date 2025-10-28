@@ -1183,8 +1183,6 @@ deferred-media {
 
 .button--tertiary {
   --alpha-button-background: 0;
-  
-  border-radius: 50px;
 }
 
 .button,
