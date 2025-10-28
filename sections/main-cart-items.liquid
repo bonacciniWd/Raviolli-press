@@ -18,11 +18,23 @@
     }
   }
 
-  .svg {
-    padding: 2px;
-    color: white;
-    background-color: red;
-    border-radius: 50px;
+  .button-1 {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+  
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgb(var(--color-button-text));
+    transition: all var(--duration-short) ease; /* Mudança para transição suave */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgba(var(--color-button), var(--alpha-button-background));
+    /* Adicionando hover effect */
+    transform: translateY(50);
   }
 {%- endstyle -%}
 
