@@ -3,10 +3,9 @@
   "name": "Raviolli Press Footer",
   "settings": [
     {
-      "type": "text",
-      "id": "company_name",
-      "label": "Nome da empresa",
-      "default": "Raviolli Press"
+      "type": "image_picker",
+      "id": "company_logo",
+      "label": "Logo da empresa"
     },
     {
       "type": "text",
@@ -59,66 +58,27 @@
 }
 {% endschema %}
 
-<footer class="raviolli-footer">
-  <div class="footer-container">
-    <div class="footer-info">
-      <h3>{{ section.settings.company_name }}</h3>
-      <p>{{ section.settings.company_address }}</p>
-      <p><a href="tel:{{ section.settings.company_phone }}">{{ section.settings.company_phone }}</a></p>
-      <p><a href="mailto:{{ section.settings.company_email }}">{{ section.settings.company_email }}</a></p>
+<footer class="raviolli-footer" style="background-color:#1b1b1b; color:#f5f5f5; padding:2rem 1rem; font-family:'Poppins', sans-serif;">
+  <div class="footer-container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:1.5rem; max-width:1200px; margin:0 auto;">
+    
+    <div class="footer-info" style="flex:1 1 250px;">
+      {% if section.settings.company_logo != blank %}
+        <img src="{{ section.settings.company_logo | image_url: width: 200 }}" alt="Logo" style="max-width:180px; height:auto; margin-bottom:1rem;">
+      {% endif %}
+      <p style="margin:0.25rem 0; color:#ccc;">{{ section.settings.company_address }}</p>
+      <p style="margin:0.25rem 0;"><a href="tel:{{ section.settings.company_phone }}" style="color:#ccc; text-decoration:none;">{{ section.settings.company_phone }}</a></p>
+      <p style="margin:0.25rem 0;"><a href="mailto:{{ section.settings.company_email }}" style="color:#ccc; text-decoration:none;">{{ section.settings.company_email }}</a></p>
     </div>
 
-    <div class="footer-social">
-      <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>
-      <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
-      <a href="{{ section.settings.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="footer-social" style="flex:1 1 150px; text-align:right;">
+      <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" style="margin-right:1rem; color:#f5f5f5; text-decoration:none;">Facebook</a>
+      <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" style="margin-right:1rem; color:#f5f5f5; text-decoration:none;">Instagram</a>
+      <a href="{{ section.settings.linkedin_url }}" target="_blank" rel="noopener" style="color:#f5f5f5; text-decoration:none;">LinkedIn</a>
     </div>
+
   </div>
 
-  <div class="footer-bottom">
-    <p>{{ section.settings.copyright_text }}</p>
+  <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.1); margin-top:1.5rem; padding-top:1rem; text-align:center; font-size:0.875rem; color:#aaa;">
+    <p style="margin:0;">{{ section.settings.copyright_text }}</p>
   </div>
 </footer>
-
-<style>
-.raviolli-footer {
-  background-color: #1b1b1b;
-  color: #f5f5f5;
-  padding: 2rem 1rem;
-  font-family: 'Poppins', sans-serif;
-}
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.footer-info h3 {
-  margin-bottom: 0.5rem;
-  color: #ffffff;
-}
-.footer-info p, .footer-info a {
-  margin: 0.25rem 0;
-  color: #ccc;
-  text-decoration: none;
-}
-.footer-social a {
-  margin-right: 1rem;
-  color: #f5f5f5;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.footer-social a:hover {
-  color: #e63946;
-}
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  text-align: center;
-  font-size: 0.875rem;
-  color: #aaa;
-}
-</style>
