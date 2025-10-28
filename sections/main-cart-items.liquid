@@ -17,6 +17,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .svg {
+    padding: 2px;
+    color: white;
+    background-color: red;
+    border-radius: 50px;
+  }
 {%- endstyle -%}
 
 {%- unless settings.cart_type == 'drawer' -%}
@@ -304,7 +311,7 @@
                               class="button button--tertiary"
                               aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                             >
-                              <span class="svg-wrapper">
+                              <span class="svg">
                                 {{- 'icon-remove.svg' | inline_asset_content -}}
                               </span>
                             </a>
