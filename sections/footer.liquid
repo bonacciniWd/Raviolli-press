@@ -3,7 +3,7 @@
 
     <div style="flex:1 1 250px; text-align:left;">
       {% if section.settings.company_logo != blank %}
-        <img src="{{ section.settings.company_logo | image_url: width: 180, height:180 }}" alt="Logo da empresa" style="max-width:180px; height:auto; margin-bottom:1.2rem;">
+        <img src="{{ section.settings.company_logo | image_url: width: 100, height:100 }}" alt="Logo da empresa" style="max-width:100px; height:auto; margin-bottom:1.2rem;">
       {% endif %}
       <p style="margin:0.3rem 0; color:#ccc;">{{ section.settings.company_address }}</p>
       <p style="margin:0.3rem 0;">
