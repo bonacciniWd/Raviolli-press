@@ -13,7 +13,16 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {}
+      "settings": {
+        "company_logo": "shopify://shop_images/Design_sem_nome.svg",
+        "company_address": "Rua das Artes, 123 - Itapema, SC",
+        "company_phone": "+55 (47) 99999-9999",
+        "company_email": "contato@raviollipress.com",
+        "facebook_url": "/",
+        "instagram_url": "/",
+        "linkedin_url": "/",
+        "copyright_text": "© 2025 Raviolli Press. Todos os direitos reservados."
+      }
     }
   },
   "order": [
