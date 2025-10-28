@@ -1,93 +1,124 @@
+{%- style -%}
+body {
+  display: grid;
+  grid-template-rows: 1fr 10rem auto;
+  grid-template-areas: "main" "." "footer";
+  overflow-x: hidden;
+  background: #F5F7FA;
+  min-height: 60vh;
+  font-family: 'Open Sans', sans-serif;
+}
 
-  {%- style -%}
-  body {
-    display: grid;
-    grid-template-rows: 1fr 10rem auto;
-    grid-template-areas: "main" "." "footer";
-    overflow-x: hidden;
-    background: #F5F7FA;
-    min-height: 60vh;
-    font-family: 'Open Sans', sans-serif;
-  }
-  .raviolli-footer .bubbles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1rem;
-    background: var(--footer-background);
-    filter: url("#blob");
-    overflow: hidden;
-  }
-  .raviolli-footer .bubble {
-    position: absolute;
-    left: var(--position, 50%);
-    background: var(--footer-background);
-    border-radius: 100%;
-    animation: bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
-               bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
-    transform: translate(-50%, 100%);
-  }
-  .raviolli-footer .content {
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 4rem;
-    padding: 2rem;
-    background: var(--footer-background);
-  }
-  .raviolli-footer a,
-  .raviolli-footer p {
-    color: #F5F7FA;
-    text-decoration: none;
-  }
-  .raviolli-footer b {
-    color: white;
-  }
-  .raviolli-footer p {
-    margin: 0;
-    font-size: .75rem;
-  }
-  .raviolli-footer > .content > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .raviolli-footer > .content > div > div {
-    margin: 0.25rem 0;
-  }
-  .raviolli-footer > .content > div > div > * {
-    margin-right: .5rem;
-  }
-  .raviolli-footer .image {
-    align-self: center;
-    width: 4rem;
-    height: 4rem;
-    margin: 0.25rem 0;
-    background-size: cover;
-    background-position: center;
-  }
-  @keyframes bubble-size {
-    0%, 75% {
-      width: var(--size, 4rem);
-      height: var(--size, 4rem);
-    }
-    100% {
-      width: 0rem;
-      height: 0rem;
-    }
-  }
-  @keyframes bubble-move {
-    0% {
-      bottom: -4rem;
-    }
-    100% {
-      bottom: var(--distance, 10rem);
-    }
-  }
-  {%- endstyle -%}
+.raviolli-footer {
+  z-index: 1;
+  --footer-background: #ED5565;
+  display: grid;
+  position: relative;
+  grid-area: footer;
+  min-height: 12rem;
+}
 
-  <div class="bubbles"></div>
+.raviolli-footer .bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--footer-background);
+  filter: url("#blob");
+}
+
+.raviolli-footer .bubble {
+  position: absolute;
+  left: var(--position, 50%);
+  background: var(--footer-background);
+  border-radius: 100%;
+  animation: bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+             bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+  transform: translate(-50%, 100%);
+}
+
+.raviolli-footer .content {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 4rem;
+  padding: 2rem;
+  background: var(--footer-background);
+}
+
+.raviolli-footer a,
+.raviolli-footer p {
+  color: #F5F7FA;
+  text-decoration: none;
+}
+
+.raviolli-footer b {
+  color: white;
+}
+
+.raviolli-footer p {
+  margin: 0;
+  font-size: .75rem;
+}
+
+.raviolli-footer > .content > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.raviolli-footer > .content > div > div {
+  margin: 0.25rem 0;
+}
+
+.raviolli-footer > .content > div > div > * {
+  margin-right: .5rem;
+}
+
+.raviolli-footer .image {
+  align-self: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.25rem 0;
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes bubble-size {
+  0%, 75% {
+    width: var(--size, 4rem);
+    height: var(--size, 4rem);
+  }
+  100% {
+    width: 0rem;
+    height: 0rem;
+  }
+}
+
+@keyframes bubble-move {
+  0% {
+    bottom: -4rem;
+  }
+  100% {
+    bottom: var(--distance, 10rem);
+  }
+}
+
+{%- endstyle -%}
+<section id="footer" class="raviolli-footer">
+  <div class="bubbles">
+    {% for i in (1..128) %}
+      <div 
+        class="bubble"
+        style="--size:{{ 2 | plus: rand | times: 0.1 | plus: 2 }}rem; 
+               --distance:{{ 6 | plus: rand | times: 0.1 | plus: 4 }}rem; 
+               --position:{{ -5 | plus: rand | times: 1.1 | times: 100 | divided_by: 1 }}%; 
+               --time:{{ 2 | plus: rand | times: 0.1 | plus: 2 }}s; 
+               --delay:{{ -1 | times: 2 | minus: rand | times: 0.1 | minus: 2 }}s;">
+      </div>
+    {% endfor %}
+  </div>
 
   <div class="content">
     <div>
@@ -129,7 +160,7 @@
     </div>
   </div>
 
-  <svg style="position:fixed; top:100vh;">
+  <svg style="position:fixed; top:100vh">
     <defs>
       <filter id="blob">
         <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -142,28 +173,4 @@
       </filter>
     </defs>
   </svg>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const bubblesContainer = document.querySelector('#footer .bubbles');
-    if (bubblesContainer) {
-      const count = 128;
-      for (let i = 0; i < count; i++) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        const size = 2 + Math.random() * 4;
-        const distance = 6 + Math.random() * 4;
-        const position = -5 + Math.random() * 110;
-        const time = 2 + Math.random() * 2;
-        const delay = -1 * (2 + Math.random() * 2);
-        bubble.style.setProperty('--size', `${size}rem`);
-        bubble.style.setProperty('--distance', `${distance}rem`);
-        bubble.style.setProperty('--position', `${position}%`);
-        bubble.style.setProperty('--time', `${time}s`);
-        bubble.style.setProperty('--delay', `${delay}s`);
-        bubblesContainer.appendChild(bubble);
-      }
-    }
-  });
-  </script>
 </section>
