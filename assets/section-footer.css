@@ -173,3 +173,22 @@
     justify-content: center;
   }
 }
+
+.footer-block--newsletter {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-block--newsletter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* escurece a imagem */
+  z-index: 0;
+}
+
+.footer-block--newsletter > * {
+  position: relative;
+  z-index: 1;
+  color: #fff; /* texto branco por cima da imagem */
+}
