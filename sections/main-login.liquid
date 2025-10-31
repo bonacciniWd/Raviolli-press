@@ -13,7 +13,141 @@
     }
   }
 
+  /* Estilos para botões vermelhos e completamente arredondados */
+  .customer.login button,
+  .customer.login .btn,
+  .customer.login input[type="submit"],
+  .customer button,
   
+  .customer.login button:hover,
+  .customer.login .btn:hover,
+  .customer.login input[type="submit"]:hover,
+  .customer button:hover,
+  button:hover {
+    background-color: #b91c1c !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3) !important;
+  }
+
+  .customer.login button:active,
+  .customer.login .btn:active,
+  .customer.login input[type="submit"]:active,
+  .customer button:active,
+  button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3) !important;
+  }
+
+  /* Estilos para inputs completamente arredondados */
+  .customer.login .field input,
+  .customer.login input[type="email"],
+  .customer.login input[type="password"],
+  .customer.login input[type="text"],
+  .customer input,
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    border: 2px solid #e5e7eb !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    transition: border-color 0.3s ease !important;
+    min-height: 48px !important;
+    box-sizing: border-box !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .customer.login .field input:focus,
+  .customer.login input[type="email"]:focus,
+  .customer.login input[type="password"]:focus,
+  .customer.login input[type="text"]:focus,
+  .customer input:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="text"]:focus {
+    border-color: #dc2626 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+  }
+
+  /* Estilos para links */
+  .customer.login a {
+    color: #dc2626 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .customer.login a:hover {
+    color: #b91c1c !important;
+    text-decoration: underline !important;
+  }
+
+  /* Container principal */
+  .customer.login {
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+  }
+
+  /* Títulos */
+  .customer.login h1 {
+    color: #1f2937 !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+  }
+
+  .customer.login h2 {
+    color: #374151 !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+  }
+
+  /* Divisor */
+  .customer.login hr {
+    border: none !important;
+    height: 2px !important;
+    background-color: #e5e7eb !important;
+    margin: 30px 0 20px 0 !important;
+    
+  }
+
+  /* Mensagens */
+  .customer.login .form__message {
+    padding: 12px 16px !important;
+    border-radius: 15px !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+  }
+
+  /* Campos */
+  .customer.login .field {
+    margin-bottom: 16px !important;
+  }
+
+  .customer.login .field label {
+    display: block !important;
+    margin-bottom: 4px !important;
+    color: #374151 !important;
+    font-weight: 500 !important;
+  }
+
+  /* Forçar exibição apenas do formulário de login */
+  #recover,
+  #recover + div {
+    display: none !important;
+  }
+
+  #login,
+  #login + div {
+    display: block !important;
+  }
 
   /* Remover qualquer border-radius conflitante */
   * {
