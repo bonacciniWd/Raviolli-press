@@ -181,6 +181,10 @@
     border-radius: 12px;
   }
 
+  .footer-block--newsletter::before {
+    border-radius: 12px;
+  }
+
   .footer__content-bottom-wrapper {
     justify-content: center;
     text-align: center;
