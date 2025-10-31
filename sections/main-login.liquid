@@ -61,9 +61,10 @@
     background: white;
   }
 
+  /* Borda vermelha quando o campo está focado (clicado) */
   .customer.login .field input:focus {
     outline: none;
-    border-color: #dc2626;
+    border-color: #dc2626 !important;
     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
   }
 
@@ -81,7 +82,7 @@
     text-decoration: underline;
   }
 
-  /* Botões */
+  /* Botão de Login */
   .customer.login button {
     width: 100%;
     padding: 14px 20px;
@@ -102,22 +103,26 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
   }
 
-  /* Link "Criar conta" */
+  /* Botão de Registro - estilo igual ao de login */
   .customer.login a[href*="register"] {
     display: block;
     text-align: center;
     padding: 14px 20px;
-    border: 2px solid #dc2626;
-    color: #dc2626;
+    background: #dc2626;
+    color: white;
     text-decoration: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
+    border: 2px solid #dc2626;
   }
 
   .customer.login a[href*="register"]:hover {
-    background: #dc2626;
+    background: #b91c1c;
+    border-color: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
     color: white;
   }
 
@@ -161,6 +166,11 @@
   /* Remover estilos conflitantes do tema */
   .customer.login * {
     box-sizing: border-box;
+  }
+
+  /* Forçar a cor da borda em todos os estados */
+  .customer.login input:focus-visible {
+    border-color: #dc2626 !important;
   }
 {%- endstyle -%}
 
