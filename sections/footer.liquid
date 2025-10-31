@@ -138,7 +138,7 @@
                         {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
                         <div
                           class="footer-block__image-wrapper"
-                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                           style="background-image: url('{{ 'footer.png' | asset_url }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
                         >
                           <img
                             srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
