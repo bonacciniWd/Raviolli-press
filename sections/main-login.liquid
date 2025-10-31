@@ -13,146 +13,153 @@
     }
   }
 
-  /* Estilos para botões vermelhos e completamente arredondados */
-  .customer.login button,
-  .customer.login .btn,
-  .customer.login input[type="submit"],
-  .customer button,
-  
-  .customer.login button:hover,
-  .customer.login .btn:hover,
-  .customer.login input[type="submit"]:hover,
-  .customer button:hover,
-  button:hover {
-    background-color: #b91c1c !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3) !important;
-  }
-
-  .customer.login button:active,
-  .customer.login .btn:active,
-  .customer.login input[type="submit"]:active,
-  .customer button:active,
-  button:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3) !important;
-  }
-
-  /* Estilos para inputs completamente arredondados */
-  .customer.login .field input,
-  .customer.login input[type="email"],
-  .customer.login input[type="password"],
-  .customer.login input[type="text"],
-  .customer input,
-  input[type="email"],
-  input[type="password"],
-  input[type="text"] {
-    border: 2px solid #e5e7eb !important;
-    padding: 12px 16px !important;
-    width: 100% !important;
-    font-size: 16px !important;
-    transition: border-color 0.3s ease !important;
-    min-height: 48px !important;
-    box-sizing: border-box !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-  }
-
-  .customer.login .field input:focus,
-  .customer.login input[type="email"]:focus,
-  .customer.login input[type="password"]:focus,
-  .customer.login input[type="text"]:focus,
-  .customer input:focus,
-  input[type="email"]:focus,
-  input[type="password"]:focus,
-  input[type="text"]:focus {
-    border-color: #dc2626 !important;
-    outline: none !important;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
-  }
-
-  /* Estilos para links */
-  .customer.login a {
-    color: #dc2626 !important;
-    text-decoration: none !important;
-    font-weight: 500 !important;
-    transition: color 0.3s ease !important;
-  }
-
-  .customer.login a:hover {
-    color: #b91c1c !important;
-    text-decoration: underline !important;
-  }
-
-  /* Container principal */
+  /* Reset e container principal */
   .customer.login {
-    max-width: 400px !important;
-    margin: 0 auto !important;
-    padding: 20px !important;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: system-ui, -apple-system, sans-serif;
   }
 
   /* Títulos */
   .customer.login h1 {
-    color: #1f2937 !important;
-    font-size: 28px !important;
-    font-weight: 700 !important;
-    margin-bottom: 20px !important;
-    text-align: center !important;
+    color: #1f2937;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
   }
 
-  .customer.login h2 {
-    color: #374151 !important;
-    font-size: 24px !important;
-    font-weight: 600 !important;
-    margin-bottom: 16px !important;
-    text-align: center !important;
+  .customer.login .form__message {
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Campos de formulário */
+  .customer.login .field {
+    margin-bottom: 20px;
+  }
+
+  .customer.login .field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .customer.login .field input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .customer.login .field input:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  /* Link "Esqueceu a senha" */
+  .customer.login a[href="#recover"] {
+    display: block;
+    text-align: right;
+    margin: -12px 0 24px 0;
+    color: #dc2626;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .customer.login a[href="#recover"]:hover {
+    text-decoration: underline;
+  }
+
+  /* Botões */
+  .customer.login button {
+    width: 100%;
+    padding: 14px 20px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+  }
+
+  .customer.login button:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  }
+
+  /* Link "Criar conta" */
+  .customer.login a[href*="register"] {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    border: 2px solid #dc2626;
+    color: #dc2626;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .customer.login a[href*="register"]:hover {
+    background: #dc2626;
+    color: white;
   }
 
   /* Divisor */
   .customer.login hr {
-    border: none !important;
-    height: 2px !important;
-    background-color: #e5e7eb !important;
-    margin: 30px 0 20px 0 !important;
-    
+    border: none;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 32px 0;
   }
 
-  /* Mensagens */
-  .customer.login .form__message {
-    padding: 12px 16px !important;
-    border-radius: 15px !important;
-    margin-bottom: 16px !important;
-    text-align: center !important;
+  /* Guest login */
+  .customer.login h2 {
+    color: #374151;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
   }
 
-  /* Campos */
-  .customer.login .field {
-    margin-bottom: 16px !important;
+  /* Mensagens de erro/sucesso */
+  .customer.login .form__message:not(:first-of-type) {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
-  .customer.login .field label {
-    display: block !important;
-    margin-bottom: 4px !important;
-    color: #374151 !important;
-    font-weight: 500 !important;
-  }
-
-  /* Forçar exibição apenas do formulário de login */
+  /* Esconder recover password por padrão */
   #recover,
   #recover + div {
     display: none !important;
   }
 
+  /* Garantir que apenas o login seja mostrado */
   #login,
   #login + div {
     display: block !important;
   }
 
-  /* Remover qualquer border-radius conflitante */
-  * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+  /* Remover estilos conflitantes do tema */
+  .customer.login * {
     box-sizing: border-box;
   }
 {%- endstyle -%}
@@ -251,6 +258,9 @@
       {%- endif -%}
 
       <div class="field">
+        <label for="CustomerEmail">
+          {{ 'customer.login_page.email' | t }}
+        </label>
         <input
           type="email"
           name="customer[email]"
@@ -261,15 +271,15 @@
           {% if form.errors contains 'form' %}
             aria-invalid="true"
           {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
+          placeholder="seu@email.com"
         >
-        <label for="CustomerEmail">
-          {{ 'customer.login_page.email' | t }}
-        </label>
       </div>
 
       {%- if form.password_needed -%}
         <div class="field">
+          <label for="CustomerPassword">
+            {{ 'customer.login_page.password' | t }}
+          </label>
           <input
             type="password"
             value=""
@@ -279,11 +289,8 @@
             {% if form.errors contains 'form' %}
               aria-invalid="true"
             {% endif %}
-            placeholder="{{ 'customer.login_page.password' | t }}"
+            placeholder="Sua senha"
           >
-          <label for="CustomerPassword">
-            {{ 'customer.login_page.password' | t }}
-          </label>
         </div>
 
         <a href="#recover">
