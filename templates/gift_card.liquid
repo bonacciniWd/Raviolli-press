@@ -56,12 +56,6 @@
         padding: 40px 20px;
         text-align: center;
         z-index: 1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      .gift-card-content.revealed {
-        opacity: 1;
       }
       
       .gift-card-value {
@@ -98,6 +92,7 @@
         justify-content: center;
         align-items: center;
         cursor: grab;
+        background: url('{{ "gift.jpg" | asset_url }}') center/cover no-repeat;
       }
       
       .scratch-overlay:active {
@@ -192,23 +187,6 @@
         z-index: 1000;
       }
       
-      /* Loading state para a imagem */
-      .scratch-overlay.loading {
-        background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
-        background-size: 400% 400%;
-        animation: gradientShift 3s ease infinite;
-      }
-      
-      .scratch-overlay.loaded {
-        background: url('{{ "gift.jpg" | asset_url }}') center/cover no-repeat;
-      }
-      
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
       @keyframes confettiFall {
         0% {
           transform: translateY(0) rotate(0deg);
@@ -254,7 +232,7 @@
         </div>
         
         <!-- Overlay da raspadinha com imagem -->
-        <div class="scratch-overlay loading" id="scratchOverlay"></div>
+        <div class="scratch-overlay" id="scratchOverlay"></div>
         
         <!-- Canvas para raspadinha -->
         <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
@@ -284,52 +262,27 @@
       let lastX = 0;
       let lastY = 0;
       let revealed = false;
-      let imageLoaded = false;
       
-      // Carregar imagem de fundo
-      function loadScratchImage() {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.src = '{{ "footer.png" | asset_url }}';
-        
-        img.onload = function() {
-          imageLoaded = true;
-          scratchOverlay.classList.remove('loading');
-          scratchOverlay.classList.add('loaded');
-          scratchOverlay.style.backgroundImage = `url('${img.src}')`;
-        };
-        
-        img.onerror = function() {
-          // Fallback se a imagem não carregar
-          imageLoaded = true;
-          scratchOverlay.classList.remove('loading');
-          scratchOverlay.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff)';
-          scratchOverlay.style.backgroundSize = '400% 400%';
-        };
-      }
-      
-      // Configurar canvas - AGORA COMEÇA OPACO
+      // Configurar canvas - CORRETO: começa transparente
       function setupCanvas() {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
         
-        // IMPORTANTE: Preencher com branco opaco inicialmente
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // IMPORTANTE: Canvas começa transparente para mostrar a imagem abaixo
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Configurar estilo do pincel para "raspar"
-        ctx.globalCompositeOperation = 'destination-out';
+        // Configurar estilo do pincel para "pintar" áreas transparentes
+        ctx.globalCompositeOperation = 'source-over';
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
         ctx.lineWidth = 40;
-        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)'; // Pinta com branco semi-transparente
       }
       
       // Inicializar
       function init() {
         setupCanvas();
-        loadScratchImage();
         
         // Esconder conteúdo do gift card inicialmente
         giftCardContent.style.opacity = '0';
@@ -340,20 +293,20 @@
       
       // Funções de desenho
       function startDrawing(e) {
-        if (!imageLoaded || revealed) return;
+        if (revealed) return;
         
         isDrawing = true;
         const pos = getPosition(e);
         [lastX, lastY] = [pos.x, pos.y];
         
-        // Começar a desenhar imediatamente no ponto inicial
+        // Começar a desenhar no ponto inicial
         ctx.beginPath();
         ctx.arc(lastX, lastY, ctx.lineWidth / 2, 0, Math.PI * 2);
         ctx.fill();
       }
       
       function draw(e) {
-        if (!isDrawing || !imageLoaded || revealed) return;
+        if (!isDrawing || revealed) return;
         
         const pos = getPosition(e);
         
@@ -390,26 +343,27 @@
         };
       }
       
-      // Verificar se foi revelado o suficiente
+      // Verificar se foi revelado o suficiente - LÓGICA CORRIGIDA
       function checkRevealed() {
         if (revealed) return;
         
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
-        let transparentCount = 0;
-        let totalPixels = pixels.length / 4; // Cada pixel tem 4 valores (RGBA)
+        let paintedPixels = 0;
+        let totalPixels = pixels.length / 4;
         
+        // Contar pixels que foram "pintados" (não transparentes)
         for (let i = 3; i < pixels.length; i += 4) {
-          if (pixels[i] < 10) { // Alpha próximo de 0 (transparente)
-            transparentCount++;
+          if (pixels[i] > 10) { // Alpha > 10 (pintado)
+            paintedPixels++;
           }
         }
         
-        const percent = (transparentCount / totalPixels) * 100;
+        const percent = (paintedPixels / totalPixels) * 100;
         
-        console.log(`Área revelada: ${percent.toFixed(2)}%`); // Debug
+        console.log(`Área raspada: ${percent.toFixed(2)}%`);
         
-        if (percent > 40) { // 40% revelado
+        if (percent > 40) { // 40% da área raspada
           revealed = true;
           completeReveal();
         }
@@ -418,10 +372,9 @@
       // Completar a revelação
       function completeReveal() {
         // Mostrar conteúdo do gift card
-        giftCardContent.classList.add('revealed');
         giftCardContent.style.opacity = '1';
         
-        // Esconder overlay
+        // Esconder overlay da raspadinha
         scratchOverlay.style.opacity = '0';
         scratchOverlay.style.pointerEvents = 'none';
         
@@ -486,7 +439,6 @@
       copyBtn.addEventListener('click', () => {
         const code = document.getElementById('gift-card-code').textContent;
         
-        // Usar Clipboard API moderna
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(code).then(() => {
             showCopyFeedback();
