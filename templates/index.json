@@ -12,7 +12,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "custom_css": [
-        ".collection-full-width {margin: 10px}"
+        ".collection--full-width {}"
       ],
       "name": "Produtos",
       "settings": {
