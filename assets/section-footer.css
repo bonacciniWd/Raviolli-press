@@ -47,7 +47,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(14, 15, 14, 0.8);
+  background: rgba(14, 15, 14, 0.9);
   border: 1px dashed #fff; /* Alterado para dashed para efeito pontilhado */
   border-radius: 12px;
   padding: 2rem 3rem;
