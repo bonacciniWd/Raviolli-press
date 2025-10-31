@@ -56,7 +56,6 @@
     0 0 10px rgba(255, 255, 255, 0.2),
     inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
-
 .footer-block__newsletter {
   flex: 1;
   text-align: left;
