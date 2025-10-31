@@ -61,7 +61,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #000, transparent, #000);
+  background: linear-gradient(45deg,rgba(255, 0, 0, 0.81), transparent, #ff0000);
   border-radius: 500px;
   z-index: -1;
   opacity: 0.5;
