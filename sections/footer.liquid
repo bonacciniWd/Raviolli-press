@@ -27,7 +27,14 @@
   }
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding" style="
+    background: {{ section.settings.newsletter_background_color }};
+    background-image: url({{ 'footer.png' | asset_url }});
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+  ">
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -49,14 +56,7 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width" style="
-    background: {{ section.settings.newsletter_background_color }};
-    background-image: url({{ 'footer.png' | asset_url }});
-    background-size: cover;
-    background-position: center;
-    padding: 3rem 2rem;
-    border-radius: 1rem;
-  ">
+      <div class="footer__content-top page-width" >
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
