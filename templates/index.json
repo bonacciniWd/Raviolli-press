@@ -11,6 +11,9 @@
   "sections": {
     "featured_collection": {
       "type": "featured-collection",
+      "custom_css": [
+        ".collection {margin: 10px;}"
+      ],
       "name": "Produtos",
       "settings": {
         "collection": "all",
