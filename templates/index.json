@@ -12,7 +12,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "custom_css": [
-        ".collection {margin: 10px;}"
+        ".collection-full-width {margin: 10px}"
       ],
       "name": "Produtos",
       "settings": {
@@ -38,7 +38,7 @@
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 24
       }
     },
     "collection_list_N9NiX9": {
