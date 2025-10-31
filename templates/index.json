@@ -79,10 +79,10 @@
       "settings": {
         "title": "",
         "heading_size": "h2",
-        "image_ratio": "portrait",
-        "columns_desktop": 5,
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
         "color_scheme": "",
-        "show_view_all": false,
+        "show_view_all": true,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 36,
