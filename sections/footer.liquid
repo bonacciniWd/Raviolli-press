@@ -399,12 +399,12 @@
       ]
     },
     {
-      "type": "newsletter",
-      "name": "Bloco Newsletter",
+      "type": "image",
+      "name": "Image",
       "settings": [
         {
           "type": "checkbox",
-          "id": "enable_newsletter",
+          "id": "newsletter_enable",
           "label": "Ativar newsletter",
           "default": true
         },
@@ -423,18 +423,12 @@
           "type": "text",
           "id": "newsletter_heading",
           "label": "Título da newsletter",
-          "default": "Inscreva-se na nossa Newsletter!"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "name": "Imagem Decorativa",
-      "settings": [
+          "default": "Assine nossa newsletter"
+        },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Imagem"
+          "label": "Image"
         },
         {
           "type": "range",
@@ -443,24 +437,32 @@
           "max": 550,
           "step": 5,
           "unit": "px",
-          "label": "Largura da imagem",
+          "label": "Width",
           "default": 100
         },
         {
           "type": "select",
           "id": "alignment",
-          "label": "Alinhamento",
+          "label": "Alignment",
           "options": [
-            { "value": "left", "label": "Esquerda" },
-            { "value": "center", "label": "Centro" },
-            { "value": "right", "label": "Direita" }
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
           ],
           "default": "center"
         }
       ]
     }
   ],
-
   "settings": [
     {
       "type": "color_scheme",
@@ -470,7 +472,24 @@
     },
     {
       "type": "header",
-      "content": "Configurações Gerais"
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content"
     },
     {
       "type": "checkbox",
@@ -515,7 +534,7 @@
     },
     {
       "type": "header",
-      "content": "Espaçamento"
+      "content": "t:sections.all.spacing"
     },
     {
       "type": "range",
@@ -524,8 +543,12 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Margem superior",
+      "label": "t:sections.footer.settings.margin_top.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -534,7 +557,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding superior",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -544,18 +567,21 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding inferior",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    }
-  ],
+    },
 
+  ],
+  
   "default": {
     "blocks": [
-      { "type": "link_list" },
-      { "type": "text" },
-      { "type": "newsletter" }
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
     ]
   }
 }
 {% endschema %}
-
