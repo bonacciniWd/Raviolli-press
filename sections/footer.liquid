@@ -166,11 +166,9 @@
   {% endif %}
   style="
     background: {{ section.settings.newsletter_background_color }};
-    {% if section.settings.newsletter_background_image != blank %}
-      background-image: url({{ section.settings.newsletter_background_image | image_url }});
-      background-size: cover;
-      background-position: center;
-    {% endif %}
+    background-image: url({{ 'fundo.png' | asset_url }});
+    background-size: cover;
+    background-position: center;
     padding: 3rem 2rem;
     border-radius: 1rem;
   "
@@ -546,18 +544,13 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     },
-     
-   
     {
       "type": "color",
       "id": "newsletter_background_color",
       "label": "Cor de fundo (fallback se não houver imagem)",
       "default": "#f5f5f5"
-    },
-    
+    }
   ],
-  
-  
   "default": {
     "blocks": [
       {
