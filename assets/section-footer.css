@@ -32,7 +32,7 @@
   }
 
   .footer-block__details-content a {
-    color: #ff0000;
+    color: rgba(var(--color-foreground), 0.8);
     transition: color 0.2s ease;
   }
 
