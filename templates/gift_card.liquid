@@ -93,7 +93,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('{{ "gift.jpg" | asset_url }}') center/cover no-repeat;
         z-index: 2;
         display: flex;
         justify-content: center;
@@ -200,10 +199,25 @@
         animation: gradientShift 3s ease infinite;
       }
       
+      .scratch-overlay.loaded {
+        background: url('{{ "gift.jpg" | asset_url }}') center/cover no-repeat;
+      }
+      
       @keyframes gradientShift {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
+      }
+      
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
       }
     </style>
   </head>
@@ -240,7 +254,7 @@
         </div>
         
         <!-- Overlay da raspadinha com imagem -->
-        <div class="scratch-overlay" id="scratchOverlay"></div>
+        <div class="scratch-overlay loading" id="scratchOverlay"></div>
         
         <!-- Canvas para raspadinha -->
         <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
@@ -276,30 +290,33 @@
       function loadScratchImage() {
         const img = new Image();
         img.crossOrigin = 'anonymous';
-        img.src = '{{ "footer.png" | asset_url }}';
+        img.src = '{{ "gift.jpg" | asset_url }}';
         
         img.onload = function() {
           imageLoaded = true;
-          scratchOverlay.style.backgroundImage = `url('${img.src}')`;
           scratchOverlay.classList.remove('loading');
+          scratchOverlay.classList.add('loaded');
+          scratchOverlay.style.backgroundImage = `url('${img.src}')`;
         };
         
         img.onerror = function() {
           // Fallback se a imagem não carregar
+          imageLoaded = true;
+          scratchOverlay.classList.remove('loading');
           scratchOverlay.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff)';
           scratchOverlay.style.backgroundSize = '400% 400%';
-          scratchOverlay.classList.remove('loading');
         };
       }
       
-      // Configurar canvas
+      // Configurar canvas - AGORA COMEÇA OPACO
       function setupCanvas() {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
         
-        // Preencher com transparente inicialmente
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // IMPORTANTE: Preencher com branco opaco inicialmente
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         // Configurar estilo do pincel para "raspar"
         ctx.globalCompositeOperation = 'destination-out';
@@ -323,21 +340,20 @@
       
       // Funções de desenho
       function startDrawing(e) {
-        if (!imageLoaded) return;
+        if (!imageLoaded || revealed) return;
         
         isDrawing = true;
         const pos = getPosition(e);
         [lastX, lastY] = [pos.x, pos.y];
         
-        // Começar a desenhar imediatamente
+        // Começar a desenhar imediatamente no ponto inicial
         ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(lastX, lastY);
-        ctx.stroke();
+        ctx.arc(lastX, lastY, ctx.lineWidth / 2, 0, Math.PI * 2);
+        ctx.fill();
       }
       
       function draw(e) {
-        if (!isDrawing || !imageLoaded) return;
+        if (!isDrawing || !imageLoaded || revealed) return;
         
         const pos = getPosition(e);
         
@@ -381,18 +397,19 @@
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
         let transparentCount = 0;
-        let totalPixels = 0;
+        let totalPixels = pixels.length / 4; // Cada pixel tem 4 valores (RGBA)
         
         for (let i = 3; i < pixels.length; i += 4) {
-          totalPixels++;
-          if (pixels[i] === 0) {
+          if (pixels[i] < 10) { // Alpha próximo de 0 (transparente)
             transparentCount++;
           }
         }
         
         const percent = (transparentCount / totalPixels) * 100;
         
-        if (percent > 30) { // 30% revelado
+        console.log(`Área revelada: ${percent.toFixed(2)}%`); // Debug
+        
+        if (percent > 40) { // 40% revelado
           revealed = true;
           completeReveal();
         }
@@ -406,6 +423,7 @@
         
         // Esconder overlay
         scratchOverlay.style.opacity = '0';
+        scratchOverlay.style.pointerEvents = 'none';
         
         // Atualizar instruções
         instructions.textContent = '🎉 Parabéns! Cartão revelado!';
@@ -413,7 +431,7 @@
         // Criar confetti
         createConfetti();
         
-        // Remover event listeners
+        // Remover event listeners do canvas
         canvas.style.pointerEvents = 'none';
       }
       
@@ -442,25 +460,6 @@
               }
             }, 3000);
           }, i * 100);
-        }
-        
-        // Adicionar CSS da animação se não existir
-        if (!document.getElementById('confetti-animation')) {
-          const style = document.createElement('style');
-          style.id = 'confetti-animation';
-          style.textContent = `
-            @keyframes confettiFall {
-              0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-              }
-              100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-              }
-            }
-          `;
-          document.head.appendChild(style);
         }
       }
       
