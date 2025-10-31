@@ -18,7 +18,7 @@
   /* Background images for different screen sizes */
   .footer {
     background: {{ section.settings.newsletter_background_color }};
-    background-image: url({{ 'fundo-mobile.png' | asset_url }});
+    background-image: url({{ 'footer.png' | asset_url }});
     background-size: cover;
     background-position: center;
   }
@@ -44,7 +44,7 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      background-image: url({{ 'footer-desktop.png' | asset_url }});
+      background-image: url({{ 'ffundo-desktop.png' | asset_url }});
     }
 
     .section-{{ section.id }}-padding {
