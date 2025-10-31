@@ -123,6 +123,7 @@
 .footer__copyright {
   color: rgba(var(--color-foreground), 0.7);
   font-size: 1.3rem;
+  margin-top: 8px;
 }
 
 .footer__copyright a {
