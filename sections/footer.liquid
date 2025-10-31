@@ -32,8 +32,6 @@
     background-image: url({{ 'footer.png' | asset_url }});
     background-size: cover;
     background-position: center;
-    padding: 3rem 2rem;
-    border-radius: 1rem;
   ">
   {%- liquid
     assign has_social_icons = true
@@ -171,7 +169,6 @@
   {% if settings.animations_reveal_on_scroll %}
     data-cascade
   {% endif %}
-  
 >
   {%- if section.settings.newsletter_enable -%}
     <div class="footer-block__newsletter">
