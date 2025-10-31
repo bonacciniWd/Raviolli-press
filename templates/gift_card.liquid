@@ -39,6 +39,7 @@
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        background: white;
       }
       
       .gift-card-content {
@@ -55,6 +56,12 @@
         padding: 40px 20px;
         text-align: center;
         z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .gift-card-content.revealed {
+        opacity: 1;
       }
       
       .gift-card-value {
@@ -86,9 +93,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
-        background-size: 400% 400%;
-        animation: gradientShift 3s ease infinite;
+        background: url('{{ "gift.jpg" | asset_url }}') center/cover no-repeat;
         z-index: 2;
         display: flex;
         justify-content: center;
@@ -105,7 +110,11 @@
         font-size: 24px;
         font-weight: bold;
         color: white;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        background: rgba(0,0,0,0.5);
+        padding: 15px 25px;
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
       }
       
       .scratch-canvas {
@@ -116,6 +125,7 @@
         height: 100%;
         z-index: 3;
         cursor: grab;
+        touch-action: none;
       }
       
       .scratch-canvas:active {
@@ -173,12 +183,6 @@
         display: none !important;
       }
       
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
       /* Confetti styles */
       .confetti {
         position: fixed;
@@ -186,6 +190,20 @@
         height: 10px;
         opacity: 0;
         pointer-events: none;
+        z-index: 1000;
+      }
+      
+      /* Loading state para a imagem */
+      .scratch-overlay.loading {
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
+        background-size: 400% 400%;
+        animation: gradientShift 3s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
     </style>
   </head>
@@ -196,7 +214,7 @@
     <div class="scratch-container">
       <div class="scratch-card">
         <!-- Conteúdo do Gift Card -->
-        <div class="gift-card-content">
+        <div class="gift-card-content" id="giftCardContent">
           <div class="gift-card-value">
             {% if settings.currency_code_enabled %}
               {{ gift_card.balance | money_with_currency }}
@@ -221,7 +239,7 @@
           </div>
         </div>
         
-        <!-- Overlay da raspadinha -->
+        <!-- Overlay da raspadinha com imagem -->
         <div class="scratch-overlay" id="scratchOverlay"></div>
         
         <!-- Canvas para raspadinha -->
@@ -243,6 +261,7 @@
       const canvas = document.getElementById('scratchCanvas');
       const ctx = canvas.getContext('2d');
       const scratchOverlay = document.getElementById('scratchOverlay');
+      const giftCardContent = document.getElementById('giftCardContent');
       const instructions = document.getElementById('instructions');
       const copyBtn = document.getElementById('copyBtn');
       
@@ -251,6 +270,27 @@
       let lastX = 0;
       let lastY = 0;
       let revealed = false;
+      let imageLoaded = false;
+      
+      // Carregar imagem de fundo
+      function loadScratchImage() {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = '{{ "gift.jpg" | asset_url }}';
+        
+        img.onload = function() {
+          imageLoaded = true;
+          scratchOverlay.style.backgroundImage = `url('${img.src}')`;
+          scratchOverlay.classList.remove('loading');
+        };
+        
+        img.onerror = function() {
+          // Fallback se a imagem não carregar
+          scratchOverlay.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff)';
+          scratchOverlay.style.backgroundSize = '400% 400%';
+          scratchOverlay.classList.remove('loading');
+        };
+      }
       
       // Configurar canvas
       function setupCanvas() {
@@ -258,30 +298,46 @@
         canvas.width = rect.width;
         canvas.height = rect.height;
         
-        // Preencher com preto (área raspável)
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Preencher com transparente inicialmente
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Configurar estilo do pincel
+        // Configurar estilo do pincel para "raspar"
         ctx.globalCompositeOperation = 'destination-out';
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
         ctx.lineWidth = 40;
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
       }
       
       // Inicializar
-      setupCanvas();
+      function init() {
+        setupCanvas();
+        loadScratchImage();
+        
+        // Esconder conteúdo do gift card inicialmente
+        giftCardContent.style.opacity = '0';
+      }
+      
+      init();
       window.addEventListener('resize', setupCanvas);
       
       // Funções de desenho
       function startDrawing(e) {
+        if (!imageLoaded) return;
+        
         isDrawing = true;
         const pos = getPosition(e);
         [lastX, lastY] = [pos.x, pos.y];
+        
+        // Começar a desenhar imediatamente
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(lastX, lastY);
+        ctx.stroke();
       }
       
       function draw(e) {
-        if (!isDrawing) return;
+        if (!isDrawing || !imageLoaded) return;
         
         const pos = getPosition(e);
         
@@ -325,21 +381,40 @@
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
         let transparentCount = 0;
+        let totalPixels = 0;
         
         for (let i = 3; i < pixels.length; i += 4) {
+          totalPixels++;
           if (pixels[i] === 0) {
             transparentCount++;
           }
         }
         
-        const percent = (transparentCount / (pixels.length / 4)) * 100;
+        const percent = (transparentCount / totalPixels) * 100;
         
-        if (percent > 40) {
+        if (percent > 30) { // 30% revelado
           revealed = true;
-          scratchOverlay.style.display = 'none';
-          instructions.textContent = '🎉 Parabéns! Cartão revelado!';
-          createConfetti();
+          completeReveal();
         }
+      }
+      
+      // Completar a revelação
+      function completeReveal() {
+        // Mostrar conteúdo do gift card
+        giftCardContent.classList.add('revealed');
+        giftCardContent.style.opacity = '1';
+        
+        // Esconder overlay
+        scratchOverlay.style.opacity = '0';
+        
+        // Atualizar instruções
+        instructions.textContent = '🎉 Parabéns! Cartão revelado!';
+        
+        // Criar confetti
+        createConfetti();
+        
+        // Remover event listeners
+        canvas.style.pointerEvents = 'none';
       }
       
       // Criar efeito de confetti
@@ -362,26 +437,31 @@
             
             // Remover após animação
             setTimeout(() => {
-              confetti.remove();
+              if (confetti.parentNode) {
+                confetti.remove();
+              }
             }, 3000);
           }, i * 100);
         }
         
-        // Adicionar CSS da animação
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes confettiFall {
-            0% {
-              transform: translateY(0) rotate(0deg);
-              opacity: 1;
+        // Adicionar CSS da animação se não existir
+        if (!document.getElementById('confetti-animation')) {
+          const style = document.createElement('style');
+          style.id = 'confetti-animation';
+          style.textContent = `
+            @keyframes confettiFall {
+              0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+              }
+              100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+              }
             }
-            100% {
-              transform: translateY(100vh) rotate(360deg);
-              opacity: 0;
-            }
-          }
-        `;
-        document.head.appendChild(style);
+          `;
+          document.head.appendChild(style);
+        }
       }
       
       // Event listeners para mouse
@@ -406,28 +486,47 @@
       // Copiar código do gift card
       copyBtn.addEventListener('click', () => {
         const code = document.getElementById('gift-card-code').textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          const originalText = copyBtn.textContent;
-          copyBtn.textContent = '📋 Copiado!';
-          setTimeout(() => {
-            copyBtn.textContent = originalText;
-          }, 2000);
-        }).catch(() => {
-          // Fallback para navegadores antigos
-          const textArea = document.createElement('textarea');
-          textArea.value = code;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-          
-          const originalText = copyBtn.textContent;
-          copyBtn.textContent = '📋 Copiado!';
-          setTimeout(() => {
-            copyBtn.textContent = originalText;
-          }, 2000);
-        });
+        
+        // Usar Clipboard API moderna
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(() => {
+            showCopyFeedback();
+          }).catch(() => {
+            useFallbackCopy(code);
+          });
+        } else {
+          useFallbackCopy(code);
+        }
       });
+      
+      function showCopyFeedback() {
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = '📋 Copiado!';
+        copyBtn.style.background = '#10b981';
+        
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+          copyBtn.style.background = '';
+        }, 2000);
+      }
+      
+      function useFallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          showCopyFeedback();
+        } catch (err) {
+          console.error('Falha ao copiar texto: ', err);
+        }
+        
+        document.body.removeChild(textArea);
+      }
     </script>
   </body>
 </html>
