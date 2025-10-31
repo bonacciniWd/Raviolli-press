@@ -3,92 +3,84 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="{{ settings.color_background }}">
-    <link rel="canonical" href="{{ canonical_url }}">
-
-    {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-    {%- endif -%}
-
-    {%- assign formatted_balance = gift_card.balance | money_without_trailing_zeros | strip_html -%}
-
-    <title>{{ 'gift_cards.issued.title' | t: value: formatted_balance, shop: shop.name }}</title>
-
-    <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
-
-    {{ content_for_header }}
-
+    <title>Gift Card - {{ shop.name }}</title>
+    
     <style>
-      /* Scratch Card Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
       body {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        row-gap: 2em;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        margin: 0;
         padding: 20px;
       }
-
-      .scratch-card-container {
+      
+      .scratch-container {
         position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        max-width: 500px;
         width: 100%;
+        max-width: 500px;
+        margin-bottom: 30px;
       }
-
+      
       .scratch-card {
         position: relative;
         width: 100%;
         height: 300px;
-        background: white;
-      }
-
-      .scratch-card-cover-container {
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        left: 0;
         border-radius: 20px;
-        width: 100%;
-        height: 100%;
-        filter: url('#remove-black');
-        transition: opacity 0.5s ease;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       }
-
-      .scratch-card-cover-container.clear {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .scratch-card-canvas {
+      
+      .gift-card-content {
         position: absolute;
-        z-index: 3;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        cursor: grab;
-        touch-action: none;
-      }
-
-      .scratch-card-canvas:active {
-        cursor: grabbing;
-      }
-
-      .scratch-card-cover {
+        background: white;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 40px 20px;
+        text-align: center;
+        z-index: 1;
+      }
+      
+      .gift-card-value {
+        font-size: 48px;
+        font-weight: bold;
+        color: #2c5530;
+        margin-bottom: 20px;
+      }
+      
+      .gift-card-code {
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        background: #f8f9fa;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 2px dashed #dee2e6;
+        margin-bottom: 15px;
+      }
+      
+      .gift-card-info {
+        color: #6c757d;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      
+      .scratch-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -97,78 +89,55 @@
         background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
         background-size: 400% 400%;
         animation: gradientShift 3s ease infinite;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: grab;
       }
-
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+      
+      .scratch-overlay:active {
+        cursor: grabbing;
       }
-
-      .scratch-card-cover::before {
-        content: '🎁 Arraste para revelar o valor!';
+      
+      .scratch-overlay::before {
+        content: '🎁 Arraste para revelar!';
         font-size: 24px;
         font-weight: bold;
         color: white;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        text-align: center;
-        padding: 20px;
       }
-
-      .gift-card-content {
-        position: relative;
-        z-index: 1;
-        padding: 40px 20px;
-        text-align: center;
-        background: white;
+      
+      .scratch-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        z-index: 3;
+        cursor: grab;
       }
-
-      .gift-card-value {
-        font-size: 48px;
-        font-weight: bold;
-        color: #2c5530;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      
+      .scratch-canvas:active {
+        cursor: grabbing;
       }
-
-      .gift-card-code {
-        font-family: 'Courier New', monospace;
-        font-size: 18px;
-        background: #f8f9fa;
-        padding: 10px 20px;
-        border-radius: 10px;
-        border: 2px dashed #dee2e6;
-        margin-bottom: 20px;
-      }
-
-      .gift-card-instructions {
-        color: #6c757d;
-        font-size: 14px;
-        margin-top: 10px;
-      }
-
-      .scratch-card-text {
-        font-size: 18px;
+      
+      .instructions {
         color: white;
-        text-align: center;
-        margin-top: 20px;
+        font-size: 18px;
         font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
       }
-
-      .gift-card-buttons {
+      
+      .buttons {
         display: flex;
         gap: 15px;
-        margin-top: 30px;
         flex-wrap: wrap;
         justify-content: center;
       }
-
-      .gift-card-button {
+      
+      .btn {
         padding: 12px 24px;
         border: none;
         border-radius: 25px;
@@ -178,69 +147,55 @@
         transition: all 0.3s ease;
         text-decoration: none;
       }
-
-      .button-primary {
+      
+      .btn-primary {
         background: #dc2626;
         color: white;
       }
-
-      .button-primary:hover {
+      
+      .btn-primary:hover {
         background: #b91c1c;
         transform: translateY(-2px);
       }
-
-      .button-secondary {
+      
+      .btn-secondary {
         background: white;
         color: #dc2626;
         border: 2px solid #dc2626;
       }
-
-      .button-secondary:hover {
+      
+      .btn-secondary:hover {
         background: #f8f9fa;
         transform: translateY(-2px);
       }
-
-      /* Confetti animation */
-      @keyframes confetti-fall {
-        0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+      
+      .hidden {
+        display: none !important;
       }
-
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* Confetti styles */
       .confetti {
         position: fixed;
         width: 10px;
         height: 10px;
-        background: #ff0000;
         opacity: 0;
         pointer-events: none;
-      }
-
-      /* Hidden SVG filters */
-      svg {
-        position: absolute;
-        width: 0;
-        height: 0;
       }
     </style>
   </head>
 
   <body>
-    <svg width="0" height="0">
-      <filter id="remove-black" color-interpolation-filters="sRGB">
-        <feColorMatrix
-          type="matrix"
-          values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  -1 -1 -1 0 1"
-          result="black-pixels"
-        />
-        <feComposite in="SourceGraphic" in2="black-pixels" operator="out" />
-      </filter>
-    </svg>
-
-    <div class="scratch-card-container">
+    <div class="instructions" id="instructions">🎁 Arraste sobre o cartão para revelar o valor!</div>
+    
+    <div class="scratch-container">
       <div class="scratch-card">
+        <!-- Conteúdo do Gift Card -->
         <div class="gift-card-content">
           <div class="gift-card-value">
             {% if settings.currency_code_enabled %}
@@ -256,188 +211,220 @@
 
           {% if gift_card.expires_on %}
             {%- assign gift_card_expiration_date = gift_card.expires_on | date: '%B %e, %Y' -%}
-            <div class="gift-card-instructions">
+            <div class="gift-card-info">
               {{ 'gift_cards.issued.expiration_date' | t: expires_on: gift_card_expiration_date }}
             </div>
           {% endif %}
 
-          <div class="gift-card-instructions">
+          <div class="gift-card-info">
             {{ 'gift_cards.issued.how_to_use_gift_card' | t }}
           </div>
-
-          <div class="gift-card-buttons">
-            <button class="gift-card-button button-primary" id="copy-button">
-              {{ 'gift_cards.issued.copy_code' | t }}
-            </button>
-            <a href="{{ shop.url }}" class="gift-card-button button-secondary" target="_blank">
-              {{ 'gift_cards.issued.shop_link' | t }}
-            </a>
-          </div>
         </div>
-
-        <div class="scratch-card-cover-container" id="scratch-cover">
-          <canvas class="scratch-card-canvas" id="scratch-canvas"></canvas>
-          <div class="scratch-card-cover"></div>
-        </div>
+        
+        <!-- Overlay da raspadinha -->
+        <div class="scratch-overlay" id="scratchOverlay"></div>
+        
+        <!-- Canvas para raspadinha -->
+        <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
       </div>
     </div>
 
-    <div class="scratch-card-text" id="scratch-text">🎁 Arraste sobre o cartão para revelar o valor!</div>
+    <div class="buttons">
+      <button class="btn btn-primary" id="copyBtn">
+        {{ 'gift_cards.issued.copy_code' | t }}
+      </button>
+      <a href="{{ shop.url }}" class="btn btn-secondary" target="_blank">
+        {{ 'gift_cards.issued.shop_link' | t }}
+      </a>
+    </div>
 
     <script>
-      // Canvas setup
-      const canvas = document.getElementById('scratch-canvas');
+      // Elementos
+      const canvas = document.getElementById('scratchCanvas');
       const ctx = canvas.getContext('2d');
-      const coverContainer = document.getElementById('scratch-cover');
-      const scratchText = document.getElementById('scratch-text');
-      const copyButton = document.getElementById('copy-button');
+      const scratchOverlay = document.getElementById('scratchOverlay');
+      const instructions = document.getElementById('instructions');
+      const copyBtn = document.getElementById('copyBtn');
       
-      let isScratching = false;
-      let lastX, lastY;
+      // Variáveis de estado
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
       let revealed = false;
-
-      // Set canvas size
-      function resizeCanvas() {
+      
+      // Configurar canvas
+      function setupCanvas() {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
         
-        // Fill with black (scratchable area)
+        // Preencher com preto (área raspável)
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-
-      // Initialize
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      // Scratch functions
-      function getMousePos(e) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
-      }
-
-      function getTouchPos(e) {
-        const rect = canvas.getBoundingClientRect();
-        const touch = e.touches[0];
-        return {
-          x: touch.clientX - rect.left,
-          y: touch.clientY - rect.top
-        };
-      }
-
-      function drawLine(x1, y1, x2, y2) {
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.strokeStyle = 'transparent';
+        
+        // Configurar estilo do pincel
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
         ctx.lineWidth = 40;
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.stroke();
       }
-
+      
+      // Inicializar
+      setupCanvas();
+      window.addEventListener('resize', setupCanvas);
+      
+      // Funções de desenho
+      function startDrawing(e) {
+        isDrawing = true;
+        const pos = getPosition(e);
+        [lastX, lastY] = [pos.x, pos.y];
+      }
+      
+      function draw(e) {
+        if (!isDrawing) return;
+        
+        const pos = getPosition(e);
+        
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        
+        [lastX, lastY] = [pos.x, pos.y];
+        
+        checkRevealed();
+      }
+      
+      function stopDrawing() {
+        isDrawing = false;
+      }
+      
+      // Obter posição do mouse/toque
+      function getPosition(e) {
+        const rect = canvas.getBoundingClientRect();
+        let clientX, clientY;
+        
+        if (e.type.includes('touch')) {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top
+        };
+      }
+      
+      // Verificar se foi revelado o suficiente
       function checkRevealed() {
         if (revealed) return;
-
+        
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imageData.data;
-        let transparentPixels = 0;
-
-        for (let i = 0; i < pixels.length; i += 4) {
-          if (pixels[i + 3] === 0) {
-            transparentPixels++;
+        let transparentCount = 0;
+        
+        for (let i = 3; i < pixels.length; i += 4) {
+          if (pixels[i] === 0) {
+            transparentCount++;
           }
         }
-
-        const transparentPercent = (transparentPixels / (pixels.length / 4)) * 100;
         
-        if (transparentPercent > 50) {
+        const percent = (transparentCount / (pixels.length / 4)) * 100;
+        
+        if (percent > 40) {
           revealed = true;
-          coverContainer.classList.add('clear');
-          scratchText.textContent = '🎉 Parabéns! Cartão revelado!';
+          scratchOverlay.style.display = 'none';
+          instructions.textContent = '🎉 Parabéns! Cartão revelado!';
           createConfetti();
         }
       }
-
+      
+      // Criar efeito de confetti
       function createConfetti() {
         const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-        for (let i = 0; i < 100; i++) {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = Math.random() * 100 + 'vw';
-          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s linear forwards`;
-          confetti.style.animationDelay = Math.random() * 2 + 's';
-          document.body.appendChild(confetti);
-          
+        
+        for (let i = 0; i < 50; i++) {
           setTimeout(() => {
-            confetti.remove();
-          }, 5000);
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            confetti.style.animation = `confettiFall ${Math.random() * 2 + 1}s linear forwards`;
+            
+            document.body.appendChild(confetti);
+            
+            // Remover após animação
+            setTimeout(() => {
+              confetti.remove();
+            }, 3000);
+          }, i * 100);
         }
+        
+        // Adicionar CSS da animação
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes confettiFall {
+            0% {
+              transform: translateY(0) rotate(0deg);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(100vh) rotate(360deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
       }
-
-      // Event listeners
-      canvas.addEventListener('mousedown', (e) => {
-        isScratching = true;
-        const pos = getMousePos(e);
-        lastX = pos.x;
-        lastY = pos.y;
-        drawLine(lastX, lastY, lastX, lastY);
-      });
-
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isScratching) return;
-        const pos = getMousePos(e);
-        drawLine(lastX, lastY, pos.x, pos.y);
-        lastX = pos.x;
-        lastY = pos.y;
-        checkRevealed();
-      });
-
-      canvas.addEventListener('mouseup', () => {
-        isScratching = false;
-      });
-
-      canvas.addEventListener('mouseleave', () => {
-        isScratching = false;
-      });
-
-      // Touch events
+      
+      // Event listeners para mouse
+      canvas.addEventListener('mousedown', startDrawing);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', stopDrawing);
+      canvas.addEventListener('mouseout', stopDrawing);
+      
+      // Event listeners para touch
       canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
-        isScratching = true;
-        const pos = getTouchPos(e);
-        lastX = pos.x;
-        lastY = pos.y;
-        drawLine(lastX, lastY, lastX, lastY);
+        startDrawing(e);
       });
-
+      
       canvas.addEventListener('touchmove', (e) => {
         e.preventDefault();
-        if (!isScratching) return;
-        const pos = getTouchPos(e);
-        drawLine(lastX, lastY, pos.x, pos.y);
-        lastX = pos.x;
-        lastY = pos.y;
-        checkRevealed();
+        draw(e);
       });
-
-      canvas.addEventListener('touchend', () => {
-        isScratching = false;
-      });
-
-      // Copy gift card code
-      copyButton.addEventListener('click', () => {
+      
+      canvas.addEventListener('touchend', stopDrawing);
+      
+      // Copiar código do gift card
+      copyBtn.addEventListener('click', () => {
         const code = document.getElementById('gift-card-code').textContent;
         navigator.clipboard.writeText(code).then(() => {
-          const originalText = copyButton.textContent;
-          copyButton.textContent = '📋 Copiado!';
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = '📋 Copiado!';
           setTimeout(() => {
-            copyButton.textContent = originalText;
+            copyBtn.textContent = originalText;
+          }, 2000);
+        }).catch(() => {
+          // Fallback para navegadores antigos
+          const textArea = document.createElement('textarea');
+          textArea.value = code;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = '📋 Copiado!';
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
           }, 2000);
         });
       });
