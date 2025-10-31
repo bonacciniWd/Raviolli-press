@@ -57,7 +57,7 @@
   height: calc(var(--border-width) * 2 + 100%);
   top: calc(var(--border-width) * -1);
   left: calc(var(--border-width) * -1);
-  
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
     rgba(var(--color-shadow), var(--shadow-opacity));
 }
