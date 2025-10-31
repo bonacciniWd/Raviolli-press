@@ -62,7 +62,7 @@
   right: -2px;
   bottom: -2px;
   background: linear-gradient(45deg, #fff, transparent, #fff);
-  border-radius: 14px;
+  border-radius: 500px;
   z-index: -1;
   opacity: 0.5;
 }
