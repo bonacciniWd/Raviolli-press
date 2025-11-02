@@ -73,7 +73,7 @@ product-info {
   }
 
   .product--large:not(.product--no-media).product--right .product__info-wrapper {
-    padding: 0 12rem 0 0;
+    padding: 0 14rem 0 0;
   }
 
   .product--medium:not(.product--no-media) .product__media-wrapper,
