@@ -1813,9 +1813,9 @@ details[open] > .share-button__fallback {
 }
 
 .pop-up-image {
-  max-width: 150px;
+  max-width: 220px;
   height: auto;
-  margin: 15px auto;
+  margin: 0px auto;
   display: block;
 }
 
