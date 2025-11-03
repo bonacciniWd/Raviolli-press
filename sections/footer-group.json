@@ -15,7 +15,7 @@
       "type": "footer",
       "settings": {
         "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "newsletter_enable": false,
         "newsletter_heading": "Inscreva-se na nossa Newsletter!",
         "newsletter_image": "shopify://shop_images/raviolli.svg",
         "enable_follow_on_shop": false,
@@ -25,8 +25,8 @@
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36,
+        "padding_top": 100,
+        "padding_bottom": 76,
         "newsletter_background_color": "#f5f5f5"
       }
     }
