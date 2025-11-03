@@ -2056,7 +2056,7 @@ details[open] > .share-button__fallback {
 
 /* Newsletter Form */
 .newsletter-form {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .email-input {
@@ -4343,7 +4343,7 @@ details-disclosure > details {
   color: rgb(170, 13, 13);
   border: none;
   border-radius: 50px;
-  padding: 10px 28px;
+  padding: 10px 10px;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
