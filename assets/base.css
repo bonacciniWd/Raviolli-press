@@ -1824,6 +1824,7 @@ details[open] > .share-button__fallback {
   background:rgb(252, 240, 208);
   color:rgb(170, 13, 13) !important;
   font-weight: 500;
+  font-size: 16px;
 }
 
 
