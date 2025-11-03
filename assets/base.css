@@ -1860,7 +1860,7 @@ details[open] > .share-button__fallback {
 }
 
 .popup-content {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(8, 8, 8, 0.81);
   backdrop-filter: blur(20px);
   border-radius: 24px;
   padding: 40px;
