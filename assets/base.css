@@ -2184,7 +2184,7 @@ details[open] > .share-button__fallback {
 }
 
 /* iPhone SE específico - 320px */
-@media (max-width: 320px) {
+@media (max-width: 380px) {
   .popup-container {
     padding: 5px;
     align-items: flex-start;
@@ -2192,7 +2192,7 @@ details[open] > .share-button__fallback {
   }
   
   .popup-content {
-    padding: 5px 5px;
+    padding: 15px 12px;
     max-width: 260px;
     border-radius: 6px;
     margin: 0;
