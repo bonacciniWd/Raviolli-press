@@ -379,27 +379,79 @@
     {%- endif -%}
 
    {% comment %} Popup First Visit {% endcomment %}
-      <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
-        <div class="popup-overlay"></div>
-        <div class="popup-content">
-          <button class="popup-close" onclick="closePopup()">×</button>
-          
-          <div class="popup-body">
-            <h2>Bem-vindo à nossa loja! 🎉</h2>
-            <p>Esta é sua primeira visita? Que tal aproveitar <strong>10% OFF</strong> na sua primeira compra?</p>
-            
-            <div class="popup-actions">
-              <button class="btn-primary" onclick="closePopup()">Aproveitar Oferta</button>
-              <button class="btn-secondary" onclick="closePopupForever()">Talvez depois</button>
-            </div>
-            
-            <div class="popup-footer">
-              <label>
-                <input type="checkbox" id="dont-show-again"> Não mostrar novamente
-              </label>
-            </div>
+<div id="first-visit-popup" class="first-visit-popup" style="display: none;">
+  <div class="popup-background">
+    <video class="background-video" autoplay loop muted playsinline>
+      <source src="{{ 'fundo.mp4' | asset_url }}" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+  
+  <div class="popup-container">
+    <div class="popup-content">
+      <!-- Step 1 - Welcome -->
+      <div class="popup-step" data-step="1">
+        <div class="popup-header">
+          <h2>Bem-vindo(a) ao Fica Frio</h2>
+        </div>
+        <div class="popup-body">
+          <p>Seja muito bem-vindo(a) ao nosso app de pedidos! Vamos te mostrar em dois passos como fazer seu pedido.</p>
+          <div class="video-container">
+            <video autoplay loop muted playsinline class="step-video">
+              <source src="{{ 'fundo.mp4' | asset_url }}" type="video/mp4">
+            </video>
           </div>
         </div>
       </div>
+
+      <!-- Step 2 - Shipping -->
+      <div class="popup-step" data-step="2" style="display: none;">
+        <div class="popup-header">
+          <h2>Calcule o frete facilmente</h2>
+        </div>
+        <div class="popup-body">
+          <p>No carrinho, ou em seu perfil, selecione sua cidade e bairro para ver o frete na hora.</p>
+          <div class="video-container">
+            <video autoplay loop muted playsinline class="step-video">
+              <source src="{{ 'frete.mp4' | asset_url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 - Checkout -->
+      <div class="popup-step" data-step="3" style="display: none;">
+        <div class="popup-header">
+          <h2>Adicione e finalize sem complicações</h2>
+        </div>
+        <div class="popup-body">
+          <p>Use o botão Comprar nos destaques. Depois, é só revisar e pagar.</p>
+          <div class="video-container">
+            <video autoplay loop muted playsinline class="step-video">
+              <source src="{{ 'delivery.mp4' | asset_url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Indicators -->
+      <div class="progress-indicators">
+        <span class="progress-dot active" data-step="1"></span>
+        <span class="progress-dot" data-step="2"></span>
+        <span class="progress-dot" data-step="3"></span>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="popup-actions">
+        <button class="btn btn-skip" onclick="closePopup()">Pular</button>
+        <div class="nav-buttons">
+          <button class="btn btn-back" onclick="previousStep()" style="display: none;">Voltar</button>
+          <button class="btn btn-next" onclick="nextStep()">Avançar</button>
+          <button class="btn btn-finish" onclick="finishPopup()" style="display: none;">Começar a usar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>
