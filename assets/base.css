@@ -1826,7 +1826,7 @@ details[open] > .share-button__fallback {
   font-size: 13px;
   text-align: center;
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
