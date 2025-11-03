@@ -2188,7 +2188,7 @@ details[open] > .share-button__fallback {
   .popup-container {
     padding: 5px;
     align-items: flex-start;
-    padding-top: 10px;
+    padding-top: 100px;
   }
   
   .popup-content {
