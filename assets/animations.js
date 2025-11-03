@@ -101,82 +101,171 @@ if (Shopify.designMode) {
   document.addEventListener('shopify:section:reorder', () => initializeScrollAnimationTrigger(document, true));
 }
 
-// Popup First Visit Functionality
-function checkFirstVisit() {
-  // Verifica se o usuário já visitou o site
-  const hasVisited = localStorage.getItem('hasVisited');
-  const dontShowAgain = localStorage.getItem('dontShowAgain');
-  
-  // Se nunca visitou E não marcou "não mostrar novamente"
-  if (!hasVisited && !dontShowAgain) {
-    // Pequeno delay para garantir que a página carregou
-    setTimeout(() => {
-      const popup = document.getElementById('first-visit-popup');
-      if (popup) {
-        popup.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Previne scroll
+// First Visit Popup Functionality
+class FirstVisitPopup {
+  constructor() {
+    this.storageKey = 'first_visit_ack_v1';
+    this.currentStep = 1;
+    this.totalSteps = 3;
+    this.init();
+  }
+
+  init() {
+    this.checkFirstVisit();
+    this.bindEvents();
+  }
+
+  checkFirstVisit() {
+    try {
+      const seen = localStorage.getItem(this.storageKey);
+      if (!seen) {
+        // Pequeno delay para carregamento da página
+        setTimeout(() => this.showPopup(), 1000);
       }
-    }, 2000); // 2 segundos após o carregamento
+    } catch (error) {
+      console.log('Error checking first visit:', error);
+    }
+  }
+
+  showPopup() {
+    const popup = document.getElementById('first-visit-popup');
+    if (popup) {
+      popup.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      this.showStep(1);
+    }
+  }
+
+  showStep(stepNumber) {
+    // Esconde todos os steps
+    document.querySelectorAll('.popup-step').forEach(step => {
+      step.style.display = 'none';
+    });
+
+    // Mostra o step atual
+    const currentStep = document.querySelector(`[data-step="${stepNumber}"]`);
+    if (currentStep) {
+      currentStep.style.display = 'block';
+    }
+
+    // Atualiza indicadores de progresso
+    this.updateProgressDots(stepNumber);
+
+    // Atualiza botões de navegação
+    this.updateNavigationButtons(stepNumber);
+
+    this.currentStep = stepNumber;
+  }
+
+  updateProgressDots(stepNumber) {
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+      const dotStep = parseInt(dot.getAttribute('data-step'));
+      if (dotStep === stepNumber) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  updateNavigationButtons(stepNumber) {
+    const backBtn = document.querySelector('.btn-back');
+    const nextBtn = document.querySelector('.btn-next');
+    const finishBtn = document.querySelector('.btn-finish');
+
+    // Botão Voltar
+    if (backBtn) {
+      backBtn.style.display = stepNumber > 1 ? 'block' : 'none';
+    }
+
+    // Botões Avançar/Concluir
+    if (nextBtn && finishBtn) {
+      if (stepNumber === this.totalSteps) {
+        nextBtn.style.display = 'none';
+        finishBtn.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'block';
+        finishBtn.style.display = 'none';
+      }
+    }
+  }
+
+  nextStep() {
+    if (this.currentStep < this.totalSteps) {
+      this.showStep(this.currentStep + 1);
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.showStep(this.currentStep - 1);
+    }
+  }
+
+  closePopup() {
+    const popup = document.getElementById('first-visit-popup');
+    if (popup) {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  finishPopup() {
+    try {
+      localStorage.setItem(this.storageKey, '1');
+    } catch (error) {
+      console.log('Error saving to localStorage:', error);
+    }
+    this.closePopup();
+  }
+
+  bindEvents() {
+    // Bind dos dots de progresso
+    document.querySelectorAll('.progress-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const stepNumber = parseInt(dot.getAttribute('data-step'));
+        this.showStep(stepNumber);
+      });
+    });
+  }
+}
+
+// Funções globais para os botões
+function nextStep() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.nextStep();
+  }
+}
+
+function previousStep() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.previousStep();
   }
 }
 
 function closePopup() {
-  const popup = document.getElementById('first-visit-popup');
-  const dontShowCheckbox = document.getElementById('dont-show-again');
-  
-  if (popup) {
-    popup.style.display = 'none';
-    document.body.style.overflow = ''; // Restaura scroll
-    
-    // Marca que já visitou
-    localStorage.setItem('hasVisited', 'true');
-    
-    // Se marcou "não mostrar novamente", salva essa preferência
-    if (dontShowCheckbox && dontShowCheckbox.checked) {
-      localStorage.setItem('dontShowAgain', 'true');
-    }
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.closePopup();
   }
 }
 
-function closePopupForever() {
-  const popup = document.getElementById('first-visit-popup');
-  
-  if (popup) {
-    popup.style.display = 'none';
-    document.body.style.overflow = ''; // Restaura scroll
-    
-    // Marca para nunca mais mostrar
-    localStorage.setItem('hasVisited', 'true');
-    localStorage.setItem('dontShowAgain', 'true');
+function finishPopup() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.finishPopup();
   }
 }
 
-// Fechar popup clicando no overlay
+// Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
-  const popup = document.getElementById('first-visit-popup');
-  
-  if (popup) {
-    popup.addEventListener('click', function(e) {
-      if (e.target.classList.contains('popup-overlay')) {
-        closePopup();
-      }
-    });
-    
-    // Fechar com ESC key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && popup.style.display === 'block') {
-        closePopup();
-      }
-    });
-  }
-  
-  // Inicializar verificação
-  checkFirstVisit();
+  window.firstVisitPopup = new FirstVisitPopup();
 });
 
-// Função para resetar (útil para testes)
-function resetPopup() {
-  localStorage.removeItem('hasVisited');
-  localStorage.removeItem('dontShowAgain');
-  console.log('Popup resetado - será mostrado na próxima visita');
+// Função para resetar (testes)
+function resetFirstVisitPopup() {
+  try {
+    localStorage.removeItem('first_visit_ack_v1');
+    console.log('Popup resetado - será mostrado na próxima visita');
+  } catch (error) {
+    console.log('Error resetting popup:', error);
+  }
 }
