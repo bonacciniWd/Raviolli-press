@@ -2217,9 +2217,7 @@ details[open] > .share-button__fallback {
     justify-content: space-between;
   }
   
-  .nav-buttons {
-    width: auto;
-  }
+ 
 
   .pop-up-image: {
     min-height: 350px;
