@@ -2101,6 +2101,55 @@ details[open] > .share-button__fallback {
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
 }
 
+/* iPhone SE específico */
+@media (max-width: 320px) {
+  .popup-container {
+    padding: 5px;
+  }
+  
+  .popup-content {
+    padding: 15px;
+    max-width: 280px;
+    border-radius: 14px;
+  }
+  
+  .welcome-header h1 {
+    font-size: 18px;
+  }
+  
+  .welcome-header p {
+    font-size: 13px;
+  }
+  
+  .coupon-code {
+    font-size: 16px;
+    padding: 12px;
+  }
+  
+  .copy-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .email-input {
+    padding: 10px;
+    font-size: 13px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .popup-step:not(.welcome-step) .popup-header h2 {
+    font-size: 16px;
+  }
+  
+  .popup-step:not(.welcome-step) .popup-body p {
+    font-size: 13px;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .popup-content {
