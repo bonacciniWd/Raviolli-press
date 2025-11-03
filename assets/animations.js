@@ -105,8 +105,9 @@ if (Shopify.designMode) {
 class FirstVisitPopup {
   constructor() {
     this.storageKey = 'first_visit_ack_v1';
-    this.currentStep = 1;
+    this.currentStep = 0; // 0 = tela inicial, 1-3 = steps do tutorial
     this.totalSteps = 3;
+    this.couponCode = 'FICAFRIO10';
     this.init();
   }
 
@@ -119,7 +120,6 @@ class FirstVisitPopup {
     try {
       const seen = localStorage.getItem(this.storageKey);
       if (!seen) {
-        // Pequeno delay para carregamento da página
         setTimeout(() => this.showPopup(), 1000);
       }
     } catch (error) {
@@ -132,7 +132,28 @@ class FirstVisitPopup {
     if (popup) {
       popup.style.display = 'block';
       document.body.style.overflow = 'hidden';
-      this.showStep(1);
+      this.showStep(0); // Mostra a tela inicial
+    }
+  }
+
+  // Ativa o vídeo de fundo e mostra os steps do tutorial
+  activateVideoBackground() {
+    const background = document.querySelector('.popup-background');
+    const video = document.querySelector('.background-video');
+    
+    if (background && video) {
+      background.style.display = 'block';
+      
+      // Tenta dar play no vídeo (requer interação do usuário no iOS)
+      video.play().then(() => {
+        console.log('Video started successfully');
+      }).catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+      
+      // Mostra os controles de progresso e navegação
+      document.querySelector('.progress-indicators').style.display = 'flex';
+      document.querySelector('.popup-actions').style.display = 'flex';
     }
   }
 
@@ -148,11 +169,11 @@ class FirstVisitPopup {
       currentStep.style.display = 'block';
     }
 
-    // Atualiza indicadores de progresso
-    this.updateProgressDots(stepNumber);
-
-    // Atualiza botões de navegação
-    this.updateNavigationButtons(stepNumber);
+    // Se for um step do tutorial (1-3), atualiza progresso
+    if (stepNumber > 0) {
+      this.updateProgressDots(stepNumber);
+      this.updateNavigationButtons(stepNumber);
+    }
 
     this.currentStep = stepNumber;
   }
@@ -190,6 +211,11 @@ class FirstVisitPopup {
     }
   }
 
+  startTutorial() {
+    this.activateVideoBackground();
+    this.showStep(1); // Vai para o primeiro step do tutorial
+  }
+
   nextStep() {
     if (this.currentStep < this.totalSteps) {
       this.showStep(this.currentStep + 1);
@@ -217,6 +243,71 @@ class FirstVisitPopup {
       console.log('Error saving to localStorage:', error);
     }
     this.closePopup();
+  }
+
+  copyCoupon() {
+    navigator.clipboard.writeText(this.couponCode).then(() => {
+      const successElement = document.getElementById('coupon-success');
+      const couponElement = document.getElementById('coupon-code');
+      
+      if (successElement && couponElement) {
+        couponElement.style.display = 'none';
+        successElement.style.display = 'block';
+        
+        // Volta ao normal após 3 segundos
+        setTimeout(() => {
+          couponElement.style.display = 'flex';
+          successElement.style.display = 'none';
+        }, 3000);
+      }
+    }).catch(err => {
+      console.log('Failed to copy coupon:', err);
+      // Fallback para navegadores antigos
+      const textArea = document.createElement('textarea');
+      textArea.value = this.couponCode;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      const successElement = document.getElementById('coupon-success');
+      const couponElement = document.getElementById('coupon-code');
+      if (successElement && couponElement) {
+        couponElement.style.display = 'none';
+        successElement.style.display = 'block';
+        setTimeout(() => {
+          couponElement.style.display = 'flex';
+          successElement.style.display = 'none';
+        }, 3000);
+      }
+    });
+  }
+
+  subscribeNewsletter() {
+    const emailInput = document.getElementById('newsletter-email');
+    const email = emailInput ? emailInput.value.trim() : '';
+    
+    if (!email) {
+      alert('Por favor, digite seu e-mail');
+      return;
+    }
+    
+    if (!this.isValidEmail(email)) {
+      alert('Por favor, digite um e-mail válido');
+      return;
+    }
+    
+    // Aqui você integraria com sua API de newsletter
+    console.log('Subscribing email:', email);
+    
+    // Simula sucesso e inicia o tutorial
+    alert('🎉 Obrigado! Cupom FICAFRIO10 ativado para você!');
+    this.startTutorial();
+  }
+
+  isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   bindEvents() {
@@ -252,6 +343,24 @@ function closePopup() {
 function finishPopup() {
   if (window.firstVisitPopup) {
     window.firstVisitPopup.finishPopup();
+  }
+}
+
+function copyCoupon() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.copyCoupon();
+  }
+}
+
+function subscribeNewsletter() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.subscribeNewsletter();
+  }
+}
+
+function skipToTutorial() {
+  if (window.firstVisitPopup) {
+    window.firstVisitPopup.startTutorial();
   }
 }
 
