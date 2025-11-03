@@ -1860,7 +1860,7 @@ details[open] > .share-button__fallback {
 @media (min-width: 321px) and (max-width: 375px) {
   .buttons .btn {
     font-size: 9px;
-    padding: 11px 8px;
+    padding: 8px 4px;
   }
 }
 
