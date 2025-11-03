@@ -1845,8 +1845,8 @@ details[open] > .share-button__fallback {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
 }
 
 /* Popup Container */
@@ -1860,63 +1860,167 @@ details[open] > .share-button__fallback {
 }
 
 .popup-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 40px;
-  max-width: 500px;
+  max-width: 480px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: popupSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: popupSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes popupSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Popup Header */
-.popup-header h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 16px 0;
+/* TELA INICIAL - Welcome Step */
+.welcome-step {
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.welcome-header {
+  margin-bottom: 30px;
+}
+
+.welcome-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.welcome-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  background: linear-gradient(135deg, #1a1a1a, #404040);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Popup Body */
-.popup-body p {
+.welcome-header p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Cupom Container */
+.coupon-container {
+  margin: 30px 0;
+}
+
+.coupon-code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.coupon-code span {
+  letter-spacing: 2px;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.coupon-success {
+  background: #10B981;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Newsletter Form */
+.newsletter-form {
+  margin: 30px 0;
+}
+
+.email-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.welcome-actions {
+  margin-top: 20px;
+}
+
+/* Steps normais (quando o vídeo de fundo está ativo) */
+.popup-step:not(.welcome-step) .popup-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px 0;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.popup-step:not(.welcome-step) .popup-body p {
   font-size: 16px;
   line-height: 1.6;
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
-  margin: 0 0 24px 0;
-}
-
-.video-container {
-  width: 100%;
-  height: 280px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
-}
-
-.step-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Progress Indicators */
@@ -1928,17 +2032,18 @@ details[open] > .share-button__fallback {
 }
 
 .progress-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #e1e5e9;
+  background: rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .progress-dot.active {
-  background: #667eea;
+  background: white;
   transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Buttons */
@@ -1967,33 +2072,33 @@ details[open] > .share-button__fallback {
 
 .btn-skip {
   background: transparent;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .btn-skip:hover {
-  background: #f5f5f5;
-  color: #333;
-}
-
-.btn-back {
-  background: #f8f9fa;
-  color: #333;
-  border: 1px solid #e1e5e9;
-}
-
-.btn-back:hover {
-  background: #e9ecef;
-  border-color: #ced4da;
-}
-
-.btn-next, .btn-finish {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-.btn-next:hover, .btn-finish:hover {
+.btn-back {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-next, .btn-finish, .btn-primary {
+  background: white;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.btn-next:hover, .btn-finish:hover, .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive */
@@ -2003,12 +2108,15 @@ details[open] > .share-button__fallback {
     margin: 20px;
   }
   
-  .popup-header h2 {
+  .welcome-header h1 {
     font-size: 24px;
   }
   
-  .video-container {
-    height: 200px;
+  .coupon-code {
+    font-size: 20px;
+    padding: 15px;
+    flex-direction: column;
+    gap: 12px;
   }
   
   .popup-actions {
