@@ -2120,7 +2120,7 @@ details[open] > .share-button__fallback {
 }
 
 .pop-up-image {
-  max-width: 150px;
+  max-width: 350px;
   height: auto;
   margin: 15px auto;
   display: block;
