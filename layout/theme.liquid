@@ -299,10 +299,10 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
   </head>
-
+<img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.svg' | asset_url }}" alt="Fica Frio" />
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     
-   {% comment %} Popup First Visit {% endcomment %}
+    {% comment %} Popup First Visit {% endcomment %}
     <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
       <!-- Video de Fundo (será ativado após a tela inicial) -->
       <div class="popup-background" style="display: none;">
