@@ -3712,6 +3712,63 @@ details-disclosure > details {
   color: white;
 }
 
+/* Newsletter Form */
+.newsletter-form {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.email-input {
+  width: 100%;
+  max-width: 340px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.email-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.email-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+.newsletter-form button {
+  background: white;
+  color: rgb(170, 13, 13);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 28px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.newsletter-form button:hover {
+  background: rgb(170, 13, 13);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
+}
+
+
 /* ===============================
    ESTRUTURA DO POPUP
 =================================*/
