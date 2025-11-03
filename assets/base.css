@@ -1840,7 +1840,7 @@ details[open] > .share-button__fallback {
 
 .buttons .btn-skip {
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
