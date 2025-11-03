@@ -4119,8 +4119,8 @@ details-disclosure > details {
 }
 
 .buttons .btn-primary {
-  background: white;
-  color: rgb(170, 13, 13);
+  background: rgb(170, 13, 13);
+  color: white ;
 }
 
 .buttons .btn-skip {
