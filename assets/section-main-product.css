@@ -62,24 +62,27 @@ product-info {
 
 @media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 75%;
-    width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
+    /* Dar mais espaço para a mídia quando a imagem é grande */
+    max-width: 78%;
+    width: calc(72% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
-    padding: 0 0 0 4rem;
-    max-width: 35%;
-    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
+    /* Reduzir espaçamento lateral e balancear com a mídia */
+    padding: 0 0 0 2.4rem;
+    max-width: 28%;
+    width: calc(28% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media).product--right .product__info-wrapper {
-    padding: 0 14rem 0 0;
+    /* Antes: 14rem criava sobra exagerada no canto direito */
+    padding: 0 2.4rem 0 0;
   }
 
   .product--medium:not(.product--no-media) .product__media-wrapper,
   .product--small:not(.product--no-media) .product__info-wrapper {
-    max-width: 35%;
-    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 55%;
+    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--medium:not(.product--no-media) .product__info-wrapper,
