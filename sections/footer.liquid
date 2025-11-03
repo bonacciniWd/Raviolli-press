@@ -32,6 +32,50 @@
     width: 100%;
   }
 
+  /* Newsletter input/button cleanup inside footer */
+  .footer .newsletter-form .field {
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Remove pseudo-element border and shadow around the input wrapper */
+  .footer .newsletter-form .field::before,
+  .footer .newsletter-form .field::after {
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Make the input a clean pill with no border */
+  .footer .newsletter-form .field__input {
+    background-color: #fff;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 9999px;
+  }
+
+  /* Also remove the focus halo specifically in the footer newsletter */
+  .footer .newsletter-form .field__input:focus,
+  .footer .newsletter-form .field__input:focus-visible {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Button: no border/background; keep arrow visible */
+  .footer .newsletter-form__button,
+  .footer .newsletter-form .field__button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: rgb(var(--color-foreground)); /* arrow inherits currentColor */
+  }
+
+  /* Ensure the arrow SVG uses the button color and is clearly visible */
+  .footer .newsletter-form__button .svg-wrapper svg,
+  .footer .newsletter-form .field__button .svg-wrapper svg {
+    stroke: currentColor;
+    fill: none;
+  }
+
   .footer-block--newsletter__image {
     display: none;
   }
