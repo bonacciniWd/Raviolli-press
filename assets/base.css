@@ -1855,7 +1855,7 @@ details[open] > .share-button__fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 80vh;
+  min-height: 100vh;
   padding: 20px;
 }
 
@@ -2106,7 +2106,6 @@ details[open] > .share-button__fallback {
   .popup-content {
     padding: 30px 20px;
     margin: 10px;
-    max-height: atuto;
   }
   
   .welcome-header h1 {
