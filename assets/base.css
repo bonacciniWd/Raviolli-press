@@ -1819,6 +1819,11 @@ details[open] > .share-button__fallback {
   display: block;
 }
 
+.p-text {
+  padding: 10px 0px;
+  background:rgb(252, 240, 208);
+}
+
 /* iPhone SE */
 @media (max-width: 320px) {
   .pop-up-image {
