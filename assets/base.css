@@ -3866,6 +3866,236 @@ body.popup-open {
 }
 
 /* ===============================
+   BLOQUEIO DE SCROLL AO ABRIR POPUP
+=================================*/
+body.popup-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+/* ===============================
+   POPUP BASE
+=================================*/
+.first-visit-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow: hidden; /* impede scroll do conteúdo interno */
+}
+
+/* Fundo com vídeo */
+.popup-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Container principal */
+.popup-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh; /* usa viewport dinâmico moderno */
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Conteúdo do popup */
+.popup-content {
+  background: rgba(8, 8, 8, 0.85);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 480px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: popupSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes popupSlideIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===============================
+   TELA INICIAL (Newsletter)
+=================================*/
+.welcome-step { text-align: center; }
+
+.welcome-header { margin-bottom: 15px; }
+
+.welcome-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: rgb(238, 236, 236);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.p-text {
+  padding: 10px;
+  background: rgb(252, 240, 208);
+  color: rgb(170, 13, 13);
+  font-weight: 500;
+  font-size: 16px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* ===============================
+   FORMULÁRIO DE NEWSLETTER
+=================================*/
+.newsletter-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.email-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+.email-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.email-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.buttons .btn {
+  flex: 1;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+.btn-primary {
+  background: white;
+  color: rgb(170, 13, 13);
+}
+.btn-skip {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-skip:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ===============================
+   TUTORIAL STEPS
+=================================*/
+.popup-step:not(.welcome-step) .popup-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.popup-step:not(.welcome-step) .popup-body p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+/* Indicadores de progresso */
+.progress-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px 0;
+}
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+.progress-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* Ações e navegação */
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+.btn-back {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.btn-next, .btn-finish {
+  background: white;
+  color: rgb(179, 12, 12);
+}
+
+/* ===============================
+   RESPONSIVIDADE
+=================================*/
+@media (max-width: 375px) {
+  .popup-content { max-width: 320px; padding: 15px; }
+  .welcome-header h1 { font-size: 20px; }
+  .buttons .btn { font-size: 12px; }
+}
+
+@media (min-width: 768px) {
+  .popup-content { max-width: 520px; padding: 40px; }
+  .welcome-header h1 { font-size: 26px; }
+  .popup-actions { flex-direction: row; justify-content: space-between; }
+  .nav-buttons { width: auto; }
+}
+
+/* ===============================
    POPUP INICIAL
 =================================*/
 .popup-image-wrapper {
@@ -4140,3 +4370,76 @@ body.popup-open {
   max-width: 120px;
   height: auto;
 }
+
+/* ===============================
+   Ajustes finais: Steps (botões e imagens)
+   - Mantém layout travado
+   - Refina botões e imagens sem quebrar estilos existentes
+=================================*/
+.popup-step .popup-header img,
+.popup-step .pope {
+  display: block;
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
+  margin-bottom: 6px;
+}
+
+.popup-step .popup-header h2 {
+  letter-spacing: 0.02em;
+}
+
+/* Botões de navegação dentro dos steps */
+.popup-actions .btn {
+  border-radius: var(--buttons-radius, 12px);
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, color 120ms ease;
+  box-shadow: var(--buttons-shadow-horizontal-offset, 0px) var(--buttons-shadow-vertical-offset, 2px) var(--buttons-shadow-blur-radius, 10px) rgba(0,0,0,0.2);
+}
+
+.popup-actions .btn:active { transform: translateY(1px); }
+
+.popup-actions .btn-back {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.popup-actions .btn-back:hover { background: rgba(255, 255, 255, 0.14); }
+
+.popup-actions .btn-next {
+  background: rgb(var(--color-button, 170, 13, 13));
+  color: rgb(var(--color-button-text, 255, 255, 255));
+}
+.popup-actions .btn-next:hover { filter: brightness(1.05); }
+
+.popup-actions .btn-finish {
+  background: transparent;
+  color: rgb(var(--color-link, 179, 12, 12));
+  text-decoration: underline;
+}
+
+/* Estados de foco para acessibilidade */
+.popup-actions .btn:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.85);
+  outline-offset: 2px;
+}
+
+/* Ajustes da imagem de destaque da tela inicial */
+.welcome-step .pop-up-image {
+  max-width: 360px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+}
+
+/* Refinos dos indicadores de progresso */
+.progress-indicators { gap: 8px; }
+.progress-dot { opacity: 0.75; }
+.progress-dot.active { opacity: 1; }
