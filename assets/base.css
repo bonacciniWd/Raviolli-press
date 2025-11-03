@@ -1813,7 +1813,7 @@ details[open] > .share-button__fallback {
 }
 
 .pop-up-image {
-  max-width: 90vw;
+  max-width: 420px !important;
   height: auto;
   margin: 0px auto;
   display: block;
