@@ -2194,6 +2194,7 @@ details[open] > .share-button__fallback {
     font-size: 20px;
     text-decoration: uppercase;
     background: #000;
+    padding: 4px 2px;
     font-weight: bold;
   }
   
