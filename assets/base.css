@@ -2106,6 +2106,7 @@ details[open] > .share-button__fallback {
   .popup-content {
     padding: 30px 20px;
     margin: 10px;
+    max-height: 450px;
   }
   
   .welcome-header h1 {
@@ -2131,7 +2132,6 @@ details[open] > .share-button__fallback {
   
   .btn {
     flex: 1;
-    
   }
 }
 
