@@ -2119,6 +2119,20 @@ details[open] > .share-button__fallback {
   margin-top: 15px;
 }
 
+.pop-up-image {
+  max-width: 150px;
+  height: auto;
+  margin: 15px auto;
+  display: block;
+}
+
+/* iPhone SE */
+@media (max-width: 320px) {
+  .pop-up-image {
+    max-width: 120px;
+    margin: 10px auto;
+  }
+}
 .nav-buttons {
   display: flex;
   gap: 8px;
