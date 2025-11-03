@@ -3647,10 +3647,11 @@ details-disclosure > details {
   border-left: 0.7px solid rgb(245, 245, 186);
   border-right: 0.7px solid rgb(245, 245, 186);
   height: auto;
+  vertical-align: middle; /* evita linha de base abaixo da imagem */
 }
 
-/* Texto */
 .p-text {
+  margin-top: -1px; /* cola perfeitamente na imagem */
   padding: 10px;
   background: rgb(252, 240, 208);
   color: rgb(170, 13, 13) !important;
