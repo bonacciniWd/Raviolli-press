@@ -4359,8 +4359,8 @@ details-disclosure > details {
 }
 
 .newsletter-form button:hover {
-  background: rgb(170, 13, 13);
-  color: white;
+  background: white;
+  color:rgb(170, 13, 13);
   transform: translateY(-2px);;
 }
 
