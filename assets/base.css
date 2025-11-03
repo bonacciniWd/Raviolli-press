@@ -1855,7 +1855,7 @@ details[open] > .share-button__fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  max-height: 80vh;
   padding: 20px;
 }
 
