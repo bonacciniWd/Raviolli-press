@@ -3642,7 +3642,7 @@ details-disclosure > details {
   display: block;
   margin: 0 auto;
   width: auto;
-  max-width: 420px;
+  max-width: auto;
   border-top: 0.7px solid rgb(245, 245, 186);
   border-left: 0.7px solid rgb(245, 245, 186);
   border-right: 0.7px solid rgb(245, 245, 186);
