@@ -1984,7 +1984,7 @@ details[open] > .share-button__fallback {
 /* Newsletter Form */
 .newsletter-form {
   margin: 20px 0;
-  display: grid;
+  display: relative;
 }
 
 .email-input {
