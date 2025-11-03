@@ -1861,7 +1861,7 @@ details[open] > .share-button__fallback {
 }
 
 .popup-content {
-  background: rgba(8, 8, 8, 0.95);
+  background: rgba(8, 8, 8, 0.85);
   border-radius: 8px;
   padding: 20px 15px;
   max-width: 280px;
