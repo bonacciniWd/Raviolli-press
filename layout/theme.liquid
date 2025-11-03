@@ -378,28 +378,28 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {% comment %} Popup First Visit {% endcomment %}
-    <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
-      <div class="popup-overlay"></div>
-      <div class="popup-content">
-        <button class="popup-close" onclick="closePopup()">×</button>
-        
-        <div class="popup-body">
-          <h2>Bem-vindo à nossa loja! 🎉</h2>
-          <p>Esta é sua primeira visita? Que tal aproveitar <strong>10% OFF</strong> na sua primeira compra?</p>
+   {% comment %} Popup First Visit {% endcomment %}
+      <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
+        <div class="popup-overlay"></div>
+        <div class="popup-content">
+          <button class="popup-close" onclick="closePopup()">×</button>
           
-          <div class="popup-actions">
-            <button class="btn-primary" onclick="closePopup()">Aproveitar Oferta</button>
-            <button class="btn-secondary" onclick="closePopupForever()">Talvez depois</button>
-          </div>
-          
-          <div class="popup-footer">
-            <label>
-              <input type="checkbox" id="dont-show-again"> Não mostrar novamente
-            </label>
+          <div class="popup-body">
+            <h2>Bem-vindo à nossa loja! 🎉</h2>
+            <p>Esta é sua primeira visita? Que tal aproveitar <strong>10% OFF</strong> na sua primeira compra?</p>
+            
+            <div class="popup-actions">
+              <button class="btn-primary" onclick="closePopup()">Aproveitar Oferta</button>
+              <button class="btn-secondary" onclick="closePopupForever()">Talvez depois</button>
+            </div>
+            
+            <div class="popup-footer">
+              <label>
+                <input type="checkbox" id="dont-show-again"> Não mostrar novamente
+              </label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </body>
 </html>
