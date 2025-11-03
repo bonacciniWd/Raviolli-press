@@ -1876,21 +1876,8 @@ details[open] > .share-button__fallback {
   text-align: center;
 }
 
-.welcome-header {
-  margin-bottom: 30px;
-}
 
-.welcome-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  animation: pulse 2s infinite;
-}
+
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
