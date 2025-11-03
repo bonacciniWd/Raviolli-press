@@ -4088,6 +4088,9 @@ details-disclosure > details {
   background: rgb(252, 240, 208);
   color: rgb(170, 13, 13) !important;
   font-weight: 500;
+  border-bottom: 1px solid rgb(170, 13, 13);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 /* Botões gerais */
