@@ -15,10 +15,10 @@
       "type": "header",
       "settings": {
         "logo_position": "middle-center",
-        "mobile_logo_position": "left",
-        "menu": "",
+        "mobile_logo_position": "center",
+        "menu": "customer-account-main-menu",
         "menu_type_desktop": "drawer",
-        "sticky_header_type": "always",
+        "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
         "menu_color_scheme": "scheme-1",
