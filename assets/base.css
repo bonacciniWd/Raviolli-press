@@ -1854,18 +1854,7 @@ details[open] > .share-button__fallback {
   color: white;
 }
 
-/* iPhone SE específico - 320px */
-@media (max-width: 320px) {
-  .buttons {
-    gap: 6px;
-    margin-top: 12px;
-  }
-  
-  .buttons .btn {
-    padding: 8px 6px;
-    font-size: 7px;
-  }
-}
+
 
 /* Para telas um pouco maiores que iPhone SE */
 @media (min-width: 321px) and (max-width: 375px) {
