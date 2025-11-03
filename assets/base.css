@@ -3782,7 +3782,6 @@ body.popup-open {
   border-radius: 50px;
   padding: 10px;
   font-weight: 600;
-  margin: 0 auto;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 13px;
@@ -3868,8 +3867,8 @@ body.popup-open {
 @media (min-width: 768px) {
   .popup-content { max-width: 520px; padding: 40px; }
   .welcome-header h1 { font-size: 26px; }
-  .popup-actions { flex-direction: row; justify-content: space-between; }
-  .nav-buttons { width: auto; }
+  .popup-actions { flex-direction: row; justify-content: center; align-items: center; }
+  .nav-buttons { width: auto; justify-content: center; }
 }
 
 /* ===============================
@@ -4138,8 +4137,8 @@ body.popup-open {
 @media (min-width: 768px) {
   .popup-content { max-width: 520px; padding: 40px; }
   .welcome-header h1 { font-size: 26px; }
-  .popup-actions { flex-direction: row; justify-content: space-between; }
-  .nav-buttons { width: auto; }
+  .popup-actions { flex-direction: row; justify-content: center; align-items: center; }
+  .nav-buttons { width: auto; justify-content: center; }
 }
 
 .pope {
@@ -4161,6 +4160,7 @@ body.popup-open {
   height: 96px;
   object-fit: cover;
   box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
   margin-bottom: 6px;
 }
 
@@ -4208,7 +4208,7 @@ body.popup-open {
 
 /* Ajustes da imagem de destaque da tela inicial */
 .welcome-step .pop-up-image {
-  max-width: 420px; /* igual ao comprimento do p-text e do container */
+  max-width: 420px;
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -4266,17 +4266,15 @@ body.popup-open {
 }
 
 /* Estilo do botão final (Começar a usar) */
-.nav-buttons .btn-finish,
 .popup-actions .btn-finish {
-  background: rgb(var(--color-button)) !important;
-  color: rgb(var(--color-button-text)) !important;
-  border: none;
-  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  text-decoration: none; /* garante visual de botão, não link */
 }
 
-.nav-buttons .btn-finish:hover,
 .popup-actions .btn-finish:hover {
-  filter: brightness(1.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 749px) {
@@ -4284,11 +4282,6 @@ body.popup-open {
   .popup-actions { align-items: center; }
   .nav-buttons { width: 100%; justify-content: center; }
   .nav-buttons .btn { flex: 0 0 auto; }
-}
-
-/* Título menor em mobile nos steps */
-@media (max-width: 749px) {
-  .popup-step .popup-header h2 { font-size: 18px !important; }
 }
 
 /* Reforço específico para Safari iOS */
@@ -4308,4 +4301,18 @@ body.popup-open {
   .email-input {
     font-size: 16px !important;
   }
+}
+
+/* Força o botão "Começar a usar" a ter o mesmo estilo do botão vermelho */
+.nav-buttons .btn-finish,
+.popup-actions .btn-finish {
+  background: rgb(var(--color-button)) !important;
+  color: rgb(var(--color-button-text)) !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.nav-buttons .btn-finish:hover,
+.popup-actions .btn-finish:hover {
+  filter: brightness(1.05);
 }
