@@ -3782,6 +3782,7 @@ body.popup-open {
   border-radius: 50px;
   padding: 10px;
   font-weight: 600;
+  margin: 0 auto;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 13px;
