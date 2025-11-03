@@ -3635,30 +3635,43 @@ details-disclosure > details {
   }
 }
 
-/* ===============================
-   POPUP INICIAL
-=================================*/
-.pop-up-image {
-  display: block;
-  margin: 0 auto;
+.popup-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza horizontalmente */
   width: 100%;
   max-width: 420px;
+  margin: 0 auto;
+}
+
+.pop-up-image {
+  width: 100%;
+  max-width: auto;
+  height: auto;
   border-top: 0.7px solid rgb(245, 245, 186);
   border-left: 0.7px solid rgb(245, 245, 186);
   border-right: 0.7px solid rgb(245, 245, 186);
-  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block;
+  margin: 0; /* garante que não haja espaço */
 }
 
-/* Texto */
 .p-text {
+  width: 100%;
   padding: 10px;
   background: rgb(252, 240, 208);
   color: rgb(170, 13, 13) !important;
   font-weight: 500;
+  font-size: 12px;
   border-bottom: 1px solid rgb(170, 13, 13);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  text-align: center;
+  margin: 0; /* remove espaço extra */
+  border-top: none; /* remove borda duplicada entre imagem e texto */
 }
+
 
 /* Botões gerais */
 .buttons {
