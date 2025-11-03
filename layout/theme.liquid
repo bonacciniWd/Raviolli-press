@@ -306,9 +306,7 @@
     <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
       <!-- Video de Fundo (será ativado após a tela inicial) -->
       <div class="popup-background" style="display: none;">
-        <video class="background-video" loop muted playsinline>
-          <source src="{{ 'fundo_compressed.webm' | asset_url }}" type="video/webm">
-        </video>
+       
         <div class="video-overlay"></div>
       </div>
       
@@ -319,6 +317,9 @@
             <div class="welcome-header">
               <h1>10% OFF <br /> na sua primeira compra!</h1>
               <img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.svg' | asset_url }}" alt="Fica Frio" />
+               <video class="background-video" loop muted playsinline>
+          <source src="{{ 'fundo_compressed.webm' | asset_url }}" type="video/webm">
+        </video>
               <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
 
