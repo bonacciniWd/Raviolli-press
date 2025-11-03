@@ -1981,10 +1981,9 @@ details[open] > .share-button__fallback {
   }
 }
 
-/* Newsletter Form */
 .newsletter-form {
   margin: 20px 0;
-  display: relative;
+  position: relative;
 }
 
 .email-input {
@@ -1999,97 +1998,44 @@ details[open] > .share-button__fallback {
   box-sizing: border-box;
 }
 
-.email-input:focus {
-  outline: none;
-  border-color: #667eea;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.email-input::placeholder {
-  color: #999;
-}
-
 .welcome-actions {
   margin-top: 15px;
-  flex: 1;
-}
-
-/* Steps normais (quando o vídeo de fundo está ativo) */
-.popup-step:not(.welcome-step) .popup-header h2 {
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  margin: 0 0 12px 0;
-  text-align: center;
-  line-height: 1.2;
-}
-
-.popup-step:not(.welcome-step) .popup-body p {
-  font-size: 14px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-  margin: 0;
-}
-
-/* Progress Indicators */
-.progress-indicators {
   display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin: 20px 0;
-}
-
-.progress-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.progress-dot.active {
-  background: white;
-  transform: scale(1.2);
-}
-
-/* Buttons */
-.popup-actions {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  margin-top: 15px;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 8px;
   width: 100%;
 }
 
-.btn {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.welcome-actions .btn {
   flex: 1;
   min-width: 0;
+  padding: 12px 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: white;
+  color: #667eea;
+  font-weight: 700;
+  border: none;
 }
 
 .btn-skip {
   background: transparent;
   color: rgba(255, 255, 255, 0.8);
-  order: 2;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .btn-skip:hover {
   background: rgba(255, 255, 255, 0.1);
   color: white;
 }
+
 
 .btn-back {
   background: rgba(255, 255, 255, 0.1);
