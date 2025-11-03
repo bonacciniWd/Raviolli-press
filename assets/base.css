@@ -2203,7 +2203,7 @@ details[open] > .share-button__fallback {
 /* Tablet e Desktop */
 @media (min-width: 768px) {
   .popup-content {
-    max-width: 400px;
+    max-width: 500px;
     padding: 30px;
   }
   
