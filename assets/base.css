@@ -3712,7 +3712,13 @@ body.popup-open {
 =================================*/
 .welcome-step { text-align: center; }
 
-.welcome-header { margin-bottom: 15px; }
+.welcome-header {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 420px; /* garante que imagem e p-text tenham mesmo comprimento */
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .welcome-header h1 {
   font-size: 22px;
@@ -4202,7 +4208,7 @@ body.popup-open {
 
 /* Ajustes da imagem de destaque da tela inicial */
 .welcome-step .pop-up-image {
-  max-width: 360px;
+  max-width: 420px; /* igual ao comprimento do p-text e do container */
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -4260,15 +4266,17 @@ body.popup-open {
 }
 
 /* Estilo do botão final (Começar a usar) */
+.nav-buttons .btn-finish,
 .popup-actions .btn-finish {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: transparent;
-  color: #fff;
-  text-decoration: none; /* garante visual de botão, não link */
+  background: rgb(var(--color-button)) !important;
+  color: rgb(var(--color-button-text)) !important;
+  border: none;
+  text-decoration: none;
 }
 
+.nav-buttons .btn-finish:hover,
 .popup-actions .btn-finish:hover {
-  background: rgba(255, 255, 255, 0.1);
+  filter: brightness(1.05);
 }
 
 @media (max-width: 749px) {
@@ -4276,6 +4284,11 @@ body.popup-open {
   .popup-actions { align-items: center; }
   .nav-buttons { width: 100%; justify-content: center; }
   .nav-buttons .btn { flex: 0 0 auto; }
+}
+
+/* Título menor em mobile nos steps */
+@media (max-width: 749px) {
+  .popup-step .popup-header h2 { font-size: 18px !important; }
 }
 
 /* Reforço específico para Safari iOS */
