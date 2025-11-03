@@ -4354,3 +4354,10 @@ details-disclosure > details {
   color: white;
   transform: translateY(-2px);;
 }
+
+.pope {
+  max-width: 100px;
+  height: auto;
+  margin: 0px auto;
+  display: block;
+}
