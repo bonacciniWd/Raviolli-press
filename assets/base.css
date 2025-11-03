@@ -2223,8 +2223,20 @@ details[open] > .share-button__fallback {
   }
   
   .nav-buttons {
-    width: auto;
-  }
+  display: flex;
+  flex-direction: row !important; /* garante que fique lado a lado */
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap; /* mantém bonito se a tela for muito estreita */
+}
+
+.nav-buttons button {
+  flex: 1;
+  min-width: 120px; /* evita botões muito estreitos */
+}
+
 
   .pop-up-image: {
     min-height: 350px;
