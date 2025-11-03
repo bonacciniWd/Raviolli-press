@@ -4354,6 +4354,5 @@ details-disclosure > details {
 .newsletter-form button:hover {
   background: rgb(170, 13, 13);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);;
 }
