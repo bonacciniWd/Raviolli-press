@@ -2133,9 +2133,7 @@ details[open] > .share-button__fallback {
 }
 
 .nav-buttons {
-  display: flex;
-  gap: 8px;
-  width: 100%;
+ display: auto;
 }
 
 .btn {
@@ -2223,20 +2221,8 @@ details[open] > .share-button__fallback {
   }
   
   .nav-buttons {
-  display: flex;
-  flex-direction: row !important; /* garante que fique lado a lado */
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  flex-wrap: wrap; /* mantém bonito se a tela for muito estreita */
-}
-
-.nav-buttons button {
-  flex: 1;
-  min-width: 120px; /* evita botões muito estreitos */
-}
-
+    width: auto;
+  }
 
   .pop-up-image: {
     min-height: 350px;
