@@ -380,8 +380,9 @@
 
    {% comment %} Popup First Visit {% endcomment %}
 <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
-  <div class="popup-background">
-    <video class="background-video" autoplay loop muted playsinline>
+  <!-- Video de Fundo (será ativado após a tela inicial) -->
+  <div class="popup-background" style="display: none;">
+    <video class="background-video" loop muted playsinline>
       <source src="{{ 'fundo.mp4' | asset_url }}" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
@@ -389,18 +390,47 @@
   
   <div class="popup-container">
     <div class="popup-content">
+      <!-- TELA INICIAL - Cupom & Newsletter -->
+      <div class="popup-step welcome-step" data-step="0">
+        <div class="welcome-header">
+          <div class="welcome-badge">🎉 BOAS-VINDAS 🎉</div>
+          <h1>10% OFF na sua primeira compra!</h1>
+          <p>Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
+        </div>
+        
+        <div class="coupon-container">
+          <div class="coupon-code" id="coupon-code">
+            <span>FICAFRIO10</span>
+            <button class="copy-btn" onclick="copyCoupon()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <div class="coupon-success" id="coupon-success" style="display: none;">
+            ✅ Cupom copiado! Use no checkout
+          </div>
+        </div>
+
+        <div class="newsletter-form">
+          <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="email-input">
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">Quero meu cupom!</button>
+        </div>
+
+        <div class="welcome-actions">
+          <button class="btn btn-skip" onclick="skipToTutorial()">Pular e ir para o app</button>
+        </div>
+      </div>
+
       <!-- Step 1 - Welcome -->
-      <div class="popup-step" data-step="1">
+      <div class="popup-step" data-step="1" style="display: none;">
         <div class="popup-header">
           <h2>Bem-vindo(a) ao Fica Frio</h2>
         </div>
         <div class="popup-body">
           <p>Seja muito bem-vindo(a) ao nosso app de pedidos! Vamos te mostrar em dois passos como fazer seu pedido.</p>
-          <div class="video-container">
-            <video autoplay loop muted playsinline class="step-video">
-              <source src="{{ 'fundo.mp4' | asset_url }}" type="video/mp4">
-            </video>
-          </div>
         </div>
       </div>
 
@@ -411,11 +441,6 @@
         </div>
         <div class="popup-body">
           <p>No carrinho, ou em seu perfil, selecione sua cidade e bairro para ver o frete na hora.</p>
-          <div class="video-container">
-            <video autoplay loop muted playsinline class="step-video">
-              <source src="{{ 'frete.mp4' | asset_url }}" type="video/mp4">
-            </video>
-          </div>
         </div>
       </div>
 
@@ -426,28 +451,23 @@
         </div>
         <div class="popup-body">
           <p>Use o botão Comprar nos destaques. Depois, é só revisar e pagar.</p>
-          <div class="video-container">
-            <video autoplay loop muted playsinline class="step-video">
-              <source src="{{ 'delivery.mp4' | asset_url }}" type="video/mp4">
-            </video>
-          </div>
         </div>
       </div>
 
-      <!-- Progress Indicators -->
-      <div class="progress-indicators">
+      <!-- Progress Indicators (não aparece na tela inicial) -->
+      <div class="progress-indicators" style="display: none;">
         <span class="progress-dot active" data-step="1"></span>
         <span class="progress-dot" data-step="2"></span>
         <span class="progress-dot" data-step="3"></span>
       </div>
 
-      <!-- Navigation Buttons -->
-      <div class="popup-actions">
-        <button class="btn btn-skip" onclick="closePopup()">Pular</button>
+      <!-- Navigation Buttons (não aparece na tela inicial) -->
+      <div class="popup-actions" style="display: none;">
+        <button class="btn btn-skip" onclick="finishPopup()">Pular tutorial</button>
         <div class="nav-buttons">
-          <button class="btn btn-back" onclick="previousStep()" style="display: none;">Voltar</button>
+          <button class="btn btn-back" onclick="previousStep()">Voltar</button>
           <button class="btn btn-next" onclick="nextStep()">Avançar</button>
-          <button class="btn btn-finish" onclick="finishPopup()" style="display: none;">Começar a usar</button>
+          <button class="btn btn-finish" onclick="finishPopup()">Começar a usar</button>
         </div>
       </div>
     </div>
