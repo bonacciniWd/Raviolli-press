@@ -1826,14 +1826,6 @@ details[open] > .share-button__fallback {
   font-weight: 500;
 }
 
-/* iPhone SE */
-@media (max-width: 320px) {
-  .pop-up-image {
-    max-width: 220px !important;
-    max-height: 220px;
-    margin: 0px auto;
-  }
-}
 
 .buttons {
   display: flex;
