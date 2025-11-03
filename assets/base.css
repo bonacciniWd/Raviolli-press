@@ -2107,6 +2107,7 @@ details[open] > .share-button__fallback {
     padding: 30px 20px;
     margin: 10px;
     max-height: atuto;
+    overflow: scroll;
   }
   
   .welcome-header h1 {
