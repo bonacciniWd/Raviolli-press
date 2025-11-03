@@ -4134,3 +4134,9 @@ body.popup-open {
   .popup-actions { flex-direction: row; justify-content: space-between; }
   .nav-buttons { width: auto; }
 }
+
+.pope {
+  margin: auto;
+  max-width: 120px;
+  height: auto;
+}
