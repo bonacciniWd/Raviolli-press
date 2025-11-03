@@ -2321,7 +2321,7 @@ input[type='checkbox'] {
   padding: 3px;
   color: white;
   pointer-events: none;
-  background-color: #ff0000;
+  background-color:rgb(173, 12, 12);
 }
 
 .quantity__button:focus-visible,
