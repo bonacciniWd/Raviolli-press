@@ -1822,7 +1822,7 @@ details[open] > .share-button__fallback {
 .buttons .btn {
   flex: 1;
   min-width: 0;
-  padding: 12px 8px;
+  padding: 10px 6px;
   font-size: 13px;
   text-align: center;
   border: none;
