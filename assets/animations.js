@@ -301,7 +301,7 @@ class FirstVisitPopup {
     console.log('Subscribing email:', email);
     
     // Simula sucesso e inicia o tutorial
-    alert('🎉 Obrigado! Cupom FICAFRIO10 ativado para você!');
+    alert('🎉 Obrigado! Cupom NEW-RAVIOLLI ativado para você!');
     this.startTutorial();
   }
 
