@@ -104,20 +104,34 @@ if (Shopify.designMode) {
 
 // Popup First Visit Functionality
 function checkFirstVisit() {
+  // Verifica se o popup está ativo nas configurações
+  const popupEnabled = {{ settings.popup_enabled | default: 'false' }};
+  
+  if (!popupEnabled) return;
+
   // Verifica se o usuário já visitou o site
   const hasVisited = localStorage.getItem('hasVisited');
   const dontShowAgain = localStorage.getItem('dontShowAgain');
   
   // Se nunca visitou E não marcou "não mostrar novamente"
   if (!hasVisited && !dontShowAgain) {
-    // Pequeno delay para garantir que a página carregou
+    // Pega o delay das configurações
+    const delay = {{ settings.popup_delay | default: 2 }} * 1000;
+    
     setTimeout(() => {
       const popup = document.getElementById('first-visit-popup');
       if (popup) {
         popup.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Previne scroll
+        document.body.style.overflow = 'hidden';
+        
+        // Adiciona classe de animação baseada na configuração
+        const animation = '{{ settings.popup_animation }}';
+        const content = popup.querySelector('.popup-content');
+        if (content) {
+          content.classList.add(`popup-animation-${animation}`);
+        }
       }
-    }, 2000); // 2 segundos após o carregamento
+    }, delay);
   }
 }
 
@@ -127,7 +141,7 @@ function closePopup() {
   
   if (popup) {
     popup.style.display = 'none';
-    document.body.style.overflow = ''; // Restaura scroll
+    document.body.style.overflow = '';
     
     // Marca que já visitou
     localStorage.setItem('hasVisited', 'true');
@@ -144,7 +158,7 @@ function closePopupForever() {
   
   if (popup) {
     popup.style.display = 'none';
-    document.body.style.overflow = ''; // Restaura scroll
+    document.body.style.overflow = '';
     
     // Marca para nunca mais mostrar
     localStorage.setItem('hasVisited', 'true');
@@ -152,18 +166,19 @@ function closePopupForever() {
   }
 }
 
-// Fechar popup clicando no overlay
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
   const popup = document.getElementById('first-visit-popup');
   
   if (popup) {
+    // Fechar clicando no overlay
     popup.addEventListener('click', function(e) {
       if (e.target.classList.contains('popup-overlay')) {
         closePopup();
       }
     });
     
-    // Fechar com ESC key
+    // Fechar com ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && popup.style.display === 'block') {
         closePopup();
@@ -171,13 +186,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Inicializar verificação
+  // Inicializar
   checkFirstVisit();
 });
 
-// Função para resetar (útil para testes)
+// Função para resetar (testes)
 function resetPopup() {
   localStorage.removeItem('hasVisited');
   localStorage.removeItem('dontShowAgain');
   console.log('Popup resetado - será mostrado na próxima visita');
 }
+
+// Expor funções globalmente para uso em buttons
+window.closePopup = closePopup;
+window.closePopupForever = closePopupForever;
+window.resetPopup = resetPopup;
