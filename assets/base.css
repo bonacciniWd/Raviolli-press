@@ -2133,7 +2133,7 @@ details[open] > .share-button__fallback {
 }
 
 .nav-buttons {
-  display: flex;
+  display: grid;
   gap: 8px;
   width: 100%;
 }
