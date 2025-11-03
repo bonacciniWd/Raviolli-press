@@ -3641,8 +3641,8 @@ details-disclosure > details {
 .pop-up-image {
   display: block;
   margin: 0 auto;
-  width: auto;
-  max-width: auto;
+  width: 100%;
+  max-width: 420px;
   border-top: 0.7px solid rgb(245, 245, 186);
   border-left: 0.7px solid rgb(245, 245, 186);
   border-right: 0.7px solid rgb(245, 245, 186);
