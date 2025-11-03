@@ -1930,7 +1930,7 @@ details[open] > .share-button__fallback {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 0px;
+  padding: 6px;
   box-sizing: border-box;
 }
 
