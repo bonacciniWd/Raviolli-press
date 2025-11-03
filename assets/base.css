@@ -1812,6 +1812,76 @@ details[open] > .share-button__fallback {
   opacity: 0;
 }
 
+.buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.buttons .btn {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 8px;
+  font-size: 13px;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttons .btn-primary {
+  background: white;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.buttons .btn-skip {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.buttons .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.buttons .btn-skip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* iPhone SE específico - 320px */
+@media (max-width: 320px) {
+  .buttons {
+    gap: 6px;
+    margin-top: 12px;
+  }
+  
+  .buttons .btn {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+}
+
+/* Para telas um pouco maiores que iPhone SE */
+@media (min-width: 321px) and (max-width: 375px) {
+  .buttons .btn {
+    font-size: 12px;
+    padding: 11px 8px;
+  }
+}
+
+/* Tablet e Desktop */
+@media (min-width: 768px) {
+  .buttons .btn {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
 
 /* First Visit Popup Styles - iPhone SE Optimized */
 .first-visit-popup {
@@ -1984,7 +2054,6 @@ details[open] > .share-button__fallback {
 /* Newsletter Form */
 .newsletter-form {
   margin: 20px 0;
-  display: relative;
 }
 
 .email-input {
@@ -2011,7 +2080,6 @@ details[open] > .share-button__fallback {
 
 .welcome-actions {
   margin-top: 15px;
-  flex: 1;
 }
 
 /* Steps normais (quando o vídeo de fundo está ativo) */
