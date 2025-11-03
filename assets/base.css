@@ -4360,4 +4360,5 @@ details-disclosure > details {
   height: auto;
   margin: 0px auto;
   display: block;
+  margin-bottom: 10px;
 }
