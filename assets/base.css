@@ -2228,8 +2228,7 @@ details[open] > .share-button__fallback {
   }
 
   .pop-up-image: {
-    min-height: 550px !important;
-    width: auto;
+   border-radius: 50px;
   }
 }
 
