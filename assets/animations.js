@@ -378,3 +378,13 @@ function resetFirstVisitPopup() {
     console.log('Error resetting popup:', error);
   }
 }
+
+function openPopup() {
+  document.body.classList.add('popup-open');
+  document.querySelector('.first-visit-popup').style.display = 'block';
+}
+
+function closePopup() {
+  document.body.classList.remove('popup-open');
+  document.querySelector('.first-visit-popup').style.display = 'none';
+}
