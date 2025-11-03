@@ -2187,7 +2187,7 @@ details[open] > .share-button__fallback {
 /* Para telas um pouco maiores que iPhone SE */
 @media (min-width: 321px) and (max-width: 375px) {
   .popup-content {
-    max-width: 300px;
+    max-width: 330px;
     padding: 20px;
   }
   
