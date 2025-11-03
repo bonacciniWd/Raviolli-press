@@ -2056,7 +2056,7 @@ details[open] > .share-button__fallback {
 
 /* Newsletter Form */
 .newsletter-form {
-  margin: 20px 0;
+  margin: 0px 0;
 }
 
 .email-input {
@@ -4309,7 +4309,7 @@ details-disclosure > details {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
 }
 
 .email-input {
