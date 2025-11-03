@@ -1813,8 +1813,8 @@ details[open] > .share-button__fallback {
 }
 
 .pop-up-image {
-  max-width: 620px !important;
-  height: 420px;
+  max-width: 320px;
+  height: auto;
   margin: 0px auto;
   display: block;
 }
@@ -1945,7 +1945,7 @@ details[open] > .share-button__fallback {
   background: rgba(8, 8, 8, 0.85);
   border-radius: 8px;
   padding: 20px 15px;
-  max-width: 480px;
+  max-width: 280px;
   width: 100%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
