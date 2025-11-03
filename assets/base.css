@@ -2186,7 +2186,7 @@ details[open] > .share-button__fallback {
 /* iPhone SE específico - 320px */
 @media (max-width: 380px) {
   .popup-container {
-    padding: 5px;
+    padding: 0px;
     align-items: flex-start;
     padding-top: 80px;
   }
