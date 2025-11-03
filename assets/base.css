@@ -4305,7 +4305,7 @@ details-disclosure > details {
 
 /* Newsletter Form */
 .newsletter-form {
-  margin: 25px 0;
+  margin: 5px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
