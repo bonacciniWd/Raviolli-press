@@ -4155,13 +4155,12 @@ body.popup-open {
 .popup-step .popup-header img,
 .popup-step .pope {
   display: block;
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(255, 255, 255, 0.81);
   border-radius: 50%;
   width: 96px;
   height: 96px;
   object-fit: cover;
   box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.35);
   margin-bottom: 6px;
 }
 
