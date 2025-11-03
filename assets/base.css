@@ -1823,6 +1823,7 @@ details[open] > .share-button__fallback {
   padding: 10px 10px;
   background:rgb(252, 240, 208);
   color:rgb(170, 13, 13) !important;
+  font-weight: 800;
 }
 
 /* iPhone SE */
