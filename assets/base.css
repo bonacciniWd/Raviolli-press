@@ -1835,7 +1835,7 @@ details[open] > .share-button__fallback {
 .buttons .btn-primary {
   background: white;
   color:rgb(170, 13, 13);
-  font-weight: 200;
+  font-weight: bold;
 }
 
 .buttons .btn-skip {
