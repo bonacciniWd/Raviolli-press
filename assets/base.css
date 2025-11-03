@@ -2011,6 +2011,7 @@ details[open] > .share-button__fallback {
 
 .welcome-actions {
   margin-top: 15px;
+  flex: 1;
 }
 
 /* Steps normais (quando o vídeo de fundo está ativo) */
