@@ -3649,7 +3649,7 @@ details-disclosure > details {
 
 .pop-up-image {
   width: 100%;
-  max-width: 420px;
+  max-width: auto;
   height: auto;
   border-top: 0.7px solid rgb(245, 245, 186);
   border-left: 0.7px solid rgb(245, 245, 186);
