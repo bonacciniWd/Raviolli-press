@@ -4238,6 +4238,46 @@ body.popup-open {
   }
 }
 
+/* ===============================
+   Centralização dos botões e estilo do "Começar a usar"
+   - Centraliza o grupo de navegação no popup
+   - Deixa o último botão (btn-finish) com estilo de botão (outline)
+=================================*/
+.popup-actions {
+  align-items: center; /* centraliza conteúdos no eixo cruzado */
+}
+
+.nav-buttons {
+  justify-content: center; /* centraliza os botões no eixo principal */
+  align-items: center;
+  width: auto; /* evita esticar em 100% e manter centralizado */
+}
+
+/* Garantir espaçamento e tamanho confortável dos botões */
+.nav-buttons .btn {
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Estilo do botão final (Começar a usar) */
+.popup-actions .btn-finish {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  text-decoration: none; /* garante visual de botão, não link */
+}
+
+.popup-actions .btn-finish:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 749px) {
+  /* Em telas pequenas, manter centralização também quando empilhado */
+  .popup-actions { align-items: center; }
+  .nav-buttons { width: 100%; justify-content: center; }
+  .nav-buttons .btn { flex: 0 0 auto; }
+}
+
 /* Reforço específico para Safari iOS */
 @supports (-webkit-touch-callout: none) {
   input[type="text"],
