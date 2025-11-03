@@ -2104,7 +2104,7 @@ details[open] > .share-button__fallback {
 /* Responsive */
 @media (max-width: 768px) {
   .popup-content {
-    padding: 30px 0px;
+    padding: 30px 20px;
     margin: 10px;
   }
   
