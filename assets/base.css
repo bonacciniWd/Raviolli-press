@@ -4170,7 +4170,8 @@ details-disclosure > details {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
-  .overflow-hidden
+  overflow: hidden;
+  
 }
 
 /* Container */
