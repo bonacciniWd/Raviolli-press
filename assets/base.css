@@ -4082,6 +4082,7 @@ details-disclosure > details {
   margin: 0 auto;
   width: 100%;
   max-width: 420px;
+  border-top: 2px solid #fff;
   height: auto;
 }
 
