@@ -296,10 +296,10 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
   </head>
-<img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.svg' | asset_url }}" alt="Fica Frio" />
+
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     
     {% comment %} Popup First Visit {% endcomment %}
@@ -318,6 +318,7 @@
           <div class="popup-step welcome-step" data-step="0">
             <div class="welcome-header">
               <h1>10% OFF <br /> na sua primeira compra!</h1>
+              <img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.svg' | asset_url }}" alt="Fica Frio" />
               <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
 
