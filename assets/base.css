@@ -3638,30 +3638,43 @@ details-disclosure > details {
 /* ===============================
    POPUP INICIAL
 =================================*/
-.pop-up-image {
-  display: block;
-  margin: 0 auto;
+.popup-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza horizontalmente */
   width: 100%;
   max-width: 420px;
+  margin: 0 auto;
+}
+
+.pop-up-image {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
   border-top: 0.7px solid rgb(245, 245, 186);
   border-left: 0.7px solid rgb(245, 245, 186);
   border-right: 0.7px solid rgb(245, 245, 186);
-  height: auto;
-  vertical-align: middle; /* evita linha de base abaixo da imagem */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .p-text {
-  margin-top: -1px; /* cola perfeitamente na imagem */
+  width: 100%;
   padding: 10px;
   background: rgb(252, 240, 208);
   color: rgb(170, 13, 13) !important;
   font-weight: 500;
+  font-size: 12px;
   border-bottom: 1px solid rgb(170, 13, 13);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  text-align: center; /* garante alinhamento */
+  margin: 0; /* remove margin-top hack */
 }
 
-/* Botões gerais */
+/* ===============================
+   BOTÕES GERAIS
+=================================*/
 .buttons {
   display: flex;
   gap: 10px;
@@ -3682,7 +3695,7 @@ details-disclosure > details {
 
 .buttons .btn-primary {
   background: rgb(170, 13, 13);
-  color: white ;
+  color: white;
 }
 
 .buttons .btn-skip {
@@ -3710,6 +3723,7 @@ details-disclosure > details {
   height: 100%;
   z-index: 10000;
   font-family: system-ui, -apple-system, sans-serif;
+  overflow: hidden;
 }
 
 /* Background */
@@ -3739,77 +3753,7 @@ details-disclosure > details {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 6px;
-  box-sizing: border-box;
-}
-
-.popup-content {
-  background: rgba(8, 8, 8, 0.85);
-  border-radius: 8px;
-  padding: 20px 15px;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: popupSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes popupSlideIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* ===============================
-   BLOQUEIO DE SCROLL AO ABRIR POPUP
-=================================*/
-body.popup-open {
-  overflow: hidden !important;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  touch-action: none;
-  overscroll-behavior: contain;
-}
-
-/* ===============================
-   POPUP BASE
-=================================*/
-.first-visit-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  font-family: system-ui, -apple-system, sans-serif;
-  overflow: hidden; /* impede scroll do conteúdo interno */
-}
-
-/* Fundo com vídeo */
-.popup-background {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-.background-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.video-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-/* Container principal */
-.popup-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100dvh; /* usa viewport dinâmico moderno */
+  height: 100dvh; /* viewport dinâmico moderno */
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
@@ -3833,6 +3777,18 @@ body.popup-open {
 }
 
 /* ===============================
+   BLOQUEIO DE SCROLL AO ABRIR POPUP
+=================================*/
+body.popup-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+/* ===============================
    TELA INICIAL (Newsletter)
 =================================*/
 .welcome-step { text-align: center; }
@@ -3845,16 +3801,6 @@ body.popup-open {
   color: rgb(238, 236, 236);
   margin-bottom: 8px;
   line-height: 1.2;
-}
-
-.p-text {
-  padding: 10px;
-  background: rgb(248, 241, 220);
-  color: rgb(170, 13, 13);
-  font-weight: 500;
-  font-size: 12px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 /* ===============================
@@ -3880,42 +3826,12 @@ body.popup-open {
   transition: all 0.3s ease;
   margin-bottom: 10px;
 }
-.email-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
+.email-input::placeholder { color: rgba(255, 255, 255, 0.6); }
 .email-input:focus {
   background: rgba(255, 255, 255, 0.15);
   border-color: white;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
 }
-
-/* Botões */
-.buttons {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-}
-.buttons .btn {
-  flex: 1;
-  border: none;
-  border-radius: 50px;
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 13px;
-}
-.btn-primary {
-  background: white;
-  color: rgb(170, 13, 13);
-}
-.btn-skip {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.btn-primary:hover { transform: translateY(-1px); }
-.btn-skip:hover { background: rgba(255, 255, 255, 0.1); }
 
 /* ===============================
    TUTORIAL STEPS
@@ -3927,6 +3843,7 @@ body.popup-open {
   margin-bottom: 10px;
   text-align: center;
 }
+
 .popup-step:not(.welcome-step) .popup-body p {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
@@ -3940,6 +3857,7 @@ body.popup-open {
   gap: 6px;
   margin: 20px 0;
 }
+
 .progress-dot {
   width: 8px;
   height: 8px;
@@ -3947,6 +3865,7 @@ body.popup-open {
   background: rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
+
 .progress-dot.active {
   background: white;
   transform: scale(1.2);
@@ -3959,20 +3878,16 @@ body.popup-open {
   gap: 10px;
   margin-top: 15px;
 }
+
 .nav-buttons {
   display: flex;
   gap: 8px;
   width: 100%;
   flex-wrap: nowrap;
 }
-.btn-back {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-}
-.btn-next, .btn-finish {
-  background: white;
-  color: rgb(179, 12, 12);
-}
+
+.btn-back { background: rgba(255, 255, 255, 0.1); color: white; }
+.btn-next, .btn-finish { background: white; color: rgb(179, 12, 12); }
 
 /* ===============================
    RESPONSIVIDADE
