@@ -318,14 +318,7 @@
           <div class="popup-step welcome-step" data-step="0">
             <div class="welcome-header">
               <h1>10% OFF <br /> na sua primeira compra!</h1>
-              <img
-                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
-                            src="{{ block.settings.image | image_url: width: 760 }}"
-                            alt="{{ block.settings.image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ block.settings.image.width }}"
-                            height="{{ block.settings.image.height }}"
-                          > 
+              <img class="pop-up-image" width="500" height="500" src="/content-v2/assets/square.svg{{ image | image_url }}" alt="" /> 
               <p>Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
             
