@@ -2188,7 +2188,6 @@ details[open] > .share-button__fallback {
 @media (min-width: 321px) and (max-width: 375px) {
   .popup-content {
     max-width: 330px;
-    padding: 20px;
   }
   
   .welcome-header h1 {
