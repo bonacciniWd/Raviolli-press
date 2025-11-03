@@ -2186,7 +2186,7 @@ details[open] > .share-button__fallback {
 /* iPhone SE específico - 320px */
 @media (max-width: 380px) {
   .popup-container {
-    padding: 0px;
+    padding: 5px;
     align-items: flex-start;
     padding-top: 80px;
   }
@@ -2258,47 +2258,7 @@ details[open] > .share-button__fallback {
 }
 
 /* Para telas um pouco maiores que iPhone SE */
-@media (min-width: 321px) and (max-width: 375px) {
-  .popup-content {
-    max-width: 300px;
-    padding: 20px;
-  }
-  
-  .welcome-header h1 {
-    font-size: 20px;
-  }
-  
-  .coupon-code {
-    font-size: 20px;
-  }
-}
 
-/* Tablet e Desktop */
-@media (min-width: 768px) {
-  .popup-content {
-    max-width: 400px;
-    padding: 30px;
-  }
-  
-  .welcome-header h1 {
-    font-size: 24px;
-  }
-  
-  .coupon-code {
-    font-size: 24px;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .popup-actions {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .nav-buttons {
-    width: auto;
-  }
-}
 
 /* Field styles mantidos */
 .field__button {
