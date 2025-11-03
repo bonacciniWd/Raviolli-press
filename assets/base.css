@@ -2192,6 +2192,7 @@ details[open] > .share-button__fallback {
   
   .welcome-header h1 {
     font-size: 20px;
+    text-decoration: uppercase;
   }
   
   .coupon-code {
