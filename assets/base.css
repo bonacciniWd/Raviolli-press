@@ -2173,7 +2173,7 @@ details[open] > .share-button__fallback {
 
 .btn-next, .btn-finish, .btn-primary {
   background: white;
-  color: #667eea;
+  color:rgb(179, 12, 12);
   font-weight: 700;
 }
 
