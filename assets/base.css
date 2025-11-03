@@ -3656,6 +3656,8 @@ details-disclosure > details {
   border-right: 0.7px solid rgb(245, 245, 186);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  display: block;
+  margin: 0; /* garante que não haja espaço */
 }
 
 .p-text {
@@ -3668,9 +3670,11 @@ details-disclosure > details {
   border-bottom: 1px solid rgb(170, 13, 13);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  text-align: center; /* garante alinhamento */
-  margin: 0; /* remove margin-top hack */
+  text-align: center;
+  margin: 0; /* remove espaço extra */
+  border-top: none; /* remove borda duplicada entre imagem e texto */
 }
+
 
 /* ===============================
    BOTÕES GERAIS
