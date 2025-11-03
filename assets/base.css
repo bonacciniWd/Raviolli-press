@@ -2183,82 +2183,50 @@ details[open] > .share-button__fallback {
   transform: translateY(-1px);
 }
 
-/* iPhone SE específico - 320px */
-@media (max-width: 380px) {
-  .popup-container {
-    padding: 5px;
-    align-items: flex-start;
-    padding-top: 80px;
-  }
-  
+
+
+/* Para telas um pouco maiores que iPhone SE */
+@media (min-width: 321px) and (max-width: 375px) {
   .popup-content {
-    padding: 15px 12px;
-    max-width: 260px;
-    border-radius: 6px;
-    margin: 0;
+    max-width: 300px;
+    padding: 20px;
   }
   
   .welcome-header h1 {
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-  
-  .welcome-header p {
-    font-size: 11px;
-    line-height: 1.2;
+    font-size: 20px;
   }
   
   .coupon-code {
-    font-size: 16px;
-    padding: 12px;
-    gap: 6px;
-  }
-  
-  .copy-btn {
-    font-size: 10px;
-    padding: 5px 10px;
-  }
-  
-  .email-input {
-    padding: 10px;
-    font-size: 12px;
-  }
-  
-  .btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  
-  .popup-step:not(.welcome-step) .popup-header h2 {
-    font-size: 16px;
-  }
-  
-  .popup-step:not(.welcome-step) .popup-body p {
-    font-size: 12px;
-  }
-  
-  .progress-indicators {
-    margin: 15px 0;
-  }
-  
-  .progress-dot {
-    width: 6px;
-    height: 6px;
-  }
-  
-  .popup-actions {
-    gap: 8px;
-    margin-top: 12px;
-  }
-  
-  .nav-buttons .btn {
-    font-size: 11px;
-    padding: 6px 8px;
+    font-size: 20px;
   }
 }
 
-/* Para telas um pouco maiores que iPhone SE */
-
+/* Tablet e Desktop */
+@media (min-width: 768px) {
+  .popup-content {
+    max-width: 400px;
+    padding: 30px;
+  }
+  
+  .welcome-header h1 {
+    font-size: 24px;
+  }
+  
+  .coupon-code {
+    font-size: 24px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .popup-actions {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .nav-buttons {
+    width: auto;
+  }
+}
 
 /* Field styles mantidos */
 .field__button {
