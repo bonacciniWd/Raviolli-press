@@ -302,87 +302,83 @@
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     
-    {% comment %} Popup First Visit {% endcomment %}
-<div id="first-visit-popup" class="first-visit-popup" style="display: none;">
-  <!-- Video de Fundo (será ativado após a tela inicial) -->
-  <div class="popup-background" style="display: none;">
-    liquid
-  <div class="popup-background" style="display: none;">
-    <video class="background-video" loop muted playsinline>
-      <source src="https://res.cloudinary.com/dkse7tpa1/video/upload/v1762189525/g8gm2auencpmpscsmodi.mp4" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
-  </div>
-      <div class="video-overlay"></div>
-    </div>
-  
-  <div class="popup-container">
-    <div class="popup-content">
-      <!-- TELA INICIAL - Cupom & Newsletter -->
-      <div class="popup-step welcome-step" data-step="0">
-        <div class="welcome-header">
-          <h1>10% OFF <br /> na sua primeira compra!</h1>
-          <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
-        </div>
+   {% comment %} Popup First Visit {% endcomment %}
+    <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
+      <!-- Video de Fundo (será ativado após a tela inicial) -->
+      <div class="popup-background" style="display: none;">
+        <video class="background-video" loop muted playsinline>
+          <source src="https://res.cloudinary.com/dkse7tpa1/video/upload/v1762189525/g8gm2auencpmpscsmodi.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+      
+      <div class="popup-container">
+        <div class="popup-content">
+          <!-- TELA INICIAL - Cupom & Newsletter -->
+          <div class="popup-step welcome-step" data-step="0">
+            <div class="welcome-header">
+              <h1>10% OFF <br /> na sua primeira compra!</h1>
+              <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
+            </div>
 
-        <div class="newsletter-form">
-          <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="email-input">
-          <div class="buttons">
-            <button class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
-            <button class="btn btn-primary" onclick="subscribeNewsletter()">Quero meu cupom!</button>
+            <div class="newsletter-form">
+              <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="email-input">
+              <div class="buttons">
+                <button class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
+                <button class="btn btn-primary" onclick="subscribeNewsletter()">Quero meu cupom!</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 1 - Welcome -->
+          <div class="popup-step" data-step="1" style="display: none;">
+            <div class="popup-header">
+              <h2>Bem-vindo(a) ao Fica Frio</h2>
+            </div>
+            <div class="popup-body">
+              <p>Seja muito bem-vindo(a) ao nosso app de pedidos! Vamos te mostrar em dois passos como fazer seu pedido.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 - Shipping -->
+          <div class="popup-step" data-step="2" style="display: none;">
+            <div class="popup-header">
+              <h2>Calcule o frete facilmente</h2>
+            </div>
+            <div class="popup-body">
+              <p>No carrinho, ou em seu perfil, selecione sua cidade e bairro para ver o frete na hora.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 - Checkout -->
+          <div class="popup-step" data-step="3" style="display: none;">
+            <div class="popup-header">
+              <h2>Adicione e finalize sem complicações</h2>
+            </div>
+            <div class="popup-body">
+              <p>Use o botão Comprar nos destaques. Depois, é só revisar e pagar.</p>
+            </div>
+          </div>
+
+          <!-- Progress Indicators (não aparece na tela inicial) -->
+          <div class="progress-indicators" style="display: none;">
+            <span class="progress-dot active" data-step="1"></span>
+            <span class="progress-dot" data-step="2"></span>
+            <span class="progress-dot" data-step="3"></span>
+          </div>
+
+          <!-- Navigation Buttons (não aparece na tela inicial) -->
+          <div class="popup-actions" style="display: none;">
+            <button class="btn btn-skip" onclick="finishPopup()">Pular tutorial</button>
+            <div class="nav-buttons">
+              <button class="btn btn-back" onclick="previousStep()">Voltar</button>
+              <button class="btn btn-next" onclick="nextStep()">Avançar</button>
+              <button class="btn btn-finish" onclick="finishPopup()">Começar a usar</button>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Step 1 - Welcome -->
-      <div class="popup-step" data-step="1" style="display: none;">
-        <div class="popup-header">
-          <h2>Bem-vindo(a) ao Fica Frio</h2>
-        </div>
-        <div class="popup-body">
-          <p>Seja muito bem-vindo(a) ao nosso app de pedidos! Vamos te mostrar em dois passos como fazer seu pedido.</p>
-        </div>
-      </div>
-
-      <!-- Step 2 - Shipping -->
-      <div class="popup-step" data-step="2" style="display: none;">
-        <div class="popup-header">
-          <h2>Calcule o frete facilmente</h2>
-        </div>
-        <div class="popup-body">
-          <p>No carrinho, ou em seu perfil, selecione sua cidade e bairro para ver o frete na hora.</p>
-        </div>
-      </div>
-
-      <!-- Step 3 - Checkout -->
-      <div class="popup-step" data-step="3" style="display: none;">
-        <div class="popup-header">
-          <h2>Adicione e finalize sem complicações</h2>
-        </div>
-        <div class="popup-body">
-          <p>Use o botão Comprar nos destaques. Depois, é só revisar e pagar.</p>
-        </div>
-      </div>
-
-      <!-- Progress Indicators (não aparece na tela inicial) -->
-      <div class="progress-indicators" style="display: none;">
-        <span class="progress-dot active" data-step="1"></span>
-        <span class="progress-dot" data-step="2"></span>
-        <span class="progress-dot" data-step="3"></span>
-      </div>
-
-      <!-- Navigation Buttons (não aparece na tela inicial) -->
-      <div class="popup-actions" style="display: none;">
-        <button class="btn btn-skip" onclick="finishPopup()">Pular tutorial</button>
-        <div class="nav-buttons">
-          <button class="btn btn-back" onclick="previousStep()">Voltar</button>
-          <button class="btn btn-next" onclick="nextStep()">Avançar</button>
-          <button class="btn btn-finish" onclick="finishPopup()">Começar a usar</button>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
