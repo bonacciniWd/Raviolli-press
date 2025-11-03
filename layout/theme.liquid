@@ -378,229 +378,28 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {% if settings.popup_enabled %}
-<div id="first-visit-popup" class="first-visit-popup" style="display: none;">
-  <div class="popup-overlay"></div>
-  <div class="popup-content" style="max-width: {{ settings.popup_width }}px;">
-    <button class="popup-close" onclick="closePopup()">×</button>
-    
-    <div class="popup-body">
-      <h2>{{ settings.popup_title }}</h2>
-      <div class="popup-message">
-        {{ settings.popup_message }}
-      </div>
-      
-      <div class="popup-actions">
-        {% if settings.button_primary_link != blank %}
-          <a href="{{ settings.button_primary_link }}" class="btn-primary">
-            {{ settings.button_primary_text }}
-          </a>
-        {% else %}
-          <button class="btn-primary" onclick="closePopup()">
-            {{ settings.button_primary_text }}
-          </button>
-        {% endif %}
+    {% comment %} Popup First Visit {% endcomment %}
+    <div id="first-visit-popup" class="first-visit-popup" style="display: none;">
+      <div class="popup-overlay"></div>
+      <div class="popup-content">
+        <button class="popup-close" onclick="closePopup()">×</button>
         
-        <button class="btn-secondary" onclick="closePopupForever()">
-          {{ settings.button_secondary_text }}
-        </button>
+        <div class="popup-body">
+          <h2>Bem-vindo à nossa loja! 🎉</h2>
+          <p>Esta é sua primeira visita? Que tal aproveitar <strong>10% OFF</strong> na sua primeira compra?</p>
+          
+          <div class="popup-actions">
+            <button class="btn-primary" onclick="closePopup()">Aproveitar Oferta</button>
+            <button class="btn-secondary" onclick="closePopupForever()">Talvez depois</button>
+          </div>
+          
+          <div class="popup-footer">
+            <label>
+              <input type="checkbox" id="dont-show-again"> Não mostrar novamente
+            </label>
+          </div>
+        </div>
       </div>
-      
-      {% if settings.show_dont_show_again %}
-      <div class="popup-footer">
-        <label>
-          <input type="checkbox" id="dont-show-again"> Não mostrar novamente
-        </label>
-      </div>
-      {% endif %}
     </div>
-  </div>
-</div>
-
-<style>
-  .first-visit-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    font-family: inherit;
-  }
-
-  .popup-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(2px);
-  }
-
-  .popup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: {{ settings.popup_bg_color }};
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    animation: popupFadeIn 0.3s ease-out;
-  }
-
-  /* Animações baseadas na seleção */
-  {% case settings.popup_animation %}
-    {% when 'fade' %}
-      @keyframes popupFadeIn {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -60%);
-        }
-        to {
-          opacity: 1;
-          transform: translate(-50%, -50%);
-        }
-      }
-    {% when 'slide' %}
-      @keyframes popupFadeIn {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -100%);
-        }
-        to {
-          opacity: 1;
-          transform: translate(-50%, -50%);
-        }
-      }
-    {% when 'zoom' %}
-      @keyframes popupFadeIn {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(0.7);
-        }
-        to {
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(1);
-        }
-      }
-  {% endcase %}
-
-  .popup-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: {{ settings.popup_text_color | color_modify: 'alpha', 0.7 }};
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .popup-close:hover {
-    background: {{ settings.popup_text_color | color_modify: 'alpha', 0.1 }};
-    color: {{ settings.popup_text_color }};
-  }
-
-  .popup-body h2 {
-    margin: 0 0 15px 0;
-    color: {{ settings.popup_text_color }};
-    font-size: 24px;
-  }
-
-  .popup-message {
-    margin: 0 0 25px 0;
-    color: {{ settings.popup_text_color | color_modify: 'alpha', 0.8 }};
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .popup-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: {{ settings.button_primary_bg }};
-    color: {{ settings.button_primary_text }};
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1;
-    min-width: 140px;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary:hover {
-    background: {{ settings.button_primary_bg | color_darken: 10 }};
-    transform: translateY(-1px);
-  }
-
-  .btn-secondary {
-    background: {{ settings.button_secondary_bg }};
-    color: {{ settings.button_secondary_text }};
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1;
-    min-width: 140px;
-    transition: all 0.3s ease;
-  }
-
-  .btn-secondary:hover {
-    background: {{ settings.button_secondary_bg | color_darken: 10 }};
-    transform: translateY(-1px);
-  }
-
-  .popup-footer {
-    border-top: 1px solid {{ settings.popup_text_color | color_modify: 'alpha', 0.1 }};
-    padding-top: 15px;
-    text-align: center;
-  }
-
-  .popup-footer label {
-    color: {{ settings.popup_text_color | color_modify: 'alpha', 0.7 }};
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .popup-content {
-      padding: 20px;
-      width: 95%;
-    }
-    
-    .popup-actions {
-      flex-direction: column;
-    }
-    
-    .popup-body h2 {
-      font-size: 20px;
-    }
-  }
-</style>
-{% endif %}
   </body>
 </html>
