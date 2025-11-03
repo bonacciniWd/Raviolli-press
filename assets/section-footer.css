@@ -78,7 +78,6 @@
 }
 
 .newsletter-form__button {
-  background: rgba(var(--color-foreground), 0.9);
   color: var(--color-background);
   padding: 1rem 1.8rem;
   border-radius: 8px;
