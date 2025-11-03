@@ -1812,6 +1812,8 @@ details[open] > .share-button__fallback {
   opacity: 0;
 }
 
+
+/* First Visit Popup Styles - iPhone SE Optimized */
 .first-visit-popup {
   position: fixed;
   top: 0;
@@ -2266,6 +2268,7 @@ input[type='checkbox'] {
   width: auto;
   margin-right: 0.5rem;
 }
+
 
 /* Form global */
 
