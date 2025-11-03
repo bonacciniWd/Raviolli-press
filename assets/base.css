@@ -1905,7 +1905,6 @@ details[open] > .share-button__fallback {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Background Video */
 .popup-background {
   position: absolute;
   top: 0;
@@ -1930,19 +1929,13 @@ details[open] > .share-button__fallback {
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* Popup Container */
 .popup-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 10px;
-  box-sizing: border-box;
+  position: relative; /* Importante: fica acima do background */
+  z-index: 1;
 }
 
 .popup-content {
-  background: rgba(8, 8, 8, 0.85);
+  background: ;
   border-radius: 8px;
   padding: 20px 15px;
   max-width: 480px;
