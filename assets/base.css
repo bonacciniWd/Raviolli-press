@@ -1822,8 +1822,8 @@ details[open] > .share-button__fallback {
 /* iPhone SE */
 @media (max-width: 320px) {
   .pop-up-image {
-    max-width: 120px;
-    margin: 10px auto;
+    max-width: 220px;
+    margin: 0px auto;
   }
 }
 
