@@ -183,6 +183,16 @@
     gap: 1rem;
   }
 
+  /* Make wrappers positioning context so we can pin credits in the corner */
+  .footer__content-bottom-wrapper {
+    position: relative;
+  }
+
+  /* Reserve space so the pinned credits don't overlap following content */
+  .footer__content-bottom > .footer__content-bottom-wrapper.page-width:first-of-type {
+    padding-bottom: 32px;
+  }
+
   .footer__legal {
     display: flex;
     align-items: center;
@@ -242,12 +252,17 @@
 
   .footer__credits {
     display: inline-flex;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0,0,0,0.9) !important;
     align-items: center;
     padding: 2px 6px;
-    border-top-left-radius: 20px;
+    border-top-left-radius: 10px;
     gap: 0.8rem;
-    margin-left: auto;
+    /* Pin to the bottom-left corner of the wrapper */
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    z-index: 3;
+    margin-left: 0;
   }
 
   .brand-credit {
@@ -285,11 +300,14 @@
       margin-top: 1.2rem;
     }
     .footer__credits {
-      order: 99; /* force to be the very last */
-       background-color: rgba(0,0,0,0.7);
-      width: 100%;
-      margin-left: 0;
-      margin-top: 0.6rem;
+      /* Keep it pinned to the corner on mobile as well */
+      position: absolute;
+      left: 0;
+      bottom: 8px;
+      background-color: rgba(0,0,0,0.8) !important;
+      width: auto;
+      margin: 0;
+      order: initial;
     }
     .footer__legal {
       flex-direction: column;
@@ -594,6 +612,11 @@
         <div class="footer__brandline">
           &copy; {{ 'now' | date: '%Y' }} Raviolli Press — Camboriú-SC/Brazil
         </div>
+        <!-- Pinned credits badge: bottom-left, under localization selectors -->
+        <div class="footer__credits">
+          <small class="brand-credit">Powered by Visione Rifatta</small>
+          <span class="build-version" aria-label="Build version">v1.04.0</span>
+        </div>
       </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
@@ -624,12 +647,6 @@
       </div>
       {%- endif -%}
       
-      
-      
-      <div class="footer__credits">
-        <small class="brand-credit">Powered by Visione Rifatta</small>
-        <span class="build-version" aria-label="Build version">v1.04.0</span>
-      </div>
     </div>
   </div>
 </footer>
