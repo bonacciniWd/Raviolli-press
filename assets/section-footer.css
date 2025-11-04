@@ -217,7 +217,7 @@
   .footer-bottom-bar .footer__legal .policies {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem 1rem;
+    gap: 0.6rem 0.5rem;
     width: 100%;
     margin: 0.2rem 0 0 0;
     text-align: left;
