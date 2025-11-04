@@ -5,6 +5,14 @@
   padding-top: 4rem;
 }
 
+/* Ensure credits area has no unintended background */
+.footer__credits {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent !important; /* override inline style */
+  gap: 1.2rem;
+}
+
 /* === GRID PRINCIPAL (DESKTOP) === */
 @media screen and (min-width: 990px) {
   .footer__content-top {
@@ -223,6 +231,21 @@
   .footer-bottom-bar .footer__legal .policies li + li::before {
     content: none;
     margin: 0;
+  }
+
+  /* Mobile color/style for policy links */
+  .footer-bottom-bar .footer__legal .policies a,
+  .footer-bottom-bar .footer__legal .policies a:visited,
+  .footer-bottom-bar .footer__legal .policies a:active {
+    color: rgb(179, 12, 12);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(179, 12, 12, 0.4);
+    padding-bottom: 2px;
+  }
+  .footer-bottom-bar .footer__legal .policies a:hover,
+  .footer-bottom-bar .footer__legal .policies a:focus-visible {
+    border-bottom-color: rgba(179, 12, 12, 0.9);
+    outline: none;
   }
 
   .footer__list-social {
