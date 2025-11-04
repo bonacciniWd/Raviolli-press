@@ -114,7 +114,8 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      background-image: url({{ 'fundo-desktop.jpg' | asset_url }});
+      /* Using existing asset as desktop background to avoid missing asset errors */
+      background-image: url({{ 'footer.png' | asset_url }});
       min-height: 500px;
     }
 
@@ -204,6 +205,25 @@
     padding: 2px 4px;
     gap: 0.8rem;
     margin-left: auto;
+  }
+
+  /* Brand/location row below localization */
+  .footer__brand-location {
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #000;
+  }
+  @media screen and (max-width: 749px) {
+    .footer__brand-location {
+      text-align: center;
+      width: 100%;
+    }
+  }
+  @media screen and (min-width: 750px) {
+    .footer__brand-location {
+      text-align: left;
+    }
   }
 
   .brand-credit {
@@ -504,7 +524,6 @@
             
           {%- endif -%}
         </div>
-      </div>
     {%- endunless -%}
   {%- endif -%}
 
@@ -539,6 +558,10 @@
             {%- endform -%}
           </localization-form>
         {%- endif -%}
+
+        <div class="footer__brand-location">
+          <span class="copyright__content">&copy; {{ 'now' | date: '%Y' }} Raviolli Press &middot; Camboriú-SC/Brazil</span>
+        </div>
       </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
@@ -554,11 +577,6 @@
           </div>
         {%- endif -%}
       </div>
-    </div>
-    <div>
-      <span>
-        Raviolli Press 
-      </span>
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %} footer-bottom-bar">
       <div class="footer__credits">
