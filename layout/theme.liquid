@@ -308,7 +308,7 @@
       <div class="popup-background" style="display: none;">
         <video class="background-video" loop muted playsinline>
           {%- comment -%} Desktop video – substitua a URL abaixo pelo vídeo de desktop do Cloudinary {%- endcomment -%}
-          <source src="https://res.cloudinary.com/dkse7tpa1/video/upload/v1762189525/g8gm2auencpmpscsmodi.mp4" media="(min-width: 990px)" type="video/mp4">
+          <source src="" media="(min-width: 990px)" type="video/mp4">
           {%- comment -%} Mobile/Tablet video (atual) {%- endcomment -%}
           <source src="https://res.cloudinary.com/dkse7tpa1/video/upload/v1762189525/g8gm2auencpmpscsmodi.mp4" media="(max-width: 989px)" type="video/mp4">
         </video>
@@ -321,12 +321,7 @@
           <div class="popup-step welcome-step" data-step="0">
             <div class="welcome-header">
               <h1>10% OFF</h1>
-              <div class="popup-slideshow" aria-hidden="true">
-                <img src="{{ 'pop-up.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'pop-up.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'pop-up.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'pop-up.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-              </div>
+              <img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.jpg' | asset_url }}" alt="Fica Frio" />
               <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
 
@@ -342,7 +337,7 @@
           <!-- Step 1 - Welcome -->
           <div class="popup-step" data-step="1" style="display: none;">
             <div class="popup-header">
-              <img class="pope" width="100" height="100" src="{{ 'logo.png' | asset_url }}" alt="pope" />
+              <img class="pope" width="100" height="100" src="{{ 'popup.svg' | asset_url }}" alt="pope" />
               <h2>Bem-vindo(a) à Raviolli Press</h2>
             </div>
             <div class="popup-body">
@@ -354,7 +349,7 @@
           <!-- Step 2 - Shipping -->
           <div class="popup-step" data-step="2" style="display: none;">
             <div class="popup-header">
-              <img class="pope" width="100" height="100" src="{{ 'logo.png' | asset_url }}" alt="pope" />
+              <img class="pope" width="100" height="100" src="{{ 'popup.svg' | asset_url }}" alt="pope" />
               <h2>Calcule o frete facilmente</h2>
             </div>
             <div class="popup-body">
@@ -366,7 +361,7 @@
           <!-- Step 3 - Checkout -->
           <div class="popup-step" data-step="3" style="display: none;">
             <div class="popup-header">
-              <img class="pope" width="100" height="100" src="{{ 'logo.png' | asset_url }}" alt="pope" />
+              <img class="pope" width="100" height="100" src="{{ 'popup.svg' | asset_url }}" alt="pope" />
               <h2>Adicione e finalize sem complicações</h2>
             </div>
             <div class="popup-body">
@@ -395,44 +390,6 @@
         </div>
       </div>
     </div>
-
-    <style>
-      /* Popup slideshow (4 imagens, troca a cada 3s, sem controles) */
-      .welcome-header .popup-slideshow {
-        position: relative;
-        width: 250px;
-        height: 250px;
-        margin: 0 auto 8px;
-        overflow: hidden;
-        border-radius: 16px;
-      }
-      .welcome-header .popup-slideshow img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        animation: popupCrossfade 12s infinite;
-      }
-      .welcome-header .popup-slideshow img:nth-child(1) { animation-delay: 0s; }
-      .welcome-header .popup-slideshow img:nth-child(2) { animation-delay: 3s; }
-      .welcome-header .popup-slideshow img:nth-child(3) { animation-delay: 6s; }
-      .welcome-header .popup-slideshow img:nth-child(4) { animation-delay: 9s; }
-
-      @keyframes popupCrossfade {
-        0% { opacity: 0; }
-        4% { opacity: 1; }     /* ~0.5s fade-in */
-        21% { opacity: 1; }    /* hold visible */
-        25% { opacity: 0; }    /* fade-out by 3s */
-        100% { opacity: 0; }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .welcome-header .popup-slideshow img { animation: none; }
-        .welcome-header .popup-slideshow img:nth-child(n+2) { display: none; }
-      }
-    </style>
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
