@@ -237,14 +237,11 @@
   .footer-bottom-bar .footer__legal .policies a,
   .footer-bottom-bar .footer__legal .policies a:visited,
   .footer-bottom-bar .footer__legal .policies a:active {
-    color: rgb(179, 12, 12);
     text-decoration: none;
-    border-bottom: 1px solid rgba(179, 12, 12, 0.4);
     padding-bottom: 2px;
   }
   .footer-bottom-bar .footer__legal .policies a:hover,
   .footer-bottom-bar .footer__legal .policies a:focus-visible {
-    border-bottom-color: rgba(179, 12, 12, 0.9);
     outline: none;
   }
 
