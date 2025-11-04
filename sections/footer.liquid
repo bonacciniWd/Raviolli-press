@@ -197,6 +197,11 @@
     color: #000;
   }
 
+  /* Keep bottom base white regardless of footer background image */
+  .footer__content-bottom {
+    background: #fff;
+  }
+
   /* Brandline (year + city) below localization */
   .footer__brandline {
     color: #000;
@@ -551,9 +556,9 @@
             {%- endform -%}
           </localization-form>
         {%- endif -%}
-      </div>
-      <div class="footer__brandline">
-        &copy; {{ 'now' | date: '%Y' }} Raviolli Press — Camboriú-SC/Brazil
+        <div class="footer__brandline">
+          &copy; {{ 'now' | date: '%Y' }} Raviolli Press — Camboriú-SC/Brazil
+        </div>
       </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
