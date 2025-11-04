@@ -216,7 +216,7 @@
   /* Two-column grid for policy links below copyright */
   .footer-bottom-bar .footer__legal .policies {
     display: grid;
-    color: #000000;
+    color: #000000 !important;
     grid-template-columns: 1fr 1fr;
     gap: 0.6rem 0.5rem;
     width: 100%;
