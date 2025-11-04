@@ -6,20 +6,13 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-
-  .copy {
-    position: relative;
-    flex-direction: row;
-  }  
-
-  .raviolli{
-    display: relative;
-    flex-direction: column;
-    align-items: center;
-    font-weight: 800;
-  }
+  /* Keep only dynamic, section-scoped values here; all other styles moved to section-footer.css */
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    background: {{ section.settings.newsletter_background_color }};
+    background-image: url({{ 'footer.png' | asset_url }});
+    background-size: cover;
+    background-position: center;
   }
 
   .section-{{ section.id }}-padding {
@@ -27,251 +20,15 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* Background images for different screen sizes */
-  .footer {
-    background: {{ section.settings.newsletter_background_color }};
-    background-image: url({{ 'footer.png' | asset_url }});
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* Newsletter with image layout */
-  .footer-block--newsletter__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-  }
-
-  /* Newsletter input/button cleanup inside footer */
-  .footer .newsletter-form .field {
-    border: none;
-    box-shadow: none;
-  }
-
-  /* Remove pseudo-element border and shadow around the input wrapper */
-  .footer .newsletter-form .field::before,
-  .footer .newsletter-form .field::after {
-    box-shadow: none !important;
-    border: none !important;
-  }
-
-  /* Make the input a clean pill with no border */
-  .footer .newsletter-form .field__input {
-    background-color: #fff;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 9999px;
-  }
-
-  /* Also remove the focus halo specifically in the footer newsletter */
-  .footer .newsletter-form .field__input:focus,
-  .footer .newsletter-form .field__input:focus-visible {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  /* Button: no border/background; keep arrow visible */
-  .footer .newsletter-form__button,
-  .footer .newsletter-form .field__button {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: rgb(var(--color-foreground)); /* arrow inherits currentColor */
-  }
-
-  /* Ensure the arrow SVG uses the button color and is clearly visible */
-  .footer .newsletter-form__button .svg-wrapper svg,
-  .footer .newsletter-form .field__button .svg-wrapper svg {
-    stroke: currentColor;
-    fill: none;
-  }
-
-  .footer-block--newsletter__image {
-    display: none;
-  }
-
-  .footer-block--newsletter__content {
-    width: 100%;
-    text-align: center;
-  }
-
-  /* Layout específico para mobile - idiomas lado a lado */
-@media screen and (max-width: 749px) {
-  .footer__localization .localization-form:last-child {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .footer__localization .localization-form:last-child > div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .footer__localization .localization-form:last-child h2.caption-large {
-    margin: 0;
-    white-space: nowrap;
-  }
-  
-  .footer__localization .localization-form:last-child .disclosure {
-    width: auto;
-    min-width: 120px;
-  }
-}
-
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      background-image: url({{ 'fundo-desktop.jpg' | asset_url }});
       min-height: 500px;
     }
-
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-
-    .footer-block--newsletter__container {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem;
-    }
-
-    .footer-block--newsletter__content {
-      flex: 0 1 auto;
-     
-      max-width: 600px;
-    }
-
-    .footer-block--newsletter__image {
-      display: block;
-      flex: 0 1 auto;
-    }
-
-    .footer-block--newsletter__image img {
-      max-width: 100px;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    /* Ajustar o formulário para melhor alinhamento */
-    .footer-block__newsletter .newsletter-form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .footer-block__heading {
-      margin-bottom: 1.5rem;
-    }
-  }
-
-  /* Bottom bar layout */
-  .footer-bottom-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .footer__legal {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-  }
-
-  .footer__legal .policies {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin: 0;
-    padding: 0;
-    color: #000;
-  }
-
-  .footer__legal .policies li {
-    display: inline;
-    list-style: none;
-    color: #000;
-  }
-
-  .footer__legal .policies li + li::before {
-    content: '|';
-    margin: 0 0.6rem;
-    opacity: 0.6;
-    color: #000;
-  }
-
-  .footer__credits {
-    display: inline-flex;
-    align-items: center;
-    background-color: #000;
-    padding: 2px 4px;
-    gap: 0.8rem;
-    margin-left: auto;
-  }
-
-  .brand-credit {
-    background: linear-gradient(90deg, #8fd3a8 0%, #7fb1ff 50%, #c69cff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .build-version {
-    background: #0f0f11;
-    color: #fff;
-    border-radius: 6px;
-    padding: 0.2rem 0.6rem;
-    font-size: 1.2rem;
-    line-height: 1.4;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  @media screen and (max-width: 749px) {
-    .footer-bottom-bar {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.6rem;
-      margin-top: 1.2rem; /* space above legal row (below payment icons) */
-    }
-    .footer__credits {
-      order: 3; /* keep credits at the very end on mobile */
-      margin-left: 0;
-      margin-top: 0.6rem;
-    }
-    .footer__legal {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.4rem;
-      width: 100%;
-    }
-    .footer__legal .policies {
-      flex-wrap: wrap;
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* two columns below copyright */
-      gap: 0.6rem 1rem;
-      width: 100%;
-      margin-top: 0.2rem;
-    }
-    .footer__legal .policies li {
-      display: block;
-    }
-    .footer__legal .policies li + li::before {
-      content: none !important; /* no separator in grid layout */
-      margin: 0;
-    }
-    .footer__legal .copyright__content { white-space: nowrap; }
   }
 {%- endstyle -%}
 
@@ -566,15 +323,29 @@
           </div>
         {%- endif -%}
       </div>
-    <div class="copy">
-      <span class="raviolli">
-        Raviolli Press
-      </span>
     </div>
-    
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %} footer-bottom-bar">
+      <div class="footer__legal caption">
+        <small class="copyright__content">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}</small>
+        {%- if section.settings.show_policy -%}
+          <ul class="policies list-unstyled">
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li>
+                  <small class="copyright__content"><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
       <div class="footer__credits">
-        <small class="brand-credit">Powered by Visione Rifatta</small>
-        <span class="build-version" aria-label="Build version">v1.04.0</span>
+        {%- if section.settings.show_powered_by -%}
+          <small class="brand-credit">{{ section.settings.powered_by_text }}</small>
+        {%- endif -%}
+        {%- if section.settings.build_version != blank -%}
+          <span class="build-version" aria-label="Build version">{{ section.settings.build_version }}</span>
+        {%- endif -%}
       </div>
     </div>
   </div>
