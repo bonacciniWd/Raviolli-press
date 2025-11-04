@@ -321,12 +321,7 @@
           <div class="popup-step welcome-step" data-step="0">
             <div class="welcome-header">
               <h1>10% OFF</h1>
-              <div class="pop-up-image slideshow" style="width:250px;height:250px;">
-                <img src="{{ 'popup.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'popup.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'popup.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-                <img src="{{ 'popup.jpg' | asset_url }}" width="250" height="250" alt="" loading="lazy">
-              </div>
+              <img class="pop-up-image" width="250" height="250" src="{{ 'pop-up.jpg' | asset_url }}" alt="Fica Frio" />
               <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
 
@@ -395,41 +390,6 @@
         </div>
       </div>
     </div>
-
-    <style>
-      /* Slideshow minimal e escopado ao popup de primeira visita */
-      #first-visit-popup .welcome-header .pop-up-image.slideshow {
-        position: relative;
-        display: inline-block;
-        overflow: hidden;
-      }
-      #first-visit-popup .welcome-header .pop-up-image.slideshow img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        animation: fvCrossfade 12s infinite;
-      }
-      #first-visit-popup .welcome-header .pop-up-image.slideshow img:nth-child(1) { animation-delay: 0s; }
-      #first-visit-popup .welcome-header .pop-up-image.slideshow img:nth-child(2) { animation-delay: 3s; }
-      #first-visit-popup .welcome-header .pop-up-image.slideshow img:nth-child(3) { animation-delay: 6s; }
-      #first-visit-popup .welcome-header .pop-up-image.slideshow img:nth-child(4) { animation-delay: 9s; }
-
-      @keyframes fvCrossfade {
-        0% { opacity: 0; }
-        8.33% { opacity: 1; }  /* ~1s fade-in */
-        25% { opacity: 1; }     /* visível até 3s */
-        33.33% { opacity: 0; }  /* ~1s fade-out */
-        100% { opacity: 0; }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        #first-visit-popup .welcome-header .pop-up-image.slideshow img { animation: none; }
-        #first-visit-popup .welcome-header .pop-up-image.slideshow img:nth-child(n+2) { display: none; }
-      }
-    </style>
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
