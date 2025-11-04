@@ -224,7 +224,7 @@
   }
 
   .footer-bottom-bar .footer__legal .policies li {
-    display: block;
+    display: relative;
   }
 
   /* Remove inline separator in grid layout */
