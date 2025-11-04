@@ -114,7 +114,7 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      background-image: url({{ 'fundo-desktop.jpg' | asset_url }});
+      background-image: url({{ 'footer.png' | asset_url }});
       min-height: 500px;
     }
 
@@ -197,6 +197,14 @@
     color: #000;
   }
 
+  /* Brandline (year + city) below localization */
+  .footer__brandline {
+    color: #000;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+  }
+
   .footer__credits {
     display: inline-flex;
     align-items: center;
@@ -232,6 +240,11 @@
       align-items: flex-start;
       gap: 0.6rem;
       margin-top: 1.2rem; /* space above legal row (below payment icons) */
+    }
+    .footer__brandline {
+      width: 100%;
+      text-align: center;
+      margin-top: 1.2rem;
     }
     .footer__credits {
       order: 3; /* keep credits at the very end on mobile */
@@ -504,7 +517,6 @@
             
           {%- endif -%}
         </div>
-      </div>
     {%- endunless -%}
   {%- endif -%}
 
@@ -540,6 +552,9 @@
           </localization-form>
         {%- endif -%}
       </div>
+      <div class="footer__brandline">
+        &copy; {{ 'now' | date: '%Y' }} Raviolli Press — Camboriú-SC/Brazil
+      </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
           <div class="footer__payment">
@@ -555,12 +570,19 @@
         {%- endif -%}
       </div>
     </div>
-    <div>
-      <span>
-        Raviolli Press 
-      </span>
-    </div>
+    
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %} footer-bottom-bar">
+      {%- if section.settings.show_policy -%}
+      <div class="footer__legal">
+        <ul class="policies" role="list">
+          <li>
+            <a href="{{ section.settings.privacy_url | default: '/policies/privacy-policy' }}" class="link link--text">
+              {{ section.settings.privacy_label | default: 'Política de Privacidade' }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      {%- endif -%}
       <div class="footer__credits">
         <small class="brand-credit">Powered by Visione Rifatta</small>
         <span class="build-version" aria-label="Build version">v1.04.0</span>
@@ -744,6 +766,17 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "text",
+      "id": "privacy_label",
+      "label": "Rótulo da política de privacidade",
+      "default": "Política de Privacidade"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "URL da política de privacidade"
     },
     {
       "type": "header",
