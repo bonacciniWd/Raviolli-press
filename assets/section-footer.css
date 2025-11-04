@@ -9,7 +9,7 @@
 .footer__credits {
   display: inline-flex;
   align-items: center;
-  background-color: transparent !important; /* override inline style */
+  background-color: rgba(0,0,0,0.5); /* override inline style */
   gap: 1.2rem;
 }
 
