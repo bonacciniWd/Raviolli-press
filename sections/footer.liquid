@@ -563,7 +563,7 @@
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
                 <li>
-                  <p class="copyright__content"><a href="{{ policy.url }}">{{ policy.title | escape }}</a></>
+                  <small class="copyright__content"><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small>
                 </li>
               {%- endif -%}
             {%- endfor -%}
