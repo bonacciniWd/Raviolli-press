@@ -73,7 +73,7 @@
   /* Ensure the arrow SVG uses the button color and is clearly visible */
   .footer .newsletter-form__button .svg-wrapper svg,
   .footer .newsletter-form .field__button .svg-wrapper svg {
-    stroke: #fff;
+    stroke: #fff !important;
     fill: none;
   }
 
@@ -200,7 +200,7 @@
 
   /* Keep bottom base white regardless of footer background image */
   .footer__content-bottom {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.1);
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; /* mobile spacing on white base */
   }
 
@@ -254,13 +254,16 @@
       gap: 0.6rem;
       margin-top: 1.2rem; /* space above legal row (below payment icons) */
     }
+    /* Ensure credits are always the last item on mobile */
+    .footer__legal { order: 1; }
     .footer__brandline {
       width: 100%;
       text-align: center;
       margin-top: 1.2rem;
     }
     .footer__credits {
-      order: 3; /* keep credits at the very end on mobile */
+      order: 99; /* force to be the very last */
+      width: 100%;
       margin-left: 0;
       margin-top: 0.6rem;
     }
@@ -596,6 +599,9 @@
         </ul>
       </div>
       {%- endif -%}
+      
+      
+      
       <div class="footer__credits">
         <small class="brand-credit">Powered by Visione Rifatta</small>
         <span class="build-version" aria-label="Build version">v1.04.0</span>
