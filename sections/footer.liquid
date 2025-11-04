@@ -114,8 +114,7 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      /* background-image was pointing to a missing asset; keep color or mobile image if set elsewhere */
-      background-image: none;
+      background-image: url({{ 'fundo-desktop.jpg' | asset_url }});
       min-height: 500px;
     }
 
