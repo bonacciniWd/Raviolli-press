@@ -100,7 +100,7 @@
 
 /* === PARTE INFERIOR (COPYRIGHT, POLÍTICAS, PAGAMENTOS) === */
 .footer__content-bottom {
-  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+ 
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
