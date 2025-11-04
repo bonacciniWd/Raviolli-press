@@ -222,6 +222,7 @@
       rgba(255, 255, 255, 0.75) 70%,
       rgba(255, 255, 255, 0) 100%
     );
+    
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; /* mobile spacing on white base */
   }
 
@@ -251,14 +252,38 @@
     margin-left: auto;
   }
 
-  .brand-credit {
-    background: linear-gradient(90deg, #8fd3a8 0%, #7fb1ff 50%, #c69cff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 600;
-    white-space: nowrap;
+ .brand-credit {
+  background: linear-gradient(90deg, #8fd3a8, #7fb1ff, #c69cff, #8fd3a8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  font-weight: 600;
+  white-space: nowrap;
+
+  /* Efeito de brilho neon */
+  text-shadow:
+    0 0 5px rgba(143, 211, 168, 0.6),
+    0 0 10px rgba(127, 177, 255, 0.5),
+    0 0 15px rgba(198, 156, 255, 0.4);
+
+  /* Animação suave do gradiente */
+  animation: moveGradient 6s ease-in-out infinite;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
   .build-version {
     background:rgb(35, 174, 10);
