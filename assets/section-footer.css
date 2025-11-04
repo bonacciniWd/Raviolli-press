@@ -72,10 +72,13 @@
 
 .newsletter-form__field-wrapper .field__input {
   padding: 1rem 1.5rem;
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+ 
   flex: 1;
 }
 
 .newsletter-form__button {
+  background: rgba(var(--color-foreground), 0.9);
   color: var(--color-background);
   padding: 1rem 1.8rem;
   border-radius: 8px;
@@ -103,6 +106,19 @@
   margin: 0 auto;
   gap: 1.5rem;
   padding: 0 2rem;
+}
+
+/* Bottom legal row (copyright + policies + credits) */
+.footer-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Add room between payment icons row and the legal row */
+.footer__content-bottom-wrapper.footer-bottom-bar {
+  margin-top: 1.2rem;
 }
 
 .footer__column--info {
@@ -167,6 +183,46 @@
   .footer__content-bottom-wrapper {
     justify-content: center;
     text-align: center;
+  }
+
+  /* Mobile layout for bottom legal row */
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .footer-bottom-bar .footer__legal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  /* Keep copyright in a single line */
+  .footer-bottom-bar .footer__legal .copyright__content {
+    white-space: nowrap;
+  }
+
+  /* Two-column grid for policy links below copyright */
+  .footer-bottom-bar .footer__legal .policies {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 1rem;
+    width: 100%;
+    margin: 0.2rem 0 0 0;
+    text-align: left;
+  }
+
+  .footer-bottom-bar .footer__legal .policies li {
+    display: block;
+  }
+
+  /* Remove inline separator in grid layout */
+  .footer-bottom-bar .footer__legal .policies li + li::before {
+    content: none;
+    margin: 0;
   }
 
   .footer__list-social {
