@@ -198,9 +198,16 @@
     color: #000;
   }
 
-  /* Keep bottom base white regardless of footer background image */
+  /* Gradient base: opaque at bottom, fades to transparent upwards */
   .footer__content-bottom {
-    background: rgba(255, 255, 255, 0.84);
+    background-color: #fff; /* fallback */
+    background-image: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.95) 35%,
+      rgba(255, 255, 255, 0.75) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; /* mobile spacing on white base */
   }
 
