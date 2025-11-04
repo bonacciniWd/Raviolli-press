@@ -114,7 +114,7 @@
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
-      background-image: url({{ 'fundo-desktop.jpg' | asset_url }});
+      background-image: url({{ 'footer.png' | asset_url }});
       min-height: 500px;
     }
 
@@ -197,6 +197,14 @@
     color: #000;
   }
 
+  /* Brandline (year + city) below localization */
+  .footer__brandline {
+    color: #000;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+  }
+
   .footer__credits {
     display: inline-flex;
     align-items: center;
@@ -232,6 +240,11 @@
       align-items: flex-start;
       gap: 0.6rem;
       margin-top: 1.2rem; /* space above legal row (below payment icons) */
+    }
+    .footer__brandline {
+      width: 100%;
+      text-align: center;
+      margin-top: 1.2rem;
     }
     .footer__credits {
       order: 3; /* keep credits at the very end on mobile */
@@ -504,7 +517,6 @@
             
           {%- endif -%}
         </div>
-      </div>
     {%- endunless -%}
   {%- endif -%}
 
@@ -539,6 +551,10 @@
             {%- endform -%}
           </localization-form>
         {%- endif -%}
+
+        <div class="footer__brandline">
+          &copy; {{ 'now' | date: '%Y' }} Raviolli Press — Camboriú-SC/Brazil
+        </div>
       </div>
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
@@ -555,11 +571,7 @@
         {%- endif -%}
       </div>
     </div>
-    <div>
-      <span>
-        Raviolli Press 
-      </span>
-    </div>
+    
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %} footer-bottom-bar">
       <div class="footer__credits">
         <small class="brand-credit">Powered by Visione Rifatta</small>
