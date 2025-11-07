@@ -13,11 +13,13 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "custom_css": [
+        ".newsletter-form {color: whitesmoke}"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
         "newsletter_heading": "Inscreva-se na nossa Newsletter!",
-        "newsletter_image": "shopify://shop_images/raviolli.svg",
         "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": true,
