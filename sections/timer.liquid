@@ -4,9 +4,6 @@ Você pode definir a data e hora finais do contador.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
-  <div class="loader">
-    <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
-  </div>
   <div class="container">
     <div class="time-box">
       <span id="days">00</span>
@@ -25,11 +22,15 @@ Você pode definir a data e hora finais do contador.
       <small>Segundos</small>
     </div>
   </div>
+  <div class="loader">
+    <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
+  </div>
 </section>
 
 <style>
 .countdown-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 60px 0;
@@ -47,7 +48,7 @@ Você pode definir a data e hora finais do contador.
 
 .loader {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .loader p {
