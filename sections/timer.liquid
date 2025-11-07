@@ -1,10 +1,14 @@
 {% comment %}
-Countdown funcional até amanhã às 15h
-Pode ser adicionado via Customizer (“Adicionar seção” → “Countdown Timer”)
+Countdown funcional configurável no editor Shopify.
+Você pode definir a data e hora finais do contador.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
   <div class="container">
+    <div class="time-box">
+      <span id="days">00</span>
+      <small>Dias</small>
+    </div>
     <div class="time-box">
       <span id="hours">00</span>
       <small>Horas</small>
@@ -33,7 +37,8 @@ Pode ser adicionado via Customizer (“Adicionar seção” → “Countdown Tim
 
 .countdown-container .container {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .time-box {
@@ -42,7 +47,7 @@ Pode ser adicionado via Customizer (“Adicionar seção” → “Countdown Tim
 
 .time-box span {
   display: block;
-  font-size: 72px;
+  font-size: 64px;
   font-weight: bold;
   background: #333;
   padding: 20px 30px;
@@ -53,38 +58,43 @@ Pode ser adicionado via Customizer (“Adicionar seção” → “Countdown Tim
 .time-box small {
   display: block;
   margin-top: 10px;
-  font-size: 16px;
-  color: #aaa;
+  font-size: 14px;
+  color: #ccc;
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Cria uma data-alvo: amanhã às 15h
-  const now = new Date();
-  const target = new Date();
-  target.setDate(now.getDate() + 1);
-  target.setHours(15, 0, 0, 0);
+  // Pega os valores definidos no editor
+  const targetDate = "{{ section.settings.target_date }}";
+  const targetTime = "{{ section.settings.target_time }}";
 
+  // Monta a data final combinando data e hora
+  const target = new Date(`${targetDate}T${targetTime}:00`);
+
+  const daysEl = document.getElementById("days");
   const hoursEl = document.getElementById("hours");
   const minutesEl = document.getElementById("minutes");
   const secondsEl = document.getElementById("seconds");
 
   function updateCountdown() {
-    const current = new Date().getTime();
-    const distance = target.getTime() - current;
+    const now = new Date().getTime();
+    const distance = target.getTime() - now;
 
     if (distance <= 0) {
+      daysEl.textContent = "00";
       hoursEl.textContent = "00";
       minutesEl.textContent = "00";
       secondsEl.textContent = "00";
       return;
     }
 
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((distance / (1000 * 60)) % 60);
     const seconds = Math.floor((distance / 1000) % 60);
 
+    daysEl.textContent = String(days).padStart(2, "0");
     hoursEl.textContent = String(hours).padStart(2, "0");
     minutesEl.textContent = String(minutes).padStart(2, "0");
     secondsEl.textContent = String(seconds).padStart(2, "0");
@@ -101,7 +111,19 @@ document.addEventListener("DOMContentLoaded", function() {
   "settings": [
     {
       "type": "header",
-      "content": "Timer até amanhã às 15h"
+      "content": "Configurações do Countdown"
+    },
+    {
+      "type": "text",
+      "id": "target_date",
+      "label": "Data final (AAAA-MM-DD)",
+      "default": "2025-11-08"
+    },
+    {
+      "type": "text",
+      "id": "target_time",
+      "label": "Hora final (HH:MM no formato 24h)",
+      "default": "15:00"
     }
   ],
   "presets": [
