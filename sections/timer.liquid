@@ -5,50 +5,51 @@ Você pode definir a data e hora finais do contador.
 
 <section id="countdown-section" class="countdown-container">
     <div class="bg">
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="goo">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-        <feBlend in="SourceGraphic" in2="goo" />
-      </filter>
-    </defs>
-  </svg>
-  <div class="gradients-container">
-    <div class="g1"></div>
-    <div class="g2"></div>
-    <div class="g3"></div>
-    <div class="g4"></div>
-    <div class="g5"></div>
-    <div class="interactive"></div>
-  </div>
-  <div class="container">
-    <div class="time-box">
-      <span id="days">00</span>
-      <small>Dia</small>
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
-    <div class="time-box">
-      <span id="hours">00</span>
-      <small>Horas</small>
+    <div class="container">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Dia</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Horas</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Minutos</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Segundos</small>
+      </div>
     </div>
-    <div class="time-box">
-      <span id="minutes">00</span>
-      <small>Minutos</small>
+    <div class="loader">
+      <lottie-player src="{{ 'loader.json' | asset_url }}" autoplay loop style="width: 200px; height: 200px; margin: 0 auto;"></lottie-player>
+      <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
     </div>
-    <div class="time-box">
-      <span id="seconds">00</span>
-      <small>Segundos</small>
+    <a href="https://landing.raviollipress.com.br" class="peek-button">👁</a>
     </div>
-  </div>
-  <div class="loader">
-    <lottie-player src="{{ 'loader.json' | asset_url }}" autoplay loop style="width: 200px; height: 200px; margin: 0 auto;"></lottie-player>
-    <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
-  </div>
-  <a href="https://landing.raviollipress.com.br" class="peek-button">👁</a>
-</section>
-</div>
+  </section>
+
 <style>
-bg {
+.bg {
   --color-bg1: #1a1a2e;
   --color-bg2: #16213e;
   --color1: 108, 92, 231;
