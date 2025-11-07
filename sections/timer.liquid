@@ -4,6 +4,23 @@ Você pode definir a data e hora finais do contador.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="gradients-container">
+    <div class="g1"></div>
+    <div class="g2"></div>
+    <div class="g3"></div>
+    <div class="g4"></div>
+    <div class="g5"></div>
+    <div class="interactive"></div>
+  </div>
   <div class="container">
     <div class="time-box">
       <span id="days">00</span>
@@ -26,31 +43,179 @@ Você pode definir a data e hora finais do contador.
     <lottie-player src="{{ 'loader.json' | asset_url }}" autoplay loop style="width: 200px; height: 200px; margin: 0 auto;"></lottie-player>
     <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
   </div>
-  <a href="https://landing.raviollipress.com.br" class="peek-button">Espiar</a>
+  <a href="https://landing.raviollipress.com.br" class="peek-button">👁</a>
 </section>
 
 <style>
+:root {
+  --color-bg1: #1a1a2e;
+  --color-bg2: #16213e;
+  --color1: 108, 92, 231;
+  --color2: 0, 255, 255;
+  --color3: 255, 0, 150;
+  --color4: 0, 204, 102;
+  --color5: 255, 165, 0;
+  --color-interactive: 255, 255, 255;
+  --blending: screen;
+  --circle-size: 800px;
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
 .countdown-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 60px 0;
-  background: radial-gradient(circle at center, #555 0%, #222 100%);
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-container svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.countdown-container .gradients-container {
+  filter: url(#goo) blur(40px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.countdown-container .g1 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+  opacity: 1;
+}
+
+.countdown-container .g2 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+  opacity: 1;
+}
+
+.countdown-container .g3 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 40s linear infinite;
+  opacity: 1;
+}
+
+.countdown-container .g4 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+
+.countdown-container .g5 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+  opacity: 1;
+}
+
+.countdown-container .interactive {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
 }
 
 .countdown-container .container {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  position: relative;
+  z-index: 1;
 }
 
 .loader {
   text-align: center;
   margin-top: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .loader p {
@@ -61,18 +226,19 @@ Você pode definir a data e hora finais do contador.
 
 .peek-button {
   display: inline-block;
-  padding: 10px 50px;
-  border-radius: 50px;
-  border: 2px solid #fff;
+  padding: 0px 10px;
+  border-radius: 100px;
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 50px;
   margin-top: 20px;
   transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .peek-button:hover {
-  background-color:rgb(210, 13, 6);
+  background-color: rgba(209, 5, 5, 0.1);
 }
 
 .time-box {
@@ -122,8 +288,8 @@ Você pode definir a data e hora finais do contador.
   }
 
   .peek-button {
-    font-size: 16px;
-    padding: 6px 18px;
+    font-size: 40px;
+    padding: 0px 8px;
   }
 }
 </style>
