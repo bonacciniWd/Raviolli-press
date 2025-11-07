@@ -94,6 +94,35 @@ Você pode definir a data e hora finais do contador.
   font-size: 14px;
   color: #ccc;
 }
+
+@media (max-width: 768px) {
+  .countdown-container .container {
+    gap: 15px;
+  }
+
+  .time-box span {
+    font-size: 48px;
+    padding: 15px 20px;
+  }
+
+  .time-box small {
+    font-size: 12px;
+  }
+
+  .loader lottie-player {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .loader p {
+    font-size: 16px;
+  }
+
+  .peek-button {
+    font-size: 40px;
+    padding: 0px 8px;
+  }
+}
 </style>
 
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
