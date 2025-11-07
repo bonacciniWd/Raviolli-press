@@ -4315,3 +4315,12 @@ body.popup-open {
 .popup-actions .btn-finish:hover {
   filter: brightness(1.05);
 }
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
