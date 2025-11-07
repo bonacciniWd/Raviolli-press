@@ -1,23 +1,23 @@
 {% comment %}
 Countdown funcional configurável no editor Shopify.
-Você pode definir a data e hora finais do contador.
+Com fundo gradiente animado e texto com brilho pulsante.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
   <div class="container">
-    <div class="time-box">
+    <div class="time-box box-1">
       <span id="days">00</span>
       <small>Dia</small>
     </div>
-    <div class="time-box">
+    <div class="time-box box-2">
       <span id="hours">00</span>
       <small>Horas</small>
     </div>
-    <div class="time-box">
+    <div class="time-box box-3">
       <span id="minutes">00</span>
       <small>Minutos</small>
     </div>
-    <div class="time-box">
+    <div class="time-box box-4">
       <span id="seconds">00</span>
       <small>Segundos</small>
     </div>
@@ -30,7 +30,7 @@ Você pode definir a data e hora finais do contador.
   justify-content: center;
   align-items: center;
   padding: 60px 0;
-  background: radial-gradient(circle at center, #555 0%, #222 100%);
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   min-height: 100vh;
@@ -50,10 +50,13 @@ Você pode definir a data e hora finais do contador.
   display: block;
   font-size: 64px;
   font-weight: bold;
-  background: #333;
-  padding: 20px 30px;
+  padding: 20px 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  color: #fff;
+  animation: glow 2s ease-in-out infinite;
 }
 
 .time-box small {
@@ -62,15 +65,56 @@ Você pode definir a data e hora finais do contador.
   font-size: 14px;
   color: #ccc;
 }
+
+/* ==== FUNDO GRADIENTE ANIMADO ==== */
+.time-box span::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(var(--angle), var(--color1), var(--color2), var(--color3));
+  animation: spin 4s linear infinite;
+  border-radius: inherit;
+  filter: blur(0);
+}
+
+/* ==== VARIAÇÕES POR BLOCO ==== */
+.box-1 span { --color1: #ff7eb3; --color2: #ff758c; --color3: #ff5f6d; }
+.box-2 span { --color1: #3cba92; --color2: #0ba360; --color3: #2e8b57; }
+.box-3 span { --color1: #5ddcff; --color2: #3c67e3; --color3: #4e00c2; }
+.box-4 span { --color1: #f6d365; --color2: #fda085; --color3: #f48c06; }
+
+/* ==== ANIMAÇÕES ==== */
+@keyframes spin {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(255,255,255,0.2), 0 0 10px rgba(255,255,255,0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,1);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255,255,255,0.2), 0 0 10px rgba(255,255,255,0.3);
+  }
+}
+
+/* ==== RESPONSIVO ==== */
+@media (max-width: 768px) {
+  .time-box span {
+    font-size: 40px;
+    padding: 15px 25px;
+  }
+}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Pega os valores definidos no editor
   const targetDate = "{{ section.settings.target_date }}";
   const targetTime = "{{ section.settings.target_time }}";
-
-  // Monta a data final combinando data e hora
   const target = new Date(`${targetDate}T${targetTime}:00`);
 
   const daysEl = document.getElementById("days");
