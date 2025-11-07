@@ -283,44 +283,61 @@ class FirstVisitPopup {
     });
   }
 
-  subscribeNewsletter() {
-    const emailInput = document.getElementById('newsletter-email');
-    const email = emailInput ? emailInput.value.trim() : '';
-    
-    if (!email) {
-      alert('Por favor, digite seu e-mail');
-      return;
-    }
-    
-    if (!this.isValidEmail(email)) {
-      alert('Por favor, digite um e-mail válido');
-      return;
-    }
-    
-   fetch('/contact', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: new URLSearchParams({
-    'form_type': 'customer',
-    'utf8': '✓',
-    'contact[email]': email
-  })
-})
-.then(response => {
-  if (response.ok) {
-    alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom NEW-RAVIOLLI ativado!');
-    this.startTutorial();
-  } else {
-    alert('Ocorreu um erro ao se inscrever. Tente novamente.');
-  }
-})
-.catch(() => {
-  alert('Erro de conexão. Por favor, tente novamente.');
-});
+subscribeNewsletter() {
+  const emailInput = document.getElementById('newsletter-email');
+  const email = emailInput ? emailInput.value.trim() : '';
 
+  if (!email) {
+    alert('Por favor, digite seu e-mail');
+    return;
   }
+
+  if (!this.isValidEmail(email)) {
+    alert('Por favor, digite um e-mail válido');
+    return;
+  }
+
+  // ✅ Envia o e-mail para a lista de contatos da Shopify
+  fetch('/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      'form_type': 'customer',
+      'utf8': '✓',
+      'contact[email]': email,
+      'contact[tags]': 'newsletter' // opcional, ajuda a filtrar no admin
+    })
+  })
+    .then(response => {
+      // A Shopify redireciona normalmente, mas aqui bloqueamos isso via fetch
+      if (response.ok) {
+        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
+        if (typeof this.startTutorial === 'function') {
+          this.startTutorial();
+        }
+      } else {
+        alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
+      }
+    })
+    .catch(() => {
+      alert('Erro de conexão. Por favor, tente novamente.');
+    });
+}
+
+isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+bindEvents() {
+  document.querySelectorAll('.progress-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const stepNumber = parseInt(dot.getAttribute('data-step'));
+      this.showStep(stepNumber);
+    });
+  });
+}
+
 
   isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
