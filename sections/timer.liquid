@@ -50,10 +50,25 @@ Você pode definir a data e hora finais do contador.
   display: block;
   font-size: 64px;
   font-weight: bold;
-  background: #333;
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(204, 11, 11, 0.72);
+  position: relative;
+  --rotate: 0deg;
+}
+
+.time-box span::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
 }
 
 .time-box small {
