@@ -283,7 +283,7 @@ class FirstVisitPopup {
     });
   }
 
-subscribeNewsletter() {
+function subscribeNewsletter() {
   const emailInput = document.getElementById('newsletter-email');
   const email = emailInput ? emailInput.value.trim() : '';
 
@@ -292,12 +292,11 @@ subscribeNewsletter() {
     return;
   }
 
-  if (!this.isValidEmail(email)) {
+  if (!isValidEmail(email)) {
     alert('Por favor, digite um e-mail válido');
     return;
   }
 
-  // ✅ Envia o e-mail para a lista de contatos da Shopify
   fetch('/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -305,16 +304,12 @@ subscribeNewsletter() {
       'form_type': 'customer',
       'utf8': '✓',
       'contact[email]': email,
-      'contact[tags]': 'newsletter' // opcional, ajuda a filtrar no admin
+      'contact[tags]': 'newsletter'
     })
   })
     .then(response => {
-      // A Shopify redireciona normalmente, mas aqui bloqueamos isso via fetch
       if (response.ok) {
-        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
-        if (typeof this.startTutorial === 'function') {
-          this.startTutorial();
-        }
+        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom NEW-RAVIOLLI ativado!');
       } else {
         alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
       }
@@ -323,6 +318,12 @@ subscribeNewsletter() {
       alert('Erro de conexão. Por favor, tente novamente.');
     });
 }
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 
 isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
