@@ -284,7 +284,8 @@ class FirstVisitPopup {
   }
 
 function subscribeNewsletter() {
-  const emailInput = document.getElementById('newsletter-email');
+  // Tenta achar o input pelo ID padrão do footer
+  const emailInput = document.querySelector('input[name="contact[email]"]');
   const email = emailInput ? emailInput.value.trim() : '';
 
   if (!email) {
@@ -297,6 +298,7 @@ function subscribeNewsletter() {
     return;
   }
 
+  // Envia pro mesmo endpoint do form 'customer'
   fetch('/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -318,6 +320,12 @@ function subscribeNewsletter() {
       alert('Erro de conexão. Por favor, tente novamente.');
     });
 }
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
