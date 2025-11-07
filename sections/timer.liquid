@@ -1,6 +1,5 @@
 {% comment %}
 Countdown funcional configurável no editor Shopify.
-Você pode definir a data e hora finais do contador.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
@@ -47,13 +46,33 @@ Você pode definir a data e hora finais do contador.
 }
 
 .time-box span {
+  position: relative;
   display: block;
   font-size: 64px;
   font-weight: bold;
   background: #333;
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(254, 251, 251, 0.72);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Efeito gradiente lux no fundo */
+.time-box span::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  filter: blur(25px);
+  opacity: 0.8;
+  animation: spin 4s linear infinite;
+  border-radius: inherit;
+}
+
+@keyframes spin {
+  0% { --rotate: 0deg; }
+  100% { --rotate: 360deg; }
 }
 
 .time-box small {
@@ -66,11 +85,8 @@ Você pode definir a data e hora finais do contador.
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Pega os valores definidos no editor
   const targetDate = "{{ section.settings.target_date }}";
   const targetTime = "{{ section.settings.target_time }}";
-
-  // Monta a data final combinando data e hora
   const target = new Date(`${targetDate}T${targetTime}:00`);
 
   const daysEl = document.getElementById("days");
@@ -128,9 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   ],
   "presets": [
-    {
-      "name": "Countdown Timer"
-    }
+    { "name": "Countdown Timer" }
   ]
 }
 {% endschema %}
