@@ -95,7 +95,8 @@
       "read_more_title": "Ler mais: {{ title }}",
       "comments": {
         "one": "{{ count }} comentário",
-        "other": "{{ count }} comentários"
+        "other": "{{ count }} comentários",
+        "many": "{{ count }} comments"
       },
       "moderated": "Nota: Comentários precisam de aprovação antes de serem publicados.",
       "comment_form_title": "Deixe um comentário",
@@ -204,7 +205,8 @@
       "filter_button": "Filter",
       "filters_selected": {
         "one": "{{ count }} selected",
-        "other": "{{ count }} selected"
+        "other": "{{ count }} selected",
+        "many": "{{ count }} selected"
       },
       "filter_selected_accessibility": "{{ type }} ({{ count }} filters selected)",
       "show_more": "Show more",
@@ -212,11 +214,13 @@
       "max_price": "The highest price is {{ price }}",
       "product_count": {
         "one": "{{ product_count }} of {{ count }} product",
-        "other": "{{ product_count }} of {{ count }} products"
+        "other": "{{ product_count }} of {{ count }} products",
+        "many": "{{ product_count }} of {{ count }} products"
       },
       "product_count_simple": {
         "one": "{{ count }} product",
-        "other": "{{ count }} products"
+        "other": "{{ count }} products",
+        "many": "{{ count }} products"
       },
       "reset": "Reset",
       "sort_button": "Sort",
@@ -232,23 +236,28 @@
       "products": "Products",
       "results_pages_with_count": {
         "one": "{{ count }} page",
-        "other": "{{ count }} pages"
+        "other": "{{ count }} pages",
+        "many": "{{ count }} pages"
       },
       "results_suggestions_with_count": {
         "one": "{{ count }} suggestion",
-        "other": "{{ count }} suggestions"
+        "other": "{{ count }} suggestions",
+        "many": "{{ count }} suggestions"
       },
       "results_products_with_count": {
         "one": "{{ count }} product",
-        "other": "{{ count }} products"
+        "other": "{{ count }} products",
+        "many": "{{ count }} products"
       },
       "results_with_count": {
         "one": "{{ count }} result",
-        "other": "{{ count }} results"
+        "other": "{{ count }} results",
+        "many": "{{ count }} results"
       },
       "results_with_count_and_term": {
         "one": "{{ count }} result found for “{{ terms }}”",
-        "other": "{{ count }} results found for “{{ terms }}”"
+        "other": "{{ count }} results found for “{{ terms }}”",
+        "many": "{{ count }} results found for “ {{ terms }} ”"
       },
       "title": "Search results",
       "search_for": "Search for “{{ terms }}”",
@@ -288,7 +297,8 @@
       "menu": "Menu",
       "cart_count": {
         "one": "{{ count }} item",
-        "other": "{{ count }} items"
+        "other": "{{ count }} items",
+        "many": "{{ count }} items"
       }
     },
     "cart": {
@@ -367,11 +377,13 @@
       "variant_total": "Variant total",
       "items_added": {
         "one": "{{ quantity }} item added",
-        "other": "{{ quantity }} items added"
+        "other": "{{ quantity }} items added",
+        "many": "{{ quantity }} items added"
       },
       "items_removed": {
         "one": "{{ quantity }} item removed",
-        "other": "{{ quantity }} items removed"
+        "other": "{{ quantity }} items removed",
+        "many": "{{ quantity }} items removed"
       },
       "product_variants": "Product variants",
       "total_items": "Total items",
@@ -936,9 +948,51 @@
           "pending": {
             "banner_overdue": {
               "many": "Your payment was due {{count}} days ago."
+            },
+            "banner_due": {
+              "many": "The payment due date is in {{count}} days."
             }
           }
         }
+      }
+    },
+    "errors": {
+      "banner_title": {
+        "many": "There are {{count}} errors"
+      }
+    },
+    "ui_components": {
+      "autocompleteOptionsAvailable": {
+        "many": "{{count}} items available"
+      },
+      "month": {
+        "many": "months"
+      },
+      "mapClusterTitle": {
+        "many": "Cluster of {{number}} markers"
+      }
+    },
+    "date": {
+      "humanize": {
+        "lessThanOneHourAgo": {
+          "many": "{{count}} minutes ago"
+        }
+      }
+    },
+    "subscriptions": {
+      "subscription_contracts": {
+        "more_items": {
+          "many": "More {{count}} products"
+        },
+        "product_count": {
+          "many": "{{count}} products"
+        }
+      },
+      "updating_contracts": {
+        "many": "Updating {{count}} subscription contracts..."
+      },
+      "contracts_updated": {
+        "many": "{{count}} updated subscription contracts"
       }
     }
   }
