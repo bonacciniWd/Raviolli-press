@@ -23,6 +23,7 @@ Você pode definir a data e hora finais do contador.
     </div>
   </div>
   <div class="loader">
+    <div id="lottie-loader" style="width: 200px; height: 200px; margin: 0 auto;"></div>
     <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
   </div>
 </section>
@@ -79,6 +80,8 @@ Você pode definir a data e hora finais do contador.
 }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Pega os valores definidos no editor
@@ -129,10 +132,20 @@ document.addEventListener("DOMContentLoaded", function() {
   ];
   let index = 0;
   const loaderText = document.getElementById("loader-text");
+
+  // Load Lottie animation
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-loader'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '{{ "assets/loader.json" | asset_url }}'
+  });
+
   setInterval(() => {
     loaderText.textContent = messages[index];
     index = (index + 1) % messages.length;
-  }, 2000);
+  }, 50000);
 });
 </script>
 
