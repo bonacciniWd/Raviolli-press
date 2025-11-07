@@ -1,19 +1,58 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Reset para maximizar espaço */
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
+    min-height: 100vh; /* Ocupa toda a altura da tela */
+    box-sizing: border-box;
   }
 
+  .page-width--narrow {
+    max-width: 95%; /* Aumenta a largura útil */
+    margin: 0 auto;
+  }
+
+  .main-page-title {
+    margin-top: 0; /* Remove margem superior */
+    padding-top: 20px;
+  }
+
+  /* Mobile First - Aproveita melhor telas menores */
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.25 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.25 | round: 0 }}px;
+    }
+    
+    .page-width--narrow {
+      max-width: 98%;
+      padding: 0 10px;
+    }
+  }
+
+  /* Desktop - Aproveita telas grandes */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    
+    .page-width--narrow {
+      max-width: 1200px; /* Aumenta a largura máxima */
+    }
+  }
+
+  /* Telas muito grandes */
+  @media screen and (min-width: 1400px) {
+    .page-width--narrow {
+      max-width: 1400px;
     }
   }
 {%- endstyle -%}
 
+<!-- HTML otimizado para viewport -->
 <div class="page-width page-width--narrow section-{{ section.id }}-padding">
   <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ page.title | escape }}
@@ -31,6 +70,26 @@
   "settings": [
     {
       "type": "header",
+      "content": "Otimização de Viewport"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_viewport",
+      "label": "Usar altura total da tela",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 80,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Largura do container",
+      "default": 95
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
     {
@@ -41,7 +100,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 20
     },
     {
       "type": "range",
@@ -51,7 +110,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 20
     }
   ]
 }
