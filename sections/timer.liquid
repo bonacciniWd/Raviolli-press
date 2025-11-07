@@ -23,9 +23,10 @@ Você pode definir a data e hora finais do contador.
     </div>
   </div>
   <div class="loader">
-    <lottie-player src="{{ 'loader.json' | asset_url }}" autoplay loop style="width: 200px; height: 200px; margin: 0 auto; opacity: 0.5"></lottie-player>
+    <lottie-player src="{{ 'assets/loader.json' | asset_url }}" autoplay loop style="width: 200px; height: 200px; margin: 0 auto;"></lottie-player>
     <p id="loader-text">Misturando tintas... e um pouco de alma.</p>
   </div>
+  <a href="https://landind.raviollipress.com.br" class="peek-button">👁</a>
 </section>
 
 <style>
@@ -56,6 +57,22 @@ Você pode definir a data e hora finais do contador.
   font-size: 18px;
   color: #ccc;
   font-style: italic;
+}
+
+.peek-button {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.peek-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .time-box {
@@ -136,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(() => {
     loaderText.textContent = messages[index];
     index = (index + 1) % messages.length;
-  }, 10000);
+  }, 50000);
 });
 </script>
 
