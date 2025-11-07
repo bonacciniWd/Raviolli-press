@@ -11,7 +11,12 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "custom_css": [
+        ".main-page-title {display: none;}"
+      ],
       "settings": {
+        "full_viewport": true,
+        "container_width": 95,
         "padding_top": 28,
         "padding_bottom": 28
       }
