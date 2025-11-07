@@ -1,10 +1,9 @@
 {% comment %}
-Countdown funcional com fundo LUX animado por trás dos cards.
+Countdown funcional configurável no editor Shopify.
+Você pode definir a data e hora finais do contador.
 {% endcomment %}
 
 <section id="countdown-section" class="countdown-container">
-  <div class="lux-background"></div>
-
   <div class="container">
     <div class="time-box">
       <span id="days">00</span>
@@ -26,52 +25,21 @@ Countdown funcional com fundo LUX animado por trás dos cards.
 </section>
 
 <style>
-/* ======== CONTAINER ======== */
 .countdown-container {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 0;
-  min-height: 100vh;
-  overflow: hidden;
+  padding: 60px 0;
+  background: radial-gradient(circle at center, #555 0%, #222 100%);
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
-  background: #0a0a0a;
-  z-index: 1;
+  min-height: 100vh;
 }
 
-/* ======== FUNDO LUX (gradiente animado atrás dos cards) ======== */
-.lux-background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  filter: blur(120px);
-  opacity: 0.6;
-  background-image: linear-gradient(
-    var(--rotate),
-    #ff7eb3,
-    #3c67e3 43%,
-    #4e00c2
-  );
-  animation: spin 8s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    --rotate: 0deg;
-  }
-  100% {
-    --rotate: 360deg;
-  }
-}
-
-/* ======== CONTEÚDO ======== */
-.container {
+.countdown-container .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  z-index: 1;
+  gap: 25px;
 }
 
 .time-box {
@@ -82,13 +50,10 @@ Countdown funcional com fundo LUX animado por trás dos cards.
   display: block;
   font-size: 64px;
   font-weight: bold;
-  background: rgba(25, 28, 41, 0.85);
-  padding: 25px 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-  color: rgb(88, 199, 250);
-  animation: glow 2s ease-in-out infinite;
-  backdrop-filter: blur(6px);
+  background: #333;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .time-box small {
@@ -97,36 +62,15 @@ Countdown funcional com fundo LUX animado por trás dos cards.
   font-size: 14px;
   color: #ccc;
 }
-
-/* ======== BRILHO SUAVE NO TEXTO ======== */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px rgba(88, 199, 250, 0.2),
-      0 0 10px rgba(88, 199, 250, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(88, 199, 250, 0.7),
-      0 0 35px rgba(88, 199, 250, 0.9);
-  }
-  100% {
-    text-shadow: 0 0 5px rgba(88, 199, 250, 0.2),
-      0 0 10px rgba(88, 199, 250, 0.3);
-  }
-}
-
-/* ======== RESPONSIVO ======== */
-@media (max-width: 768px) {
-  .time-box span {
-    font-size: 42px;
-    padding: 15px 25px;
-  }
-}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // Pega os valores definidos no editor
   const targetDate = "{{ section.settings.target_date }}";
   const targetTime = "{{ section.settings.target_time }}";
+
+  // Monta a data final combinando data e hora
   const target = new Date(`${targetDate}T${targetTime}:00`);
 
   const daysEl = document.getElementById("days");
@@ -164,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 {% schema %}
 {
-  "name": "Countdown Timer Lux",
+  "name": "Countdown Timer",
   "settings": [
     {
       "type": "header",
@@ -185,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
   ],
   "presets": [
     {
-      "name": "Countdown Timer Lux"
+      "name": "Countdown Timer"
     }
   ]
 }
