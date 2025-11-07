@@ -297,12 +297,29 @@ class FirstVisitPopup {
       return;
     }
     
-    // Aqui você integraria com sua API de newsletter
-    console.log('Subscribing email:', email);
-    
-    // Simula sucesso e inicia o tutorial
-    alert('🎉 Obrigado! Cupom NEW-RAVIOLLI ativado para você!');
+   fetch('/contact', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: new URLSearchParams({
+    'form_type': 'customer',
+    'utf8': '✓',
+    'contact[email]': email
+  })
+})
+.then(response => {
+  if (response.ok) {
+    alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom NEW-RAVIOLLI ativado!');
     this.startTutorial();
+  } else {
+    alert('Ocorreu um erro ao se inscrever. Tente novamente.');
+  }
+})
+.catch(() => {
+  alert('Erro de conexão. Por favor, tente novamente.');
+});
+
   }
 
   isValidEmail(email) {
