@@ -30,7 +30,7 @@ Você pode definir a data e hora finais do contador.
   justify-content: center;
   align-items: center;
   padding: 60px 0;
-  background: radial-gradient(circle at center, #555 0%, #222 100%);
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   min-height: 100vh;
@@ -43,26 +43,72 @@ Você pode definir a data e hora finais do contador.
 }
 
 .time-box {
+  position: relative;
   text-align: center;
+  padding: 5px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
+/* EFEITO LUX GIRATÓRIO (igual ao .card) */
+.time-box::before {
+  content: "";
+  width: 120%;
+  height: 120%;
+  border-radius: 14px;
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: 0;
+  top: -10%;
+  left: -10%;
+  animation: spin 2.5s linear infinite;
+}
+
+.time-box::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  transform: scale(0.9);
+  filter: blur(25px);
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+/* Conteúdo */
 .time-box span {
+  position: relative;
+  z-index: 1;
   display: block;
   font-size: 64px;
   font-weight: bold;
-  background: #333;
+  background: rgba(25, 25, 25, 0.85);
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(254, 251, 251, 0.72);
+  color: #fff;
+  backdrop-filter: blur(8px);
 }
 
 .time-box small {
+  position: relative;
+  z-index: 1;
   display: block;
   margin-top: 10px;
   font-size: 14px;
   color: #ccc;
 }
+
+@keyframes spin {
+  0% { --rotate: 0deg; }
+  100% { --rotate: 360deg; }
+}
 </style>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
