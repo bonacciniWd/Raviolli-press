@@ -107,7 +107,7 @@ class FirstVisitPopup {
     this.storageKey = 'first_visit_ack_v1';
     this.currentStep = 0; // 0 = tela inicial, 1-3 = steps do tutorial
     this.totalSteps = 3;
-    this.couponCode = 'FICAFRIO10';
+    this.couponCode = 'RAVIOLLI-10';
     this.init();
   }
 
