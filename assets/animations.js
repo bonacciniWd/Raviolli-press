@@ -284,7 +284,6 @@ class FirstVisitPopup {
   }
 
 function subscribeNewsletter() {
-  // Tenta achar o input pelo ID padrão do footer
   const emailInput = document.querySelector('input[name="contact[email]"]');
   const email = emailInput ? emailInput.value.trim() : '';
 
@@ -298,7 +297,6 @@ function subscribeNewsletter() {
     return;
   }
 
-  // Envia pro mesmo endpoint do form 'customer'
   fetch('/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
