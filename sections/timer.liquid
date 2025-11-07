@@ -133,6 +133,11 @@ document.addEventListener("DOMContentLoaded", function() {
   let index = 0;
   const loaderText = document.getElementById("loader-text");
 
+  setInterval(() => {
+    loaderText.textContent = messages[index];
+    index = (index + 1) % messages.length;
+  }, 50000);
+
   // Load Lottie animation
   lottie.loadAnimation({
     container: document.getElementById('lottie-loader'),
@@ -141,11 +146,6 @@ document.addEventListener("DOMContentLoaded", function() {
     autoplay: true,
     path: '{{ "/loader.json" | asset_url }}'
   });
-
-  setInterval(() => {
-    loaderText.textContent = messages[index];
-    index = (index + 1) % messages.length;
-  }, 50000);
 });
 </script>
 
