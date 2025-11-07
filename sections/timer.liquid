@@ -1,0 +1,113 @@
+{% comment %}
+Countdown funcional até amanhã às 15h
+Pode ser adicionado via Customizer (“Adicionar seção” → “Countdown Timer”)
+{% endcomment %}
+
+<section id="countdown-section" class="countdown-container">
+  <div class="container">
+    <div class="time-box">
+      <span id="hours">00</span>
+      <small>Horas</small>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <small>Minutos</small>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <small>Segundos</small>
+    </div>
+  </div>
+</section>
+
+<style>
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  background: radial-gradient(circle at center, #555 0%, #222 100%);
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.countdown-container .container {
+  display: flex;
+  gap: 30px;
+}
+
+.time-box {
+  text-align: center;
+}
+
+.time-box span {
+  display: block;
+  font-size: 72px;
+  font-weight: bold;
+  background: #333;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.time-box small {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #aaa;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Cria uma data-alvo: amanhã às 15h
+  const now = new Date();
+  const target = new Date();
+  target.setDate(now.getDate() + 1);
+  target.setHours(15, 0, 0, 0);
+
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+
+  function updateCountdown() {
+    const current = new Date().getTime();
+    const distance = target.getTime() - current;
+
+    if (distance <= 0) {
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
+      return;
+    }
+
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Timer até amanhã às 15h"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer"
+    }
+  ]
+}
+{% endschema %}
