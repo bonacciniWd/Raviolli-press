@@ -59,7 +59,7 @@
         "variant_picker"
       ],
       "custom_css": [
-        ".product__info-wrapper {max-width: 45%;}"
+        "@media screen and (min-width: 950px) {.product__info-wrapper {max-width: 45%; }}"
       ],
       "settings": {
         "enable_sticky_info": true,
