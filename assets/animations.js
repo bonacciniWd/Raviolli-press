@@ -283,6 +283,7 @@ class FirstVisitPopup {
     });
   }
 
+<script>
   const PopupController = {
     storageKey: 'newsletterSubscribed',
     currentStep: 0,
@@ -394,7 +395,7 @@ class FirstVisitPopup {
 
   // Inicializa ao carregar a página
   document.addEventListener('DOMContentLoaded', () => PopupController.init());
-
+</script>
 
 
 isValidEmail(email) {
