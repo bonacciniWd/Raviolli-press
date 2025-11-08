@@ -283,83 +283,44 @@ class FirstVisitPopup {
     });
   }
 
-<script>
-  // Controle do fluxo do popup
-  let currentStep = 0;
+subscribeNewsletter() {
+  const emailInput = document.getElementById('newsletter-email');
+  const email = emailInput ? emailInput.value.trim() : '';
 
-  function showStep(step) {
-    document.querySelectorAll('.popup-step').forEach((el) => (el.style.display = 'none'));
-    const current = document.querySelector(`.popup-step[data-step="${step}"]`);
-    if (current) current.style.display = 'block';
+  if (!email) {
+    alert('Por favor, digite seu e-mail');
+    return;
+  }
 
-    // Esconde ou mostra as ações e progresso
-    document.querySelector('.popup-actions').style.display = step === 0 ? 'none' : 'block';
-    document.querySelector('.progress-indicators').style.display = step === 0 ? 'none' : 'flex';
+  if (!this.isValidEmail(email)) {
+    alert('Por favor, digite um e-mail válido');
+    return;
+  }
 
-    // Atualiza indicadores
-    document.querySelectorAll('.progress-dot').forEach((dot, i) => {
-      dot.classList.toggle('active', i + 1 === step);
+  // ✅ Monta o formulário corretamente para a Shopify
+  const formData = new FormData();
+  formData.append('form_type', 'customer');
+  formData.append('utf8', '✓');
+  formData.append('contact[email]', email);
+  formData.append('contact[tags]', 'newsletter');
+
+  fetch('/contact', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
+        localStorage.setItem(this.storageKey, '1');
+        this.startTutorial();
+      } else {
+        alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
+      }
+    })
+    .catch(() => {
+      alert('Erro de conexão. Por favor, tente novamente.');
     });
-  }
-
-  function nextStep() {
-    currentStep++;
-    showStep(currentStep);
-  }
-
-  function previousStep() {
-    currentStep--;
-    showStep(currentStep);
-  }
-
-  function skipToTutorial() {
-    currentStep = 1;
-    showStep(currentStep);
-  }
-
-  function finishPopup() {
-    const popup = document.getElementById('first-visit-popup');
-    popup.style.display = 'none';
-    localStorage.setItem('popupShown', 'true');
-  }
-
-  // Newsletter
-  function subscribeNewsletter() {
-    const emailInput = document.getElementById('newsletter-email');
-    const email = emailInput.value.trim();
-    const log = document.querySelector('.log');
-
-    // Cria .log caso não exista
-    if (!log) {
-      const div = document.createElement('div');
-      div.className = 'log';
-      emailInput.parentNode.insertBefore(div, emailInput.nextSibling);
-    }
-
-    if (email === '' || !email.includes('@')) {
-      document.querySelector('.log').textContent = 'Por favor, insira um e-mail válido.';
-      document.querySelector('.log').style.color = '#ff3333';
-      return;
-    }
-
-    // Simula envio (pode futuramente ser conectado à API real)
-    document.querySelector('.log').textContent = 'E-mail cadastrado com sucesso!';
-    document.querySelector('.log').style.color = '#4CAF50';
-
-    // Avança para o próximo passo
-    setTimeout(() => {
-      skipToTutorial();
-    }, 1000);
-  }
-
-  // Inicialização (só mostra uma vez por sessão)
-  window.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('popupShown')) {
-      document.getElementById('first-visit-popup').style.display = 'flex';
-      showStep(0);
-    }
-  });
-</script>
+}
 
 
 isValidEmail(email) {
