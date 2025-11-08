@@ -327,29 +327,12 @@
             </div>
 
             <div class="newsletter-form">
-              {%- form 'customer', id: 'PopupNewsletter', class: 'popup-newsletter-form' -%}
-                <input type="hidden" name="contact[tags]" value="newsletter">
-
-                <div class="newsletter-form__field-wrapper">
-                  <input
-                    id="NewsletterFormPopup--{{ section.id }}"
-                    type="email"
-                    name="contact[email]"
-                    class="email-input"
-                    placeholder="Seu melhor e-mail"
-                    required
-                  >
-
-                  <div class="buttons">
-                    <button type="button" class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
-                    <button type="submit" class="btn btn-primary">Pegar cupom!</button>
-                  </div>
-                </div>
-
-                <div class="log" id="popup-log" style="margin-top: 10px; font-size: 0.9rem; color: #00ffae; display: none;"></div>
-              {%- endform -%}
+              <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="email-input">
+              <div class="buttons">
+                <button class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
+                <button class="btn btn-primary" onclick="subscribeNewsletter()">Pegar cupom!</button>
+              </div>
             </div>
-
           </div>
 
           <!-- Step 1 - Welcome -->
