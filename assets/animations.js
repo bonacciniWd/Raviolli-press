@@ -107,7 +107,7 @@ class FirstVisitPopup {
     this.storageKey = 'first_visit_ack_v1';
     this.currentStep = 0; // 0 = tela inicial, 1-3 = steps do tutorial
     this.totalSteps = 3;
-    this.couponCode = 'RAVIOLLI-10';
+    this.couponCode = 'FICAFRIO10';
     this.init();
   }
 
@@ -283,60 +283,27 @@ class FirstVisitPopup {
     });
   }
 
-subscribeNewsletter() {
-  const emailInput = document.getElementById('newsletter-email');
-  const email = emailInput ? emailInput.value.trim() : '';
-
-  if (!email) {
-    alert('Por favor, digite seu e-mail');
-    return;
+  subscribeNewsletter() {
+    const emailInput = document.getElementById('newsletter-email');
+    const email = emailInput ? emailInput.value.trim() : '';
+    
+    if (!email) {
+      alert('Por favor, digite seu e-mail');
+      return;
+    }
+    
+    if (!this.isValidEmail(email)) {
+      alert('Por favor, digite um e-mail válido');
+      return;
+    }
+    
+    // Aqui você integraria com sua API de newsletter
+    console.log('Subscribing email:', email);
+    
+    // Simula sucesso e inicia o tutorial
+    alert('🎉 Obrigado! Cupom NEW-RAVIOLLI ativado para você!');
+    this.startTutorial();
   }
-
-  if (!this.isValidEmail(email)) {
-    alert('Por favor, digite um e-mail válido');
-    return;
-  }
-
-  // ✅ Monta o formulário corretamente para a Shopify
-  const formData = new FormData();
-  formData.append('form_type', 'customer');
-  formData.append('utf8', '✓');
-  formData.append('contact[email]', email);
-  formData.append('contact[tags]', 'newsletter');
-
-  fetch('/contact', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
-        localStorage.setItem(this.storageKey, '1');
-        this.startTutorial();
-      } else {
-        alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
-      }
-    })
-    .catch(() => {
-      alert('Erro de conexão. Por favor, tente novamente.');
-    });
-}
-
-
-isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-bindEvents() {
-  document.querySelectorAll('.progress-dot').forEach(dot => {
-    dot.addEventListener('click', () => {
-      const stepNumber = parseInt(dot.getAttribute('data-step'));
-      this.showStep(stepNumber);
-    });
-  });
-}
-
 
   isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
