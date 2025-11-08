@@ -326,32 +326,13 @@
               <p class="p-text">Cadastre-se em nossa newsletter e receba um cupom de desconto exclusivo</p>
             </div>
 
-           
-
             <div class="newsletter-form">
-            {%- form 'customer', id: 'PopupNewsletter', class: 'email-input' -%}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-
-              <div class="newsletter-form__field-wrapper">
-                <input
-                  id="NewsletterFormPopup--{{ section.id }}"
-                  type="email"
-                  name="contact[email]"
-                  class="email-input"
-                  placeholder="Seu melhor e-mail"
-                  required
-                >
-
-                <div class="buttons">
-                  <button type="button" class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
-                  <button type="submit" class="btn btn-primary" onclick="subscribeNewsletter()">Pegar cupom!</button>
-                </div>
+              <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="email-input">
+              <div class="buttons">
+                <button class="btn btn-skip" onclick="skipToTutorial()">Pular</button>
+                <button class="btn btn-primary" onclick="subscribeNewsletter()">Pegar cupom!</button>
               </div>
-
-              <div class="log" id="popup-log" style="margin-top: 10px; font-size: 0.9rem; color: #00ffae; display: none;"></div>
-            {%- endform -%}
-        </div>
-
+            </div>
           </div>
 
           <!-- Step 1 - Welcome -->
