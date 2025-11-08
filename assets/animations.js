@@ -283,45 +283,126 @@ class FirstVisitPopup {
     });
   }
 
-subscribeNewsletter() {
-  const emailInput = document.getElementById('newsletter-email');
-  const email = emailInput ? emailInput.value.trim() : '';
+  document.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('first-visit-popup');
+    if (!popup) return console.warn('Popup não encontrado no DOM.');
 
-  if (!email) {
-    alert('Por favor, digite seu e-mail');
-    return;
-  }
+    const controller = {
+      storageKey: 'newsletterSubscribed',
+      popupShownKey: 'popupShown',
+      currentStep: 0,
 
-  if (!this.isValidEmail(email)) {
-    alert('Por favor, digite um e-mail válido');
-    return;
-  }
+      showStep(step) {
+        document.querySelectorAll('.popup-step').forEach((el) => (el.style.display = 'none'));
+        const current = document.querySelector(`.popup-step[data-step="${step}"]`);
+        if (current) current.style.display = 'block';
 
-  // ✅ Monta o formulário corretamente para a Shopify
-  const formData = new FormData();
-  formData.append('form_type', 'customer');
-  formData.append('utf8', '✓');
-  formData.append('contact[email]', email);
-  formData.append('contact[tags]', 'newsletter');
+        document.querySelector('.popup-actions').style.display = step === 0 ? 'none' : 'block';
+        document.querySelector('.progress-indicators').style.display = step === 0 ? 'none' : 'flex';
 
-  fetch('/contact', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
-        localStorage.setItem(this.storageKey, '1');
-        this.startTutorial();
-      } else {
-        alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
-      }
-    })
-    .catch(() => {
-      alert('Erro de conexão. Por favor, tente novamente.');
-    });
-}
+        document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i + 1 === step);
+        });
+      },
 
+      nextStep() {
+        this.currentStep++;
+        this.showStep(this.currentStep);
+      },
+
+      previousStep() {
+        this.currentStep--;
+        this.showStep(this.currentStep);
+      },
+
+      skipToTutorial() {
+        this.currentStep = 1;
+        this.showStep(this.currentStep);
+      },
+
+      finishPopup() {
+        popup.style.display = 'none';
+        localStorage.setItem(this.popupShownKey, 'true');
+      },
+
+      isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      },
+
+      subscribeNewsletter() {
+        const emailInput = document.getElementById('newsletter-email');
+        const email = emailInput ? emailInput.value.trim() : '';
+
+        let log = document.querySelector('.log');
+        if (!log) {
+          log = document.createElement('div');
+          log.className = 'log';
+          emailInput.parentNode.insertBefore(log, emailInput.nextSibling);
+        }
+
+        if (!email) {
+          log.textContent = 'Por favor, digite seu e-mail.';
+          log.style.color = '#ff3333';
+          return;
+        }
+
+        if (!this.isValidEmail(email)) {
+          log.textContent = 'Por favor, insira um e-mail válido.';
+          log.style.color = '#ff3333';
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('form_type', 'customer');
+        formData.append('utf8', '✓');
+        formData.append('contact[email]', email);
+        formData.append('contact[tags]', 'newsletter');
+
+        fetch('/contact', { method: 'POST', body: formData })
+          .then((response) => {
+            if (response.ok) {
+              log.textContent = '🎉 Obrigado! Cupom RAVIOLLI-10 ativado!';
+              log.style.color = '#4CAF50';
+              localStorage.setItem(this.storageKey, '1');
+
+              setTimeout(() => this.startTutorial(), 1000);
+            } else {
+              log.textContent = 'Ops! Algo deu errado. Tente novamente.';
+              log.style.color = '#ff3333';
+            }
+          })
+          .catch(() => {
+            log.textContent = 'Erro de conexão. Tente novamente.';
+            log.style.color = '#ff3333';
+          });
+      },
+
+      startTutorial() {
+        this.skipToTutorial();
+      },
+
+      init() {
+        // ⚡ Remove flag de teste — pode comentar esta linha depois
+        // localStorage.removeItem(this.popupShownKey);
+
+        if (!localStorage.getItem(this.popupShownKey)) {
+          popup.style.display = 'flex';
+          this.showStep(0);
+        } else {
+          console.log('Popup já exibido anteriormente.');
+        }
+      },
+    };
+
+    // expõe globalmente para o Liquid
+    window.subscribeNewsletter = controller.subscribeNewsletter.bind(controller);
+    window.skipToTutorial = controller.skipToTutorial.bind(controller);
+    window.previousStep = controller.previousStep.bind(controller);
+    window.nextStep = controller.nextStep.bind(controller);
+    window.finishPopup = controller.finishPopup.bind(controller);
+
+    controller.init();
+  });
 
 isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
