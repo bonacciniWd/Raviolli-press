@@ -297,24 +297,22 @@ subscribeNewsletter() {
     return;
   }
 
-  // ✅ Envia o e-mail para a lista de contatos da Shopify
+  // ✅ Monta o formulário corretamente para a Shopify
+  const formData = new FormData();
+  formData.append('form_type', 'customer');
+  formData.append('utf8', '✓');
+  formData.append('contact[email]', email);
+  formData.append('contact[tags]', 'newsletter');
+
   fetch('/contact', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      'form_type': 'customer',
-      'utf8': '✓',
-      'contact[email]': email,
-      'contact[tags]': 'newsletter' // opcional, ajuda a filtrar no admin
-    })
+    body: formData,
   })
-    .then(response => {
-      // A Shopify redireciona normalmente, mas aqui bloqueamos isso via fetch
+    .then((response) => {
       if (response.ok) {
         alert('🎉 Obrigado! Você foi inscrito na nossa newsletter. Cupom RAVIOLLI-10 ativado!');
-        if (typeof this.startTutorial === 'function') {
-          this.startTutorial();
-        }
+        localStorage.setItem(this.storageKey, '1');
+        this.startTutorial();
       } else {
         alert('Ops! Ocorreu um erro ao se inscrever. Tente novamente.');
       }
@@ -323,6 +321,7 @@ subscribeNewsletter() {
       alert('Erro de conexão. Por favor, tente novamente.');
     });
 }
+
 
 isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
